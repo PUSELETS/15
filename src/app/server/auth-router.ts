@@ -56,16 +56,13 @@ export const authRouter = router({
                 //
                 const resend = new Resend("re_epnRGCk7_8d75vXMuhc5kaBmwX8693EfK");
 
-                const { error } = await resend.emails.send({
+                await resend.emails.send({
                     from: 'MaketP <onboarding@resend.dev>',
                     to: ['dimamabolo15@gmail.com'],
                     subject: 'Hello world',
                     react: EmailTemplate({ href: cancatinateUrl }),
                 });
 
-                if (error) {
-                    return console.error('failed', error)
-                }
 
             }
 
