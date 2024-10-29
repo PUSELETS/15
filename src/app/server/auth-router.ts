@@ -63,7 +63,6 @@ export const authRouter = router({
                     react: EmailTemplate({ href: cancatinateUrl }),
                 });
 
-
             }
 
             init()
