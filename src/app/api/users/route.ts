@@ -1,7 +1,6 @@
 import { cookies } from "next/headers";
-import { NextRequest ,NextResponse } from "next/server";
 
-const handler = async (request: NextRequest, response: NextResponse) => {
+const handler = async () => {
 
     const terminateCookie = await cookies()
     terminateCookie.set("user-token", '', {expires: new Date(0)})
