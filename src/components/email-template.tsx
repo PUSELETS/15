@@ -1,13 +1,11 @@
 import * as React from 'react';
 
 
-export const EmailTemplate: React.FC<Readonly<{href: string, token:string}>> = async ({
-    href,
-    token
+export const EmailTemplate: React.FC<Readonly<{href: string}>> = async ({
+    href
 }) =>
 (  
     <>
-        {token}
         <div >
             <a href={href}>verify account</a>
         </div>

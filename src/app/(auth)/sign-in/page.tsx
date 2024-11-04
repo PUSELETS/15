@@ -13,7 +13,6 @@ import {AuthCredentialsValidator,TAuthCredentialsValidator} from '@/lib/validato
 import { trpc } from '@/app/_trpc/client'
 import { toast } from 'sonner'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { setToken } from '@/app/_trpc/Providers'
 
 export const dynamic = "force-dynamic"
 
@@ -38,8 +37,6 @@ const Page = () => {
     isLoading } =
     trpc.auth.signIn.useMutation({
       onSuccess: async (yourAccessKey) => {
-
-        setToken(yourAccessKey)
 
         toast.success('Signed in successfully')
 

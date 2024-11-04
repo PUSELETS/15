@@ -1,7 +1,7 @@
 'use client'
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, buttonVariants } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -22,12 +22,12 @@ export const dynamic = "force-dynamic"
 
 function Page() {
 
-    const AuthCredentialsValidator = z.object({ 
+    const AuthCredentialsValidator = z.object({
 
-        email: z.string().email(), 
+        email: z.string().email(),
         password: z.string().min(8, {
             message: "Password must be at least 8 characters long."
-        })
+        }),
 
     })
 
@@ -59,13 +59,16 @@ function Page() {
                 'Something went wrong. Please try again.'
             )
         },
-        onSuccess: ({ sentToEmail}) => {
+        onSuccess: ({ Email, url }) => {
+            
             toast.success(
-                `Verification email sent to ${sentToEmail}.`
+                `Verification email sent to ${Email}.`
             )
-            router.push('/verify-email?to=' + sentToEmail)
+            router.push('/verify-email?to=' + Email)
         },
     })
+
+   
 
     const onSubmit = ({
         email,
@@ -133,7 +136,12 @@ function Page() {
                                     )}
                                 </div>
 
-                                <Button>Sign up</Button>
+                                <Button disabled={isLoading}>
+                                    {isLoading && (
+                                        <Loader2 className='mr-2 h-4 w-4 animate-spin' />
+                                    )}
+                                    Sign up
+                                </Button>
                             </div>
                         </form>
                     </div>
