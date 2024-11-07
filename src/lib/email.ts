@@ -5,8 +5,6 @@ let payload: string;
 let checked: string;
 let send = [] as any;
 
-console.log(send.length)
-
 export const setCheck = async (newChecked: string) => {
     checked = newChecked
     send.push(checked)

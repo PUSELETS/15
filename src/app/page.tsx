@@ -33,8 +33,8 @@ const perks = [
 export default function Home() {
   return (
     <>
-      <MaxWidthWrapper>
-        <div className='py-20 mx-auto text-center flex flex-col items-center max-w-3xl'>
+      <MaxWidthWrapper className="bg-[#fffbeb]">
+        <div className='py-20 mx-auto text-center flex flex-col items-center max-w-3xl '>
           <h1 className='text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl'>
             Your marketplace for high-quality{' '}
             <span className='text-blue-600'>
@@ -59,7 +59,7 @@ export default function Home() {
           </div>
         </div>
       </MaxWidthWrapper>
-      <section className='border-t border-gray-200 bg-gray-50'>
+      <section className='border-t border-gray-200 bg-[#fef3c7]'>
         <MaxWidthWrapper className='py-20'>
           <div className='grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0'>
             {perks.map((perk) => (
