@@ -8,7 +8,7 @@ const ENDPOINT = "https://cloud.appwrite.io/v1"
 const PROJECT_ID = "66f2b298000014fd6163"
 const DATABASE_ID_DEV = "66f2bb02000fc3e82db0"
 const COLLECTION_ID_USER = "66f2bb6a00195934058f"
-const COLLECTION_ID_PRODUCTS = ""
+const COLLECTION_ID_PRODUCTS = "6718cd2a001f95ec2734"
 
 const client = new Client()
      .setEndpoint(ENDPOINT) 
@@ -25,6 +25,11 @@ const collections = [
        'id':COLLECTION_ID_USER,
        'name':'user'
    },
+   {
+       'databaseId':DATABASE_ID_DEV,
+       'id':COLLECTION_ID_PRODUCTS,
+       'name':'products'
+   }
 
 ]
 

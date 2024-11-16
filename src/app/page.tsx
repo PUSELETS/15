@@ -6,6 +6,7 @@ import {
   CheckCircle,
   Leaf,
 } from 'lucide-react'
+import ProductReel from "@/components/ProductReel";
 
 export const dynamic = "force-dynamic"
 
@@ -58,6 +59,11 @@ export default function Home() {
             </Button>
           </div>
         </div>
+        <ProductReel
+          query={{ sort: 'category', limit: 4 , category:'ui-kit', pageParam: 0 }}
+          href='/products?sort=recent'
+          title='Brand new'
+        />
       </MaxWidthWrapper>
       <section className='border-t border-gray-200 bg-[#fef3c7]'>
         <MaxWidthWrapper className='py-20'>
