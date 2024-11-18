@@ -37,8 +37,6 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
       typeof image === 'string' ? image : image
     )
     .filter(Boolean) as string[]
-
-    console.log(validUrls)
       
     if (isVisible && product){
         return (
@@ -49,7 +47,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
             'visible animate-in fade-in-5': isVisible,
           } 
         )}
-        href={`/product/${product.$id}`}>
+        href={`/product/${product.costumId}`}>
         <div className='flex flex-col w-full'>
           <ImageSlider urls={validUrls} />
 
