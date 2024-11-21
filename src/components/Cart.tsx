@@ -28,8 +28,6 @@ const Cart = () => {
     0
   )
 
-  console.log(items)
-
   const fee = 1
 
   return <Sheet>
