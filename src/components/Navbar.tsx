@@ -14,7 +14,7 @@ import { useForm } from 'react-hook-form'
 export const dynamic = "force-dynamic"
 
 const Navbar = async () => {
- 
+
   const user = await getServerSideUser()
 
   console.log(user)
@@ -57,7 +57,7 @@ const Navbar = async () => {
                   )}
 
                   {user ? (
-                    <UserAccountNav user = {user} />
+                    <UserAccountNav user={user} />
                   ) : (
                     <Link
                       href='/sign-up'
@@ -83,10 +83,9 @@ const Navbar = async () => {
                       />
                     </div>
                   )}
-
-                  <div className='ml-4 flow-root lg:ml-6'>
-                    <Cart />
-                  </div>
+                </div>
+                <div className='ml-4 flow-root lg:ml-6'>
+                  <Cart />
                 </div>
               </div>
             </div>

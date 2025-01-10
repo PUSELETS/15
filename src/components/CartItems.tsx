@@ -47,7 +47,7 @@ const CartItem = ({ product }: { product: any }) => {
 
             <div className='mt-4 text-xs text-muted-foreground'>
               <button
-                onClick={() => removeItem(product.customId)}
+                onClick={() => removeItem(product)}
                 className='flex items-center gap-0.5'>
                 <X className='w-3 h-4' />
                 Remove

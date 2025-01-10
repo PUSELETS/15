@@ -11,7 +11,7 @@ export type CartItem = {
 type CartState = {
   items: CartItem[]
   addItem: (product: any) => void
-  removeItem: (productId: string) => void
+  removeItem: (productId: any) => void
   clearCart: () => void
 }
 
@@ -23,10 +23,10 @@ export const useCart = create<CartState>()(
         set((state) => {
           return { items: [...state.items, { product }] }
         }),
-      removeItem: (id) =>
+      removeItem: (product) =>
         set((state) => ({
           items: state.items.filter(
-            (item) => item.product.id !== id
+            (item) => item.product.$id !== product.$id
           ),
         })),
       clearCart: () => set({ items: [] }),
