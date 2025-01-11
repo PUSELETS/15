@@ -14,16 +14,10 @@ import { trpc } from '@/app/_trpc/client'
 import { toast } from 'sonner'
 import { useRouter, useSearchParams } from 'next/navigation'
 
-export const dynamic = "force-dynamic"
-
 const Page = () => {
   const searchParams = useSearchParams()
   const router = useRouter()
   const origin = searchParams.get('origin')
-
-  const continueAsBuyer = () => {
-    router.replace('/sign-in', undefined)
-  }
 
   const {
     register,
@@ -36,16 +30,13 @@ const Page = () => {
   const { mutate: signIn, 
     isLoading } =
     trpc.auth.signIn.useMutation({
-      onSuccess: async (yourAccessKey) => {
+      onSuccess: async () => {
 
         toast.success('Signed in successfully')
 
         router.refresh()
 
-        if (origin) {
-          router.push(`/${origin}`)
-          return
-        }
+        
 
         router.push('/')
       },
