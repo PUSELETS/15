@@ -12,12 +12,14 @@ import { useForm } from 'react-hook-form'
 import {AuthCredentialsValidator,TAuthCredentialsValidator} from '@/lib/validators/account-credentials-validator'
 import { trpc } from '@/app/_trpc/client'
 import { toast } from 'sonner'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+import { Suspense } from 'react'
+
 
 const Page = () => {
-  const searchParams = useSearchParams()
+  
   const router = useRouter()
-  const origin = searchParams.get('origin')
+  
 
   const {
     register,
@@ -36,7 +38,6 @@ const Page = () => {
 
         router.refresh()
 
-        
 
         router.push('/')
       },
