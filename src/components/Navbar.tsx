@@ -10,6 +10,7 @@ import Cart from './Cart'
 import UserAccountNav from './UserAccountNav'
 import { getServerSideUser } from '../lib/user'
 import { useForm } from 'react-hook-form'
+import Cartt from './Cartt'
 
 export const dynamic = "force-dynamic"
 
@@ -85,7 +86,7 @@ const Navbar = async () => {
                   )}
                 </div>
                 <div className='ml-4 flow-root lg:ml-6'>
-                  <Cart />
+                  <Cartt />
                 </div>
               </div>
             </div>

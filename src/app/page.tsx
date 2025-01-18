@@ -1,3 +1,4 @@
+
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
@@ -60,7 +61,7 @@ export default function Home() {
           </div>
         </div>
         <ProductReel
-          query={{ sort: 'category', limit: 4 , category:'ui-kit', pageParam: 0 }}
+          query={{ sort: 'category', limit: 4 , category:'ui-kit' }}
           href='/products?sort=recent'
           title='Brand new'
         />

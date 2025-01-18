@@ -11,22 +11,24 @@ export const appRouter = router({
     auth: authRouter,
     getInfiniteProducts: publicProcedure.input(z.object({
         limit: z.number().min(1).max(100),
-        cursor: z.number().nullish(),
+        cursor: z.number(),
         query: QueryValidator,
     })).query(async ({ input }) => {
         const { query, cursor } = input
-        const { pageParam , sort, limit, ...queryOpts } = query
+        const { sort, limit, ...queryOpts } = query
         
         const select = Object.values(queryOpts)
+
+        console.log(cursor, 'cursor in the building')
 
         const data = await db.products.list(
             [
                 Query.limit(limit),
-                Query.offset(pageParam)
+                Query.offset(cursor)
             ]
         )
 
-        return {...data, prevOffset: pageParam}
+        return {...data , cursor}
 
     })
 })

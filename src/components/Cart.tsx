@@ -11,7 +11,6 @@ import { useEffect, useState } from 'react'
 import { useCart } from "./hooks/use-cart"
 import { formatPrice } from "@/lib/utils"
 import CartItem from "./CartItems"
-export const dynamic = "force-dynamic"
 
 const Cart = () => {
   const { items } = useCart()
