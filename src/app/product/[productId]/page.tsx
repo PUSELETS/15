@@ -139,7 +139,7 @@ const filtered = Object.values(data)[1]
 
       <ProductReel
         href='/products'
-        query={{ category: product.category, limit: 4, pageParam: 0, sort: 'category' }}
+        query={{ category: product.category, limit: 4, sort: 'category' }}
         title={`Similar ${label}`}
         subtitle={`Browse similar high-quality ${label} just like '${product.name}'`}
       />
