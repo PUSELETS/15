@@ -22,9 +22,9 @@ const Navbar = async () => {
 
   return (
     <div className=' sticky z-50 top-0 inset-x-0 h-16'>
-      <header className='relative bg-[#ff7332]'>
+      <header className='relative bg-[#ffffff]'>
         <MaxWidthWrapper>
-          <div className='border-b border-gray-200'>
+          <div className=''>
             <div className='flex h-16 items-center'>
               <MobileNav />
 

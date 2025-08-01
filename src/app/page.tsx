@@ -46,9 +46,9 @@ export default function Home() {
   return (
     
       <section className="relative">
-        <section className="circle w-full h-[12.90625rem]">
+        <section className="circle w-full h-[15.59375rem]">
             <Image
-              src="/iphonee.png"
+              src="/iphonfe.png"
               alt='product category image'
               fill
               className=' object-center'
@@ -56,10 +56,8 @@ export default function Home() {
         </section>
       <MaxWidthWrapper className="">
         <div className={`mx-auto text-start flex flex-col items-center max-w-3xl ${rounded.className}`}>
-          <p className='flex content-start spacing mb-2 text-[1.875rem] mt-[11.8rem] text-[#2E2E2E] mr-[3.1875rem] '>
-            From our oven to your heart
-          </p>
-          <p className={` text-[1rem] max-w-prose text-[#4E4E4E] mr-[4.625rem] ${kelvenica.className}`}>
+          
+          <p className={` text-[1rem] mt-[16.59375rem] max-w-prose text-[#4E4E4E] mr-[4.625rem] ${kelvenica.className}`}>
             Enjoy our Handcrafted muffins, croissants, and dikuku, Baked fresh with Local love, delivered to your door.
           </p>
           <div className='flex flex-col '>
