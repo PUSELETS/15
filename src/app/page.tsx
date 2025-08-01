@@ -8,8 +8,18 @@ import {
   Leaf,
 } from 'lucide-react'
 import ProductReel from "@/components/ProductReel";
+import Image from "next/image";
+import localFont from "next/font/local";
 
-export const dynamic = "force-dynamic"
+
+const rounded = localFont({
+  src: "./fonts/Milker.otf",
+})
+
+const kelvenica = localFont({
+  src: "./fonts/helvetica-rounded-bold-5871d05ead8de.otf",
+})
+
 
 const perks = [
   {
@@ -34,26 +44,27 @@ const perks = [
 
 export default function Home() {
   return (
-    <>
+    
+      <section className="relative">
+        <section className="circle w-full h-[12.90625rem]">
+            <Image
+              src="/iphonee.png"
+              alt='product category image'
+              fill
+              className=' object-center'
+            />
+        </section>
       <MaxWidthWrapper className="">
-        <div className='py-20 mx-auto text-start flex flex-col items-center max-w-3xl '>
-          <h1 className='text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl'>
-            FROM OUR OVEN 
-            TO YOUR {' '}
-            <span className='text-blue-600'>
-              HEART
-            </span>
-            .
-          </h1>
-          <p className='mt-6 text-lg max-w-prose text-muted-foreground'>
+        <div className={`mx-auto text-start flex flex-col items-center max-w-3xl ${rounded.className}`}>
+          <p className='flex content-start spacing mb-2 text-[1.875rem] mt-[11.8rem] text-[#2E2E2E] mr-[3.1875rem] '>
+            From our oven to your heart
+          </p>
+          <p className={` text-[1rem] max-w-prose text-[#4E4E4E] mr-[4.625rem] ${kelvenica.className}`}>
             Enjoy our Handcrafted muffins, croissants, and dikuku, Baked fresh with Local love, delivered to your door.
           </p>
-          <div className='flex flex-col sm:flex-row gap-4 mt-6'>
+          <div className='flex flex-col '>
             
           </div>
-        </div>
-        <div className="h-[4rem] w-[40.75rem] bg-blue-100" >
-
         </div>
         <ProductReel
           query={{ sort: 'category', limit: 4 , category:'ui-kit' }}
@@ -87,7 +98,8 @@ export default function Home() {
           </div>
         </MaxWidthWrapper>
       </section>
-    </>
+      </section>
+  
 
   )
 }

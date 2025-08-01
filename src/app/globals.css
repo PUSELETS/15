@@ -64,3 +64,21 @@ body {
     --chart-5: 340 75% 55%;
   }
 }
+
+@layer components {
+ .circle {
+  position: absolute;
+  top: 0px;
+  left:0px;
+  z-index: -1;
+ }
+}
+
+@layer components {
+ .spacing {
+  padding: -1;
+  word-spacing: -4px;
+  line-height: normal;
+ }
+}
+
