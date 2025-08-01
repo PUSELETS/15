@@ -21,8 +21,8 @@ const Navbar = async () => {
   console.log(user)
 
   return (
-    <div className='bg-[#fffbeb] sticky z-50 top-0 inset-x-0 h-16'>
-      <header className='relative bg-[#fffbeb]'>
+    <div className=' sticky z-50 top-0 inset-x-0 h-16'>
+      <header className='relative bg-[#ff7332]'>
         <MaxWidthWrapper>
           <div className='border-b border-gray-200'>
             <div className='flex h-16 items-center'>
