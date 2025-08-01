@@ -52,7 +52,9 @@ export default function Home() {
             
           </div>
         </div>
-        
+        <div className="h-[4rem] w-[40.75rem] bg-blue-100" >
+
+        </div>
         <ProductReel
           query={{ sort: 'category', limit: 4 , category:'ui-kit' }}
           href='/products?sort=recent'
