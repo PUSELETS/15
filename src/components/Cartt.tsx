@@ -57,7 +57,7 @@ const MobileNav = () => {
                 onClick={() => setIsOpen(true)}
                 className=' relative -m-2 inline-flex items-center justify-center rounded-md p-2 text-gray-400'>
                 <ShoppingCart aria-hidden='true' className="h-6 w-6 flex-shrink-0 text-[#6E6E6E] group-hover:text-[#4E4E4E]" />
-                <span className="m-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
+                <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">
                     {isMounted ? itemCount : 0}
                 </span>
             </button>
