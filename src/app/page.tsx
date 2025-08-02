@@ -57,7 +57,7 @@ export default function Home() {
       <MaxWidthWrapper className="">
         <div className={`mx-auto text-start flex flex-col items-center max-w-3xl ${rounded.className}`}>
           
-          <p className={` text-[1rem] mt-[16.59375rem] max-w-prose text-[#4E4E4E] mr-[4.625rem] ${kelvenica.className}`}>
+          <p className={` text-[1rem] mt-[15.8rem] -mb-2 max-w-prose text-[#4E4E4E] mr-[4.625rem] ${kelvenica.className}`}>
             Enjoy our Handcrafted muffins, croissants, and dikuku, Baked fresh with Local love, delivered to your door.
           </p>
           <div className='flex flex-col '>
