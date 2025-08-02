@@ -2,6 +2,8 @@
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
 import { Button, buttonVariants } from "@/components/ui/button";
 import Link from "next/link";
+import { header } from "../components/Header";
+import { rate } from "../components/rate";
 import {
   ArrowDownToLine,
   CheckCircle,
@@ -46,23 +48,22 @@ export default function Home() {
   return (
     
       <section className="relative">
-        <section className="circle w-full h-[15.59375rem]">
+        <section className="circle w-full h-[12.90625rem]">
             <Image
-              src="/iphonfe.png"
+              src="/upgrade.png"
               alt='product category image'
               fill
               className=' object-center'
             />
         </section>
       <MaxWidthWrapper className="">
-        <div className={`mx-auto text-start flex flex-col items-center max-w-3xl ${rounded.className}`}>
+        <div className={`mx-auto text-start flex flex-col items-start max-w-3xl ${rounded.className}`}>
           
-          <p className={` text-[1rem] mt-[15.8rem] -mb-2 max-w-prose text-[#4E4E4E] mr-[4.625rem] ${kelvenica.className}`}>
-            Enjoy our Handcrafted muffins, croissants, and dikuku, Baked fresh with Local love, delivered to your door.
-          </p>
-          <div className='flex flex-col '>
-            
-          </div>
+          <header.logo className=' w-[17.25rem] h-[5.53125rem] mt-[14.40625rem]' />
+          <rate.logo className="w-[6.275rem] h-[1.075rem] mt-[0.75rem]" />
+          <button className="mt-[3.61875rem] bg-[#60A5FA] w-[8.65rem] h-[2rem] rounded-[5px] text-[0.875rem] text-[#2E2E2E]">
+            order now
+          </button>
         </div>
         <ProductReel
           query={{ sort: 'category', limit: 4 , category:'ui-kit' }}
