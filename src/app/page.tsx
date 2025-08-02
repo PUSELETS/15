@@ -61,7 +61,7 @@ export default function Home() {
           
           <header.logo className=' w-[17.25rem] h-[5.53125rem] mt-[14.40625rem]' />
           <rate.logo className="w-[6.275rem] h-[1.075rem] mt-[0.75rem]" />
-          <button className="flex content-center items-center justify-center mt-[3.61875rem] bg-[#60A5FA] w-[8.65rem] h-[4rem] rounded-[5px] text-[0.875rem] text-[#2E2E2E]">
+          <button className="flex content-center items-center justify-center mt-[3.61875rem] bg-[#60A5FA] w-[8.65rem] h-[3rem] rounded-[5px] text-[0.875rem] text-[#2E2E2E]">
             order now
           </button>
         </div>
