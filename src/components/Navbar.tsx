@@ -25,20 +25,16 @@ const Navbar = async () => {
       <header className='relative bg-[#ffffff]'>
         <MaxWidthWrapper>
           <div className=''>
-            <div className='flex h-16 items-center'>
+            <div className='h-16 items-center flex justify-between'>
               <MobileNav />
 
-              <div className='ml-4 flex lg:ml-0'>
+              <div className=' flex lg:ml-0'>
                 <Link href='/'>
                   <Icons.logo className='h-10 w-10' />
                 </Link>
               </div>
 
-              <div className='hidden z-50 lg:ml-8 lg:block lg:self-stretch'>
-                <NavItems></NavItems>
-              </div>
-
-              <div className='ml-auto flex items-center'>
+              <div className=' flex items-center'>
                 <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
                   {user ? null : (
                     <Link
@@ -88,6 +84,9 @@ const Navbar = async () => {
                 <div className='ml-4 flow-root lg:ml-6'>
                   <Cartt />
                 </div>
+              </div>
+              <div className='hidden z-50 lg:ml-8 lg:block lg:self-stretch'>
+                <NavItems></NavItems>
               </div>
             </div>
           </div>
