@@ -5,15 +5,14 @@ import { v4 as uuid } from "uuid";
 import { db } from "../database";
 import { Query } from 'appwrite';
 import { TRPCError } from "@trpc/server";
-import { databases, DATABASE_ID_DEV, COLLECTION_ID_USER } from "../appwrite";
+import { databases, DATABASE_ID_DEV, COLLECTION_ID_customer_info } from "../appwrite";
 import { setToken } from "@/middleware";
 import { SignJWT } from "jose";
 import { getJwtSecretKey } from "../../lib/auth";
 import { setPayload } from "@/lib/email";
+import { where } from "firebase/firestore";
+import { database } from "../firebase";
 
-
-
-export const dynamic = "force-dynamic"
 
 export const authRouter = router({
     createUser: publicProcedure
@@ -28,12 +27,11 @@ export const authRouter = router({
             const { email, password } = input
 
             //check if user exist
+            const document = await database.customer.list([where("email", "==", email )]);
 
-            const respon = await db.user.list(
-                [Query.equal("email", [email])]
-            )
+            console.log(document.length, "with mish")
 
-            if (respon.total !== 0)
+            if (document.length !== 0)
                 throw new TRPCError({ code: 'CONFLICT' })
 
             //create user
@@ -45,7 +43,9 @@ export const authRouter = router({
                 Token: token,
                 varified: false
             }
-            await db.user.create(data)
+
+            await database.customer.create(data)
+
 
             const URL = `${process.env.NEXT_PUBLIC_SERVER_URL}/verify-email?token=`
             const tokenUrl = `${token}`
@@ -61,22 +61,22 @@ export const authRouter = router({
         .query(async ({ input }) => {
             const { token } = input
 
-            const respon = await db.user.list(
-                [Query.equal("Token", [token])]
-            )
+            const respon = await database.customer.list([where("Token", "==", token)]);
 
+            const isV = await database.customer.update({ verified: true }, respon.documents[0].$id );
+            
+            console.log(respon)
+            
             const isVerified = await databases.updateDocument(
                 DATABASE_ID_DEV, // databaseId
-                COLLECTION_ID_USER, // collectionId
+                COLLECTION_ID_customer_info, // collectionId
                 respon.documents[0].$id, // documentId
                 {
                     varified: true
                 }, // data (optional)
-
             );
 
-
-            if (!isVerified)
+            if (!isV)
                 throw new TRPCError({ code: 'UNAUTHORIZED' })
 
             return { success: true }
@@ -87,12 +87,10 @@ export const authRouter = router({
         .mutation(async ({ input }) => {
             const { email, password } = input
             //check if user exist
-            const userExist = await db.user.list(
-                [Query.equal("email", [email])]
-            )
-            if (userExist.total == 0)
-                throw new TRPCError({ code: 'CONFLICT' })
+            const userExist = await database.customer.list([where("email", "==", email)]);
 
+            if (userExist.length == 0)
+                throw new TRPCError({ code: 'CONFLICT' })
 
             try {
 

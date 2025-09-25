@@ -1,8 +1,6 @@
 import { fetchRequestHandler } from '@trpc/server/adapters/fetch';
 import { appRouter } from '@/app/server';
 
-export const dynamic = "force-dynamic"
-
 function handler(req: Request) {
   return fetchRequestHandler({
     endpoint: '/api/trpc',

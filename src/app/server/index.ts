@@ -1,36 +1,40 @@
-export const dynamic = "force-dynamic";
-import { Query } from 'appwrite';
 
+import { Query } from 'appwrite';
+import { limit, startAfter, getDoc, doc, QueryConstraint, where } from "firebase/firestore";
 import { z } from "zod";
 import { authRouter } from "./auth-router";
 import { publicProcedure, router } from "./trpc";
 import { QueryValidator } from "@/lib/validators/query-validator";
 import { databases, db } from "../database";
+import { database } from '../firebase';
 
 export const appRouter = router({
     auth: authRouter,
-    getInfiniteProducts: publicProcedure.input(z.object({
-        limit: z.number().min(1).max(100),
-        cursor: z.number(),
-        query: QueryValidator,
-    })).query(async ({ input }) => {
-        const { query, cursor } = input
-        const { sort, limit, ...queryOpts } = query
-        
-        const select = Object.values(queryOpts)
+    getPosts: publicProcedure
+        .input(z.object({ limit: z.number().default(2), cursor: z.string().optional() }))
+        .query(async ({ input }) => {
+            // Set default limit if not provided
+            const limitValue = input.limit ?? 2;
 
-        console.log(cursor, 'cursor in the building')
+            // Build Firestore query constraints
+            const queries: QueryConstraint[] = [limit(limitValue + 1)];
+            if (input.cursor) {
+                const cursorDoc = await getDoc(doc(database.db, "product_info", input.cursor));
+                if (!cursorDoc.exists()) throw new Error(`Cursor document ${input.cursor} not found`);
+                queries.push(startAfter(cursorDoc));
+            }
 
-        const data = await db.products.list(
-            [
-                Query.limit(limit),
-                Query.offset(cursor)
-            ]
-        )
+            // Call database.products.list with constraints
+            const documents = await database.products.list(queries);
 
-        return {...data , cursor}
+            const document = await database.customer.list([where("name", "==", "John Doe")]);
 
-    })
+            const hasNextPage = documents.length > limitValue;
+            return {
+                posts: documents.slice(0, limitValue),
+                nextCursor: hasNextPage ? documents[documents.length - 1].id : null,
+            };
+        })
 })
 
 export type AppRouter = typeof appRouter

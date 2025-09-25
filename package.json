@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
-    "start": "next start",
+    "start": "next start src/app/firebase.ts",
     "lint": "next lint"
   },
   "dependencies": {
@@ -29,7 +29,7 @@
     "clsx": "^2.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
-    "firebase": "^11.0.2",
+    "firebase": "^12.2.1",
     "jose": "^5.9.3",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.438.0",

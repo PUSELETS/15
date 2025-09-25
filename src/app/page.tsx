@@ -68,7 +68,6 @@ export default function Home() {
           </button>
         </div>
         <ProductReel
-          query={{ sort: 'category', limit: 4 , category:'ui-kit' }}
           href='/products?sort=recent'
           title='Brand new'
         />

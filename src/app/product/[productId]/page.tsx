@@ -10,6 +10,8 @@ import { notFound } from 'next/navigation'
 import { db } from '@/app/database'
 import { Query } from 'appwrite';
 import AddToCartButton from '@/components/AddToCartButton'
+import { database } from '@/app/firebase'
+import { where } from 'firebase/firestore'
 
 
 const BREADCRUMBS = [
@@ -21,6 +23,7 @@ const Page = async ({params}:{params: Promise<{params: string}>}) => {
 
   const slug = await params 
   const select = Object.values(slug)
+  const document = await database.products.list([where("name", "==", "John Doe")]);
   const data = await db.products.list(
     [
         Query.equal('costumId',select)
@@ -139,7 +142,7 @@ const filtered = Object.values(data)[1]
 
       <ProductReel
         href='/products'
-        query={{ category: product.category, limit: 4, sort: 'category' }}
+        
         title={`Similar ${label}`}
         subtitle={`Browse similar high-quality ${label} just like '${product.name}'`}
       />

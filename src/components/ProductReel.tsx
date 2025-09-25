@@ -13,35 +13,33 @@ interface ProductReelProps {
   title: string
   subtitle?: string
   href?: string
-  query: TQueryValidator
 }
 
-const FALLBACK_LIMIT = 4
-
 const ProductReel = (props: ProductReelProps) => {
-  const { title, subtitle, href, query } = props
+  const { title, subtitle, href } = props
 
-  const { data: queryResults, isLoading , fetchNextPage , hasNextPage , isFetchingNextPage } =
-    trpc.getInfiniteProducts.useInfiniteQuery(
-      {
-        limit: query.limit ,
-        query,
+  const observerRef = useRef<HTMLDivElement>(null)
+
+  const { data, isLoading, fetchNextPage, hasNextPage, isFetching } = trpc.getPosts.useInfiniteQuery(
+    {limit: 4},
+    { getNextPageParam: (lastPage) => lastPage.nextCursor }
+  );
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting && hasNextPage && !isFetching) {
+          fetchNextPage();
+        }
       },
-      {
-        getNextPageParam: (lastPage) => {
+      { threshold: 1 }
+    );
+    if (observerRef.current) observer.observe(observerRef.current);
+    return () => observer.disconnect();
+  }, [hasNextPage, isFetching, fetchNextPage]);
 
-          if(lastPage.cursor + 4 > lastPage.documents.length){
-            return false
-          }
-          return lastPage.cursor + 4
-        },
-        initialCursor: 0
-      },
-
-    )
-
-    const product = queryResults?.pages.flatMap(
-      (page) => page.documents
+  const product = data?.pages.flatMap(
+      (page) => page.posts
     ) as any
   
     let map = []
@@ -49,11 +47,11 @@ const ProductReel = (props: ProductReelProps) => {
       map = product
     } else if (isLoading) {
       map = new Array<null>(
-        query.limit ?? FALLBACK_LIMIT
+        
       ).fill(null)
     }
 
-  return ( 
+  return (
     <section className='py-12'>
       <div className='md:flex md:items-center md:justify-between mb-4'>
         <div className='max-w-2xl px-4 lg:max-w-4xl lg:px-0'>
@@ -63,7 +61,7 @@ const ProductReel = (props: ProductReelProps) => {
             </h1>
           ) : null}
           {subtitle ? (
-            <p className='mt-2 text-sm text-muted-foreground'>
+            <p className='mt-2 text-sm text-muted-foreground'> 
               {subtitle}
             </p>
           ) : null}
@@ -81,22 +79,16 @@ const ProductReel = (props: ProductReelProps) => {
 
       <div className='relative'>
         <div className='mt-6 flex items-center w-full'>
-          <InfiniteScroll
-          dataLength={product? product.length : 0}
-          next={()=>fetchNextPage()}
-          hasMore = {hasNextPage? true : false}
-          loader={<div>laoding...</div>}
-          >
           <div className='w-full grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-10 lg:gap-x-8'>
-          {map?.map((product: any, i: number) => (
+            {map?.map((product: any, i: number) => (
               <ProductListing
-                key={`products-${i}`}
+                key={`product-${i}`}
                 product={product}
                 index={i}
               />
             ))}
           </div>
-          </InfiniteScroll>
+          <div ref={observerRef}>{isFetching ? 'Loading...' : 'here is data'}</div>
         </div>
       </div>
     </section>
