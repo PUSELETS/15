@@ -20,8 +20,7 @@ export const authRouter = router({
             email: z.string().email(),
             password: z.string().min(8, {
                 message: "Password must be at least 8 characters long."
-            })
-
+            })     
         }))
         .mutation(async ({ input }) => {
             const { email, password } = input
@@ -117,4 +116,11 @@ export const authRouter = router({
             }
         }),
 })
+
+
+
+
+
+
+
 

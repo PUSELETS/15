@@ -23,11 +23,8 @@ export const appRouter = router({
                 if (!cursorDoc.exists()) throw new Error(`Cursor document ${input.cursor} not found`);
                 queries.push(startAfter(cursorDoc));
             }
-
             // Call database.products.list with constraints
             const documents = await database.products.list(queries);
-
-            const document = await database.customer.list([where("name", "==", "John Doe")]);
 
             const hasNextPage = documents.length > limitValue;
             return {
