@@ -19,8 +19,8 @@ export const setPayload = async (newPayload: string) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: 'dimamabolo15@gmail.com',
-            pass: 'auaexnmptialivld',
+            user: process.env.GMAIL_USER,
+            pass: process.env.GMAIL_PASS,
         },
     });
 
@@ -31,7 +31,7 @@ export const setPayload = async (newPayload: string) => {
 
     await transporter.sendMail({
         from: 'dimamabolo15@gmail.com',
-        to: 'dimamabolo15@gmail.com',
+        to: 'tumelo.g5900@gmail.com',
         subject: 'welcome to the store',
         html: payload && html
     })
