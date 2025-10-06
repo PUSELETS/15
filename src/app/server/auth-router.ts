@@ -2,8 +2,6 @@ import { AuthCredentialsValidator } from "../../lib/validators/account-credentia
 import { publicProcedure, router } from "./trpc";
 import { z } from "zod";
 import { v4 as uuid } from "uuid";
-import { db } from "../database";
-import { Query } from 'appwrite';
 import { TRPCError } from "@trpc/server";
 import { databases, DATABASE_ID_DEV, COLLECTION_ID_customer_info } from "../appwrite";
 import { setToken } from "@/middleware";
@@ -12,6 +10,7 @@ import { getJwtSecretKey } from "../../lib/auth";
 import { setPayload } from "@/lib/email";
 import { where } from "firebase/firestore";
 import { database } from "../firebase";
+import nodemailer from 'nodemailer';
 
 
 export const authRouter = router({
@@ -20,13 +19,13 @@ export const authRouter = router({
             email: z.string().email(),
             password: z.string().min(8, {
                 message: "Password must be at least 8 characters long."
-            })     
+            })
         }))
         .mutation(async ({ input }) => {
             const { email, password } = input
 
             //check if user exist
-            const document = await database.customer.list([where("email", "==", email )]);
+            const document = await database.customer.list([where("email", "==", email)]);
 
             console.log(document.length, "with mish")
 
@@ -50,9 +49,29 @@ export const authRouter = router({
             const tokenUrl = `${token}`
             const cancatinateUrl = URL + tokenUrl
 
-            setPayload(cancatinateUrl)
+            const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                port: 587,
+                secure: false,
+                auth: {
+                    user: process.env.GMAIL_USER,
+                    pass: process.env.GMAIL_PASS,
+                },
+            });
 
-            return { success: true, Email: email, url: cancatinateUrl } 
+            const html = `
+                <h1>hello world</h1>
+                <p>is nodemailer usefull</p>
+            `;
+
+            await transporter.sendMail({
+                from: 'dimamabolo15@gmail.com',
+                to: 'dimamabolo15@gmail.com',
+                subject: 'welcome to the store',
+                html: html
+            })
+
+            return { success: true, Email: email, url: cancatinateUrl }
         }),
 
     verifyEmail: publicProcedure
@@ -62,10 +81,10 @@ export const authRouter = router({
 
             const respon = await database.customer.list([where("Token", "==", token)]);
 
-            const isV = await database.customer.update({ verified: true }, respon.documents[0].$id );
-            
+            const isV = await database.customer.update({ verified: true }, respon.documents[0].$id);
+
             console.log(respon)
-            
+
             const isVerified = await databases.updateDocument(
                 DATABASE_ID_DEV, // databaseId
                 COLLECTION_ID_customer_info, // collectionId
