@@ -20,7 +20,8 @@ export const authRouter = router({
             email: z.string().email(),
             password: z.string().min(8, {
                 message: "Password must be at least 8 characters long."
-            })     
+            }),
+            
         }))
         .mutation(async ({ input }) => {
             const { email, password } = input
@@ -45,12 +46,11 @@ export const authRouter = router({
 
             await database.customer.create(data)
 
-
             const URL = `${process.env.NEXT_PUBLIC_SERVER_URL}/verify-email?token=`
             const tokenUrl = `${token}`
             const cancatinateUrl = URL + tokenUrl
-            
-            setPayload(cancatinateUrl)
+
+            setTimeout(() => setPayload(cancatinateUrl), 2000)
 
             return { success: true, Email: email, url: cancatinateUrl } 
         }),

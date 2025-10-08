@@ -1,6 +1,6 @@
 import { EmailTemplate } from '@/components/email-template';
 import { Resend } from 'resend';
-import nodemailer from 'nodemailer';
+import nodemailer, { Transporter } from 'nodemailer';
 
 let payload: string;
 let checked: string;
@@ -10,8 +10,6 @@ export const setCheck = async (newChecked: string) => {
     checked = newChecked
     send.push(checked)
 }
-
-
 
 export const setPayload = async (newPayload: string) => {
     payload = newPayload
@@ -24,17 +22,24 @@ export const setPayload = async (newPayload: string) => {
         },
     });
 
-    const html = `
-    <h1>hello world</h1>
-    <p>is nodemailer usefull</p>
-`;
-
-    await transporter.sendMail({
+    const mailOptions = {
         from: 'dimamabolo15@gmail.com',
-        to: 'tumelo.g5900@gmail.com',
+        to: 'dimamabolo15@gmail.com',
         subject: 'welcome to the store',
-        html: payload && html
-    })
+        html: `
+          <h1>Hello World</h1>
+          <p>Is Nodemailer useful?</p>
+        `
+    };
+
+    try {
+        const result = await  transporter.sendMail(mailOptions);
+        console.log('Email sent:', result.response);
+        return { message: 'Email sent successfully', result: result.response };
+    } catch (error) {
+        console.error('Email send error:', error);
+        throw new Error('Failed to send email: ' + (error as Error).message);
+    }
 
 }
 
