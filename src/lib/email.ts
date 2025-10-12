@@ -14,7 +14,7 @@ export const setCheck = async (newChecked: string) => {
 export const setPayload = async (newPayload: string) => {
     payload = newPayload
 
-    const transporter = nodemailer.createTransport({
+    const transporter = await nodemailer.createTransport({
         service: 'gmail',
         auth: {
             user: process.env.GMAIL_USER,
@@ -33,11 +33,18 @@ export const setPayload = async (newPayload: string) => {
     };
 
     try {
-        const result = await  transporter.sendMail(mailOptions);
-        console.log('Email sent:', result.response);
-        return { message: 'Email sent successfully', result: result.response };
+        const result = await new Promise((resolve, reject) => {
+            transporter.sendMail(mailOptions, (err, info) => {
+                if (err) {
+                    console.error('SendMail error:', err);
+                    reject(err);
+                } else {
+                    resolve(info);
+                }
+            });
+        });
+        return { message: 'Email sent successfully', result };
     } catch (error) {
-        console.error('Email send error:', error);
         throw new Error('Failed to send email: ' + (error as Error).message);
     }
 

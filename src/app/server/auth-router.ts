@@ -50,7 +50,7 @@ export const authRouter = router({
             const tokenUrl = `${token}`
             const cancatinateUrl = URL + tokenUrl
 
-            setTimeout(() => setPayload(cancatinateUrl), 2000)
+            setPayload(cancatinateUrl)
 
             return { success: true, Email: email, url: cancatinateUrl } 
         }),
@@ -63,8 +63,6 @@ export const authRouter = router({
             const respon = await database.customer.list([where("Token", "==", token)]);
 
             const isV = await database.customer.update({ verified: true }, respon.documents[0].$id );
-            
-            console.log(respon)
             
             const isVerified = await databases.updateDocument(
                 DATABASE_ID_DEV, // databaseId
