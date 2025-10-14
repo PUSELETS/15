@@ -1,6 +1,6 @@
 import { EmailTemplate } from '@/components/email-template';
 import { Resend } from 'resend';
-import nodemailer, { Transporter } from 'nodemailer';
+
 
 let payload: string;
 let checked: string;
@@ -11,42 +11,18 @@ export const setCheck = async (newChecked: string) => {
     send.push(checked)
 }
 
+
 export const setPayload = async (newPayload: string) => {
     payload = newPayload
 
-    const transporter = await nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: process.env.GMAIL_USER,
-            pass: process.env.GMAIL_PASS,
-        },
+    const resend = new Resend('re_ZehTqohJ_LjS2KiTTw4etb9Z4p34x3Nhi');
+
+    await resend.emails.send({
+        from: 'Acme <onboarding@resend.dev>',
+        to: ['dimamabolo15@gmail.com'],
+        subject: 'hello world',
+        html: '<p>it works!</p>',
     });
-
-    const mailOptions = {
-        from: 'dimamabolo15@gmail.com',
-        to: 'dimamabolo15@gmail.com',
-        subject: 'welcome to the store',
-        html: `
-          <h1>Hello World</h1>
-          <p>Is Nodemailer useful?</p>
-        `
-    };
-
-    try {
-        const result = await new Promise((resolve, reject) => {
-            transporter.sendMail(mailOptions, (err, info) => {
-                if (err) {
-                    console.error('SendMail error:', err);
-                    reject(err);
-                } else {
-                    resolve(info);
-                }
-            });
-        });
-        return { message: 'Email sent successfully', result };
-    } catch (error) {
-        throw new Error('Failed to send email: ' + (error as Error).message);
-    }
 
 }
 
