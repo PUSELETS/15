@@ -9,17 +9,19 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { ArrowRight, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
-import {AuthCredentialsValidator,TAuthCredentialsValidator} from '@/lib/validators/account-credentials-validator'
+import { AuthCredentialsValidator, TAuthCredentialsValidator } from '@/lib/validators/account-credentials-validator'
 import { trpc } from '@/app/_trpc/client'
 import { toast } from 'sonner'
 import { useRouter } from 'next/navigation'
-import { Suspense } from 'react'
+import { GoogleLogin } from '@react-oauth/google';
+import { Suspense, useState } from 'react'
+import GoogleLoginComponent from '@/components/GoogleLogin'
 
 
 const Page = () => {
-  
+
   const router = useRouter()
-  
+
 
   const {
     register,
@@ -29,7 +31,7 @@ const Page = () => {
     resolver: zodResolver(AuthCredentialsValidator),
   })
 
-  const { mutate: signIn, 
+  const { mutate: signIn,
     isLoading } =
     trpc.auth.signIn.useMutation({
       onSuccess: async () => {
@@ -120,10 +122,12 @@ const Page = () => {
                   )}
                   Sign in
                 </Button>
+
               </div>
             </form>
           </div>
         </div>
+        <GoogleLoginComponent />
       </div>
     </>
   )

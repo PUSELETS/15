@@ -1,15 +1,22 @@
-
-import { Query } from 'appwrite';
 import { limit, startAfter, getDoc, doc, QueryConstraint, where } from "firebase/firestore";
 import { z } from "zod";
 import { authRouter } from "./auth-router";
 import { publicProcedure, router } from "./trpc";
-import { QueryValidator } from "@/lib/validators/query-validator";
-import { databases, db } from "../database";
+import { OAuth2Client } from 'google-auth-library';
 import { database } from '../firebase';
+
+const CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+const REDIRECT_URI = process.env.REDIRECT_URI;
+const SCOPES = ['https://www.googleapis.com/auth/userinfo.email','https://www.googleapis.com/auth/userinfo.profile'];
+
+const oAuth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 
 export const appRouter = router({
     auth: authRouter,
+
+    
+
     getPosts: publicProcedure
         .input(z.object({ limit: z.number().default(2), cursor: z.string().optional() }))
         .query(async ({ input }) => {

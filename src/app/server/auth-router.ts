@@ -2,8 +2,6 @@ import { AuthCredentialsValidator } from "../../lib/validators/account-credentia
 import { publicProcedure, router } from "./trpc";
 import { z } from "zod";
 import { v4 as uuid } from "uuid";
-import { db } from "../database";
-import { Query } from 'appwrite';
 import { TRPCError } from "@trpc/server";
 import { databases, DATABASE_ID_DEV, COLLECTION_ID_customer_info } from "../appwrite";
 import { setToken } from "@/middleware";

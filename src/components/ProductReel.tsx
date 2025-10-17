@@ -6,8 +6,6 @@ import { trpc } from '@/app/_trpc/client'
 import Link from 'next/link'
 import ProductListing from './ProductListing'
 import { useEffect, useRef } from 'react'
-import { useIntersection } from '@mantine/hooks'
-import InfiniteScroll from 'react-infinite-scroll-component'
 
 interface ProductReelProps {
   title: string
@@ -21,7 +19,7 @@ const ProductReel = (props: ProductReelProps) => {
   const observerRef = useRef<HTMLDivElement>(null)
 
   const { data, isLoading, fetchNextPage, hasNextPage, isFetching } = trpc.getPosts.useInfiniteQuery(
-    {limit: 4},
+    { limit: 4 },
     { getNextPageParam: (lastPage) => lastPage.nextCursor }
   );
 
@@ -39,17 +37,17 @@ const ProductReel = (props: ProductReelProps) => {
   }, [hasNextPage, isFetching, fetchNextPage]);
 
   const product = data?.pages.flatMap(
-      (page) => page.posts
-    ) as any
-  
-    let map = []
-    if (product && product.length) {
-      map = product
-    } else if (isLoading) {
-      map = new Array<null>(
-        
-      ).fill(null)
-    }
+    (page) => page.posts
+  ) as any
+
+  let map = []
+  if (product && product.length) {
+    map = product
+  } else if (isLoading) {
+    map = new Array<null>(
+
+    ).fill(null)
+  }
 
   return (
     <section className='py-12'>
@@ -61,7 +59,7 @@ const ProductReel = (props: ProductReelProps) => {
             </h1>
           ) : null}
           {subtitle ? (
-            <p className='mt-2 text-sm text-muted-foreground'> 
+            <p className='mt-2 text-sm text-muted-foreground'>
               {subtitle}
             </p>
           ) : null}
