@@ -136,6 +136,7 @@ const Page = () => {
                     } else {
                         console.error('No credential found in response');
                     }
+                    router.push('/')
                 }}
                 onError={() => {
                     console.log('Login Failed');

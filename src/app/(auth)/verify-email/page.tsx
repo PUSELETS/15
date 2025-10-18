@@ -8,7 +8,6 @@ const VerifyEmailPage = async ({ searchParams,}: {searchParams: Promise<{[key: s
     const tokenization = await searchParams
     const token = tokenization.token
     const toEmail = tokenization.to
-    console.log(token)
 
     return (
         <div className='container relative flex pt-20 flex-col items-center justify-center lg:px-0'>
