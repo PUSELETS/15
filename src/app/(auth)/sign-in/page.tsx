@@ -1,21 +1,21 @@
 'use client'
 
-import { Icons } from '@/components/Icons'
-import { Button, buttonVariants } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
-import { cn } from '@/lib/utils'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { ArrowRight, Loader2 } from 'lucide-react'
-import Link from 'next/link'
-import { useForm } from 'react-hook-form'
-import { AuthCredentialsValidator, TAuthCredentialsValidator } from '@/lib/validators/account-credentials-validator'
-import { trpc } from '@/app/_trpc/client'
-import { toast } from 'sonner'
-import { useRouter } from 'next/navigation'
+import { Icons } from '@/components/Icons';
+import { Button, buttonVariants } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { cn } from '@/lib/utils';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { ArrowRight, Loader2 } from 'lucide-react';
+import Link from 'next/link';
+import { useForm } from 'react-hook-form';
+import { AuthCredentialsValidator, TAuthCredentialsValidator } from '@/lib/validators/account-credentials-validator';
+import { trpc } from '@/app/_trpc/client';
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 import { GoogleLogin } from '@react-oauth/google';
-import { Suspense, useState } from 'react'
-import GoogleLoginComponent from '@/components/GoogleLogin'
+import { Suspense, useState } from 'react';
+import { jwtDecode } from 'jwt-decode';
 
 
 const Page = () => {
@@ -127,7 +127,21 @@ const Page = () => {
             </form>
           </div>
         </div>
-        <GoogleLoginComponent />
+        <div className='mt-4'>
+          <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                    if (credentialResponse.credential) {
+                        const decoded = jwtDecode(credentialResponse.credential);
+                        console.log(decoded);
+                    } else {
+                        console.error('No credential found in response');
+                    }
+                }}
+                onError={() => {
+                    console.log('Login Failed');
+                }}
+            />
+        </div>
       </div>
     </>
   )
