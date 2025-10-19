@@ -15,8 +15,6 @@ const oAuth2Client = new OAuth2Client(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
 export const appRouter = router({
     auth: authRouter,
 
-    
-
     getPosts: publicProcedure
         .input(z.object({ limit: z.number().default(2), cursor: z.string().optional() }))
         .query(async ({ input }) => {

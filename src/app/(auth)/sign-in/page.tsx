@@ -13,7 +13,7 @@ import { AuthCredentialsValidator, TAuthCredentialsValidator } from '@/lib/valid
 import { trpc } from '@/app/_trpc/client';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-import { GoogleLogin } from '@react-oauth/google';
+import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 import { Suspense, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 
@@ -22,6 +22,14 @@ const Page = () => {
 
   const router = useRouter()
 
+  const googleLogin = useGoogleLogin({
+    onSuccess: ({ code }) => {
+      console.log('Authorization Code:', code); // Log code (send to backend)
+      router.push('/')
+    },
+    onError: (error) => console.error('Google Login Error:', error),
+    flow: 'auth-code', // Use authorization code flow
+  });
 
   const {
     register,
@@ -128,20 +136,19 @@ const Page = () => {
           </div>
         </div>
         <div className='mt-4'>
-          <GoogleLogin
-                onSuccess={(credentialResponse) => {
-                    if (credentialResponse.credential) {
-                        const decoded = jwtDecode(credentialResponse.credential);
-                        console.log(decoded);
-                    } else {
-                        console.error('No credential found in response');
-                    }
-                    router.push('/')
-                }}
-                onError={() => {
-                    console.log('Login Failed');
-                }}
-            />
+          <button
+            onClick={() => googleLogin()}
+            style={{
+              backgroundColor: '#4285F4',
+              color: 'white',
+              padding: '10px 20px',
+              borderRadius: '4px',
+              border: 'none',
+              cursor: 'pointer',
+            }}
+          >
+            Sign in with Google
+          </button>
         </div>
       </div>
     </>
