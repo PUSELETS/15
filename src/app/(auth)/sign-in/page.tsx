@@ -1,6 +1,6 @@
 'use client'
 
-import { Icons } from '@/components/Icons';
+import { useSearchParams , useRouter } from 'next/navigation';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -12,13 +12,14 @@ import { useForm } from 'react-hook-form';
 import { AuthCredentialsValidator, TAuthCredentialsValidator } from '@/lib/validators/account-credentials-validator';
 import { trpc } from '@/app/_trpc/client';
 import { toast } from 'sonner';
-import { useRouter, useSearchParams } from 'next/navigation';
 import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 import { Suspense, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 
 const Page = () => {
 
+  const searchParams = useSearchParams()
+  const origin = searchParams.get('origin')
   const router = useRouter()
 
   const exchangeCode = trpc.oauth2.exchangeCode.useMutation({
@@ -26,16 +27,12 @@ const Page = () => {
       router.refresh()
     },
     onError: (error) => console.error('Exchange Error:', error),
-  });
+  }); 
 
   const googleLogin = useGoogleLogin({
     onSuccess: ({ code }) => {
       exchangeCode.mutate({ code }); // Send code to tRPC
       toast.success('Signed in successfully')
-
-
-      router.push('/')
-
 
       router.refresh()
     },
@@ -52,14 +49,14 @@ const Page = () => {
   })
 
   const { mutate: signIn, isLoading } = trpc.auth.signIn.useMutation({
-
+    
     onSuccess: async () => {
 
       toast.success('Signed in successfully')
 
       router.refresh()
 
-      if (origin) {
+      if (origin) { 
         router.push(`/${origin}`)
       }
 
