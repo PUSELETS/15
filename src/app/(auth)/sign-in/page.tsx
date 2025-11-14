@@ -19,8 +19,6 @@ import { jwtDecode } from 'jwt-decode';
 
 const Page = () => {
 
-  const searchParams = useSearchParams()
-  const origin = searchParams.get('origin')
   const router = useRouter()
 
   const exchangeCode = trpc.oauth2.exchangeCode.useMutation({

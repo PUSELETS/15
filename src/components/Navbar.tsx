@@ -22,8 +22,6 @@ const Navbar = async () => {
             <div className='h-16 items-center flex justify-between'>
               <MobileNav />
 
-              
-
               <div className=' flex items-center'>
                 <div className='flex flex-1 items-center justify-end space-x-6'>
                   {user ? null : (
