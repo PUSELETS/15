@@ -1,7 +1,7 @@
 import { OAuth2Client } from "google-auth-library";
 import { publicProcedure, router } from "./trpc";
 import { z } from "zod";
-import { cookies } from "next/headers";
+import { cookies , headers } from "next/headers";
 
 const oAuth2Client = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID,
@@ -18,6 +18,8 @@ export const oauthRouter = router({
 
       const { tokens } = await oAuth2Client.getToken(code);
       const token = tokens.id_token as string
+
+      console.log(token)
 
       const cookieStore = await cookies()
       cookieStore.set("user-token", token)
