@@ -21,8 +21,7 @@ export const oauthRouter = router({
 
       console.log(token)
 
-      const cookieStore = await cookies()
-      cookieStore.set("user-token", "123456")
+      
 
       return {success : true};
     }),
