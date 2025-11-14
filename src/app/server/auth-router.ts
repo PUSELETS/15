@@ -4,7 +4,6 @@ import { z } from "zod";
 import { v4 as uuid } from "uuid";
 import { TRPCError } from "@trpc/server";
 import { databases, DATABASE_ID_DEV, COLLECTION_ID_customer_info } from "../appwrite";
-import { setToken } from "@/middleware";
 import { SignJWT } from "jose";
 import { getJwtSecretKey } from "../../lib/auth";
 import { setPayload } from "@/lib/email";
@@ -101,8 +100,7 @@ export const authRouter = router({
                     .setExpirationTime('5m')
                     .sign(new TextEncoder().encode(getJwtSecretKey()))
 
-
-                return setToken(token)
+                return { success: true, token: token }
 
             } catch (err) {
                 throw new TRPCError({

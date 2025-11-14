@@ -6,26 +6,40 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ArrowRight, Loader2 } from 'lucide-react';
+import { ArrowRight, Info, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { AuthCredentialsValidator, TAuthCredentialsValidator } from '@/lib/validators/account-credentials-validator';
 import { trpc } from '@/app/_trpc/client';
 import { toast } from 'sonner';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
 import { Suspense, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 
-
 const Page = () => {
 
+  const searchParams = useSearchParams()
+  const origin = searchParams.get('origin')
   const router = useRouter()
+
+  const exchangeCode = trpc.oauth2.exchangeCode.useMutation({
+    onSuccess: () => {
+      router.refresh()
+    },
+    onError: (error) => console.error('Exchange Error:', error),
+  });
 
   const googleLogin = useGoogleLogin({
     onSuccess: ({ code }) => {
-      console.log('Authorization Code:', code); // Log code (send to backend)
+      exchangeCode.mutate({ code }); // Send code to tRPC
+      toast.success('Signed in successfully')
+
+
       router.push('/')
+
+
+      router.refresh()
     },
     onError: (error) => console.error('Google Login Error:', error),
     flow: 'auth-code', // Use authorization code flow
@@ -39,24 +53,26 @@ const Page = () => {
     resolver: zodResolver(AuthCredentialsValidator),
   })
 
-  const { mutate: signIn,
-    isLoading } =
-    trpc.auth.signIn.useMutation({
-      onSuccess: async () => {
+  const { mutate: signIn, isLoading } = trpc.auth.signIn.useMutation({
 
-        toast.success('Signed in successfully')
+    onSuccess: async () => {
 
-        router.refresh()
+      toast.success('Signed in successfully')
 
+      router.refresh()
 
-        router.push('/')
-      },
-      onError: (err) => {
-        if (err.data?.code === 'UNAUTHORIZED') {
-          toast.error('Invalid email or password.')
-        }
-      },
-    })
+      if (origin) {
+        router.push(`/${origin}`)
+      }
+
+      router.push('/')
+    },
+    onError: (err) => {
+      if (err.data?.code === 'UNAUTHORIZED') {
+        toast.error('Invalid email or password.')
+      }
+    },
+  })
 
   const onSubmit = ({
     email,
@@ -70,7 +86,7 @@ const Page = () => {
       <div className='container relative flex pt-20 flex-col items-center justify-center lg:px-0'>
         <div className='mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]'>
           <div className='flex flex-col items-center space-y-2 text-center'>
-            <Icons.logo className='h-20 w-20' />
+
             <h1 className='text-2xl font-semibold tracking-tight'>
               Sign in to your account
             </h1>

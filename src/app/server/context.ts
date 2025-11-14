@@ -2,7 +2,7 @@
 import type { CreateNextContextOptions } from '@trpc/server/adapters/next';
 
 
-export const createContext = async (opts: CreateNextContextOptions) => {
+export const createTRPCContext = async (opts: CreateNextContextOptions) => {
   const {req , res} = opts
 
   return {
@@ -12,4 +12,4 @@ export const createContext = async (opts: CreateNextContextOptions) => {
 
 }
 
-export type Context = Awaited<ReturnType<typeof createContext>>;
+export type Context = Awaited<ReturnType<typeof createTRPCContext>>;

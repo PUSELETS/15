@@ -11,6 +11,7 @@ import {
 import Link from 'next/link'
 import { useAuth } from './hooks/use-auth'
 
+
 export const dynamic = "force-dynamic"
 
 const UserAccountNav = (user: any) => {
@@ -24,8 +25,9 @@ const UserAccountNav = (user: any) => {
         <Button
           variant='ghost'
           size='sm'
-          className='relative'>
-          My account
+          className='relative'
+          >
+          logout
         </Button>
       </DropdownMenuTrigger>
 

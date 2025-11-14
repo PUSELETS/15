@@ -1,5 +1,3 @@
-
-
 import Link from 'next/link'
 import MaxWidthWrapper from './MaxWidthWrapper'
 import { Icons } from './Icons'
@@ -8,17 +6,13 @@ import NavItems from './NavItems'
 import MobileNav from './MobileNav'
 import Cart from './Cart'
 import UserAccountNav from './UserAccountNav'
-import { getServerSideUser } from '../lib/user'
+import { getServerSideUser, deleteCookies } from '@/lib/user'
 import { useForm } from 'react-hook-form'
 import Cartt from './Cartt'
 
-export const dynamic = "force-dynamic"
-
 const Navbar = async () => {
 
-  const user = await getServerSideUser()
-
-  console.log(user)
+  const user = await getServerSideUser() 
 
   return (
     <div className=' sticky z-50 top-0 inset-x-0 h-16'>
@@ -31,7 +25,7 @@ const Navbar = async () => {
               
 
               <div className=' flex items-center'>
-                <div className='hidden lg:flex lg:flex-1 lg:items-center lg:justify-end lg:space-x-6'>
+                <div className='flex flex-1 items-center justify-end space-x-6'>
                   {user ? null : (
                     <Link
                       href='/sign-in'
@@ -78,11 +72,13 @@ const Navbar = async () => {
                   )}
                 </div>
                 <div className='ml-4 flow-root lg:ml-6'>
-                  <Cartt />
+                   
+                   <Cartt />
                 </div>
+                
               </div>
               <div className='hidden z-50 lg:ml-8 lg:block lg:self-stretch'>
-                <NavItems></NavItems>
+                
               </div>
             </div>
           </div>

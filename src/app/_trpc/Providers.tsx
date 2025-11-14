@@ -8,7 +8,6 @@ import { trpc } from "@/app/_trpc/client"
 import { httpBatchLink } from "@trpc/client"
 
 
-
 export const logout = async (logout: any)=> {
     await logout()
 }

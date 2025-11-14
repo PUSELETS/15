@@ -27,7 +27,7 @@ export function formatPrice(
 }
 
 export function constructMetadata({
-  title = 'DigitalHippo - the marketplace for digital assets',
+  title = 'DigitalHippo - the marketplace ',
   description = 'DigitalHippo is an open-source marketplace for high-quality digital goods.',
   image = '/thumbnail.png',
   icons = '/favicon.ico',
@@ -56,7 +56,7 @@ export function constructMetadata({
       title,
       description,
       images: [image],
-      creator: '@joshtriedcoding',
+      creator: 'mishack',
     },
     icons,
     metadataBase: new URL('https://digitalhippo.up.railway.app'),

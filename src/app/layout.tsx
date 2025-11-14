@@ -9,6 +9,7 @@ import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const inter = Inter({ subsets: ["latin"] });
 
+
 export const metadata = constructMetadata()
 
 export default function RootLayout({

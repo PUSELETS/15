@@ -13,6 +13,8 @@ import {
 import ProductReel from "@/components/ProductReel";
 import Image from "next/image";
 import localFont from "next/font/local";
+import type { NextPage } from 'next';
+import { getServerSideUser } from "@/lib/user";
 
 
 const rounded = localFont({
@@ -45,7 +47,10 @@ const perks = [
   },
 ]
 
-export default function Home() {
+const Homes: NextPage = () => {
+
+  const user = getServerSideUser()
+ 
   return (
     
       <section className="relative">
@@ -72,7 +77,7 @@ export default function Home() {
           title='Brand new'
         />
       </MaxWidthWrapper>
-      <section className='border-t border-gray-200 bg-[#fef3c7]'>
+      <section className='border-t border-gray-200 bg-[#ffffff]'>
         <MaxWidthWrapper className='py-20'>
           <div className='grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-0'>
             {perks.map((perk) => (
@@ -103,3 +108,5 @@ export default function Home() {
 
   )
 }
+
+export default Homes;
