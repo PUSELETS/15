@@ -19,9 +19,8 @@ export const oauthRouter = router({
       const { tokens } = await oAuth2Client.getToken(code);
       const token = tokens.id_token as string
 
-      console.log(token)
-
-      
+      const cookieStore = await cookies()
+      cookieStore.set("user-token", token)
 
       return {success : true};
     }),
