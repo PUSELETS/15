@@ -1,15 +1,12 @@
 import { NextResponse, type NextRequest } from "next/server";
 
 const allowedOrigins = [
-  'https://15canary.netlify.app',           // your production domain
-  'http://localhost:3000',            // dev
-  // add more if you have staging, preview URLs, etc.
+  'https://15canary.netlify.app',
+  'http://localhost:3000',
 ];
 
 export function middleware(request: NextRequest) {
   const origin = request.headers.get('origin');
-
-  // Allow requests with no origin (like curl, Postman, same-origin)
   const isAllowedOrigin = origin && allowedOrigins.includes(origin);
 
   const corsHeaders = {
@@ -17,10 +14,11 @@ export function middleware(request: NextRequest) {
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
     'Access-Control-Allow-Headers':
       'Authorization, Content-Type, Accept, X-Requested-With',
-    // Important: only expose if the origin is allowed
     ...(isAllowedOrigin ? { 'Access-Control-Allow-Origin': origin! } : {}),
-    // Or use * if you don’t need credentials:
-    // 'Access-Control-Allow-Origin': '*',
+    // Add COOP – allow popups for Google OAuth
+    //'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
+    // Optional: safer CORP for images/scripts
+    // 'Cross-Origin-Resource-Policy': 'cross-origin',
   };
 
   // Handle preflight
@@ -28,7 +26,6 @@ export function middleware(request: NextRequest) {
     return new NextResponse(null, { status: 200, headers: corsHeaders });
   }
 
-  // Add headers to normal responses
   const response = NextResponse.next();
   Object.entries(corsHeaders).forEach(([key, value]) => {
     response.headers.set(key, value);
@@ -37,10 +34,6 @@ export function middleware(request: NextRequest) {
   return response;
 }
 
-// Optional: only run middleware on API routes
 export const config = {
   matcher: '/api/:path*',
 };
-
-
-

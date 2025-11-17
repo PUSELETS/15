@@ -55,8 +55,6 @@ const Page = () => {
 
       router.refresh()
 
-      
-
       router.push('/')
     },
     onError: (err) => {
