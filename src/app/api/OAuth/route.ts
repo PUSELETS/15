@@ -6,12 +6,11 @@ import { NextRequest, NextResponse } from 'next/server';
 const oAuth2Client = new OAuth2Client(
     process.env.GOOGLE_CLIENT_IDd,
     process.env.GOOGLE_CLIENT_SECRETd,
-    'http://localhost:3000/api/OAuth'  // ← EXACT redirect URI
+    '/api/OAuth'  // ← EXACT redirect URI
 );
 
 const handler = async (
     request: NextRequest,
-    { searchParams }: { searchParams: Promise<{ [key: string]: string | string[] | undefined }> }
 ) => {
 
     // read from real request URL (Google callback)
@@ -19,16 +18,8 @@ const handler = async (
     const code = url.searchParams.get('code');
     const state = url.searchParams.get('state');
 
-    console.log(state)
-
-    //also support App Router searchParams (for internal redirects)
-    const appParams = await searchParams;
-    
-
     // Determine where to redirect after login
     let redirectTo = '/'; // fallback
-
-    
 
     // Step 2: Google redirected back with code → exchange it
     if (code) {
