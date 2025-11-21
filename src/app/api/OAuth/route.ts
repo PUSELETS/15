@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from 'next/server';
 const oAuth2Client = new OAuth2Client(
     process.env.GOOGLE_CLIENT_IDd,
     process.env.GOOGLE_CLIENT_SECRETd,
-    '/api/OAuth'  // ← EXACT redirect URI
+    'https://15canary.netlify.app/api/OAuth'  // ← EXACT redirect URI
 );
 
 const handler = async (
@@ -17,9 +17,12 @@ const handler = async (
     const url = new URL(request.url);
     const code = url.searchParams.get('code');
     const state = url.searchParams.get('state');
+    
 
     // Determine where to redirect after login
     let redirectTo = '/'; // fallback
+
+    
 
     // Step 2: Google redirected back with code → exchange it
     if (code) {
