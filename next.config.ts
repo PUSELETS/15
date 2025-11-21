@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  async headers() {
+  images: {
+    domains: ['firebasestorage.googleapis.com'],
+  },
+   async headers() {
     return [
       {
         // Apply to EVERY page and every response

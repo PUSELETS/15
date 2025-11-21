@@ -16,9 +16,10 @@ export function middleware(request: NextRequest) {
       'Authorization, Content-Type, Accept, X-Requested-With',
     ...(isAllowedOrigin ? { 'Access-Control-Allow-Origin': origin! } : {}),
     // Add COOP – allow popups for Google OAuth
-    //'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
+    'Cross-Origin-Opener-Policy': 'same-origin-allow-popups',
     // Optional: safer CORP for images/scripts
-    // 'Cross-Origin-Resource-Policy': 'cross-origin',
+    'Cross-Origin-Resource-Policy': 'cross-origin',
+    'Referrer-Policy': 'no-referrer-when-downgrade',
   };
 
   // Handle preflight

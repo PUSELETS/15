@@ -29,18 +29,14 @@ function Page() {
         }),
 
     })
-
     type TAuthCredentialsValidator = z.infer<typeof AuthCredentialsValidator>
-
     const {
         register,
         handleSubmit,
         formState: { errors } } = useForm<TAuthCredentialsValidator>({
             resolver: zodResolver(AuthCredentialsValidator)
         })
-
     const router = useRouter()
-
     const { mutate, isLoading } = trpc.auth.createUser.useMutation({
         onError: (err) => {
             if (err.data?.code === 'CONFLICT') {
@@ -59,29 +55,30 @@ function Page() {
             )
         },
         onSuccess: async ({ Email }) => {
-            
+
             toast.success(
                 `Verification email sent to ${Email}.`
             )
             router.push('/verify-email?to=' + Email)
         },
     })
-
-   
-
     const onSubmit = ({
         email,
         password,
     }: TAuthCredentialsValidator) => {
         mutate({ email, password })
     }
+    const handleLogin = () => {
+        window.location.href = '/api/OAuth';
+    };
+
 
     return (
         <>
             <div className='container relative flex pt-20 flex-col items-center justify-center lg:px-0'>
                 <div className='mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]'>
                     <div className='flex flex-col items-center space-y-2 text-center'>
-                        
+
                         <h1 className='text-2xl font-semibold tracking-tight'>
                             Create an account
                         </h1>
@@ -141,8 +138,12 @@ function Page() {
                                     )}
                                     Sign up
                                 </Button>
+
                             </div>
                         </form>
+                        <button onClick={handleLogin} className="px-4 mt-4 py-2 bg-blue-600 text-white rounded">
+                            Sign in with Google
+                        </button>
                     </div>
                 </div>
             </div>

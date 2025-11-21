@@ -14,13 +14,16 @@ export const oauthRouter = router({
   exchangeCode: publicProcedure
     .input(z.object({ code: z.string() }))
     .mutation(async ({ input }) => {
+      
       const { code } = input;
 
       const { tokens } = await oAuth2Client.getToken(code);
+
       const token = tokens.id_token as string
 
       const cookieStore = await cookies()
-      cookieStore.set("user-token", token)
+
+       cookieStore.set("user-token", token)
 
       return {success : true};
     }),
