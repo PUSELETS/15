@@ -3,12 +3,6 @@ import { OAuth2Client } from 'google-auth-library';
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 
-const oAuth2Client = new OAuth2Client(
-    process.env.GOOGLE_CLIENT_IDg,
-    process.env.GOOGLE_CLIENT_SECRETg,
-    process.env.REDIRECT_URI  // ← EXACT redirect URI
-);
-
 const handler = async (
     request: NextRequest,
 ) => {
@@ -17,6 +11,12 @@ const handler = async (
     const url = new URL(request.url);
     const code = url.searchParams.get('code');
     const state = url.searchParams.get('state');
+
+    const oAuth2Client = new OAuth2Client(
+    process.env.GOOGLE_CLIENT_IDg,
+    process.env.GOOGLE_CLIENT_SECRETg,
+    process.env.REDIRECT_URI  // ← EXACT redirect URI
+);
     
     // Determine where to redirect after login
     let redirectTo = '/'; // fallback
@@ -67,6 +67,7 @@ const handler = async (
         access_type: 'offline',
         prompt: 'consent',
         scope: ['openid', 'email', 'profile'],
+        redirect_uri: process.env.REDIRECT_URI
     });
 
     return NextResponse.redirect(authUrl);
