@@ -39,7 +39,7 @@ const handler = async (
                 return new Response(`
           <script>
             if (window.opener) {
-              window.opener.postMessage({ code: "${code}", user: MISHACK }, "*");
+              
               window.close();
             }
           </script>
