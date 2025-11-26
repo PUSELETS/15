@@ -68,9 +68,19 @@ function Page() {
     }: TAuthCredentialsValidator) => {
         mutate({ email, password })
     }
-    const handleLogin = () => {
-        window.location.href = '/api/OAuth';
-    };
+
+    const handleGoogleLogin = () => {
+    // This does a full-page redirect – no popup, no COOP issues ever
+    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?` +
+      new URLSearchParams({
+        client_id: '998739097556-70fouava5r7dph2jhvhj5i84fbjk9h6f.apps.googleusercontent.com',
+        redirect_uri: 'https://15canary.netlify.app/api/OAuth',  // your callback page
+        response_type: 'code',
+        scope: 'openid email profile',
+        access_type: 'offline',
+        prompt: 'consent',           // forces refresh token first time
+      });
+  };
 
 
     return (
@@ -141,7 +151,7 @@ function Page() {
 
                             </div>
                         </form>
-                        <button onClick={handleLogin} className="px-4 mt-4 py-2 bg-blue-600 text-white rounded">
+                        <button onClick={handleGoogleLogin} className="px-4 mt-4 py-2 bg-blue-600 text-white rounded">
                             Sign in with Google
                         </button>
                     </div>

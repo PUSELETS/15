@@ -29,14 +29,13 @@ const Page = () => {
   }); 
 
   const googleLogin = useGoogleLogin({
+    flow: 'auth-code', // Use authorization code flow
     onSuccess: ({ code }) => {
       exchangeCode.mutate({ code }); // Send code to tRPC
-      toast.success('Signed in successfully')
 
       router.refresh()
     },
     onError: (error) => console.error('Google Login Error:', error),
-    flow: 'auth-code', // Use authorization code flow
   });
 
   const {

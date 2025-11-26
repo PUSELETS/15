@@ -13,13 +13,10 @@ const handler = async (
     const state = url.searchParams.get('state');
 
     const oAuth2Client = new OAuth2Client(
-    '998739097556-70fouava5r7dph2jhvhj5i84fbjk9h6f.apps.googleusercontent.com',
-    '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',
-    'https://15canary.netlify.app/api/OAuth'  // ← EXACT redirect URI
+    process.env.GOOGLE_CLIENT_IDg,
+    process.env.GOOGLE_CLIENT_SECRETg,
+    process.env.REDIRECT_URI  // ← EXACT redirect URI
 );
-    
-    // Determine where to redirect after login
-    let redirectTo = '/'; // fallback
 
     // Step 2: Google redirected back with code → exchange it
     if (code) {
@@ -47,32 +44,12 @@ const handler = async (
         `, { headers: { 'Content-Type': 'text/html' } });
             }
 
-            // Option B: For redirect flow — set cookie and redirect
-            const response = await NextResponse.redirect(redirectTo);
-
-            return response;
-
         } catch (err: any) {
             return new Response(`Error: ${err.message}`, { status: 500 });
         }
     }
     // Step 1: No code → start login → redirect to Google
 
-    const referer = await request.headers.get('referer');
-    console.log('here',referer)
-
-    const from = '/api/OAuth'
-
-    const authUrl = oAuth2Client.generateAuthUrl({
-        access_type: 'offline',
-        prompt: 'consent',
-        scope: ['openid', 'email', 'profile'],
-        redirect_uri: 'https://15canary.netlify.app/api/OAuth'
-    });
-
-    console.log('here me out',authUrl)
-
-    return NextResponse.redirect(authUrl);
 };
 
 export { handler as GET, handler as POST };
