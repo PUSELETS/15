@@ -13,9 +13,9 @@ const handler = async (
     const state = url.searchParams.get('state');
 
     const oAuth2Client = new OAuth2Client(
-    process.env.GOOGLE_CLIENT_IDg,
-    process.env.GOOGLE_CLIENT_SECRETg,
-    process.env.REDIRECT_URI  // ← EXACT redirect URI
+    '998739097556-70fouava5r7dph2jhvhj5i84fbjk9h6f.apps.googleusercontent.com',
+    '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',
+    'https://15canary.netlify.app/api/OAuth'  // ← EXACT redirect URI
 );
     
     // Determine where to redirect after login
@@ -67,8 +67,10 @@ const handler = async (
         access_type: 'offline',
         prompt: 'consent',
         scope: ['openid', 'email', 'profile'],
-        redirect_uri: process.env.REDIRECT_URI
+        redirect_uri: 'https://15canary.netlify.app/api/OAuth'
     });
+
+    console.log('here me out',authUrl)
 
     return NextResponse.redirect(authUrl);
 };
