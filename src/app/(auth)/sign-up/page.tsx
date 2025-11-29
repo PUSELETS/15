@@ -31,13 +31,13 @@ function Page() {
     });
 
     useEffect(() => {
-        const code = searchParams.get("code");
+        const code = 'searchParams.get("code");'
 
         if (code) {
             // THIS IS YOUR onSuccess({ code }) ← exactly like useGoogleLogin!
             console.log("Google login successful! Code:", code);
 
-            exchangeCode.mutate({ code });
+            
             // Put whatever you want here (same as useGoogleLogin onSuccess)f
             router.refresh();                    // refresh server data
 
