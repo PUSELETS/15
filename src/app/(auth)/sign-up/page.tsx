@@ -15,7 +15,7 @@ import { trpc } from "@/app/_trpc/client";
 import { toast } from 'sonner'
 import { z } from "zod";
 import { ZodError } from 'zod'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter} from 'next/navigation'
 import { useQueryStates } from "nuqs";
 import { parseAsString } from "nuqs/server";
 
