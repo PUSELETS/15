@@ -15,13 +15,12 @@ import { trpc } from "@/app/_trpc/client";
 import { toast } from 'sonner'
 import { z } from "zod";
 import { ZodError } from 'zod'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 
 
 function Page() {
 
-    const searchParams = useSearchParams();
-
+    
     const exchangeCode = trpc.oauth2.exchangeCode.useMutation({
         onSuccess: () => {
             router.refresh()
@@ -48,7 +47,7 @@ function Page() {
             );
             router.replace(cleanUrl.pathname + cleanUrl.search, { scroll: false });
         }
-    }, [searchParams]);
+    }, []);
 
     const AuthCredentialsValidator = z.object({
 
