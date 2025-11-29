@@ -4,9 +4,9 @@ import { z } from "zod";
 import { cookies , headers } from "next/headers";
 
 const oAuth2Client = new OAuth2Client(
-  process.env.GOOGLE_CLIENT_ID,
-  process.env.GOOGLE_CLIENT_SECRET,
-  'http://localhost:3000',
+  process.env.GOOGLE_CLIENT_IDf,
+  process.env.GOOGLE_CLIENT_SECRETf,
+  'https://15canary.netlify.app/sign-up',
 );
 
 export const oauthRouter = router({
@@ -16,6 +16,7 @@ export const oauthRouter = router({
     .mutation(async ({ input }) => {
       
       const { code } = input;
+      console.log('code is here',code)
 
       const { tokens } = await oAuth2Client.getToken(code);
 

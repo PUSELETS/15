@@ -1,6 +1,6 @@
 'use client'
 
-import { useSearchParams , useRouter } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -13,31 +13,14 @@ import { AuthCredentialsValidator, TAuthCredentialsValidator } from '@/lib/valid
 import { trpc } from '@/app/_trpc/client';
 import { toast } from 'sonner';
 import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
 
 const Page = () => {
 
-  
+
   const router = useRouter()
-
-  const exchangeCode = trpc.oauth2.exchangeCode.useMutation({
-    onSuccess: () => {
-      router.refresh()
-    },
-    onError: (error) => console.error('Exchange Error:', error),
-  }); 
-
-  const googleLogin = useGoogleLogin({
-    flow: 'auth-code', // Use authorization code flow
-    onSuccess: ({ code }) => {
-      exchangeCode.mutate({ code }); // Send code to tRPC
-
-      router.refresh()
-    },
-    onError: (error) => console.error('Google Login Error:', error),
-  });
-
+  
   const {
     register,
     handleSubmit,
@@ -47,7 +30,7 @@ const Page = () => {
   })
 
   const { mutate: signIn, isLoading } = trpc.auth.signIn.useMutation({
-    
+
     onSuccess: async () => {
 
       toast.success('Signed in successfully')
@@ -140,21 +123,7 @@ const Page = () => {
             </form>
           </div>
         </div>
-        <div className='mt-4'>
-          <button
-            onClick={() => googleLogin()}
-            style={{
-              backgroundColor: '#4285F4',
-              color: 'white',
-              padding: '10px 20px',
-              borderRadius: '4px',
-              border: 'none',
-              cursor: 'pointer',
-            }}
-          >
-            Sign in with Google
-          </button>
-        </div>
+        
       </div>
     </>
   )

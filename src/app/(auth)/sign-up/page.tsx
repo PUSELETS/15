@@ -14,12 +14,42 @@ import { trpc } from "@/app/_trpc/client";
 import { toast } from 'sonner'
 import { z } from "zod";
 import { ZodError } from 'zod'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 import { setPayload } from "@/lib/email";
 
 
-
 function Page() {
+
+    const searchParams = useSearchParams();
+
+
+    const exchangeCode = trpc.oauth2.exchangeCode.useMutation({
+        onSuccess: () => {
+            router.refresh()
+            toast.success('Welcome!')
+        },
+        onError: (error) => console.error('Exchange Error:', error),
+    });
+
+    useEffect(() => {
+        const code = searchParams.get("code");
+
+        if (code) {
+            // THIS IS YOUR onSuccess({ code }) ← exactly like useGoogleLogin!
+            console.log("Google login successful! Code:", code);
+
+            exchangeCode.mutate({ code });
+            // Put whatever you want here (same as useGoogleLogin onSuccess)f
+            router.refresh();                    // refresh server data
+
+            // Clean the URL (remove ?code=...&scope=...)
+            const cleanUrl = new URL(window.location.href);
+            ["code", "scope", "authuser", "prompt", "state"].forEach((p) =>
+                cleanUrl.searchParams.delete(p)
+            );
+            router.replace(cleanUrl.pathname + cleanUrl.search, { scroll: false });
+        }
+    }, [searchParams]);
 
     const AuthCredentialsValidator = z.object({
 
@@ -70,17 +100,17 @@ function Page() {
     }
 
     const handleGoogleLogin = () => {
-    // This does a full-page redirect – no popup, no COOP issues ever
-    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?` +
-      new URLSearchParams({
-        client_id: '998739097556-70fouava5r7dph2jhvhj5i84fbjk9h6f.apps.googleusercontent.com',
-        redirect_uri: 'https://15canary.netlify.app/api/OAuth',  // your callback page
-        response_type: 'code',
-        scope: 'openid email profile',
-        access_type: 'offline',
-        prompt: 'consent',           // forces refresh token first time
-      });
-  };
+        // This does a full-page redirect – no popup, no COOP issues ever
+        window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?` +
+            new URLSearchParams({
+                client_id: '815887314534-vrbfs0kmphu2207fimric4qaj1j1hs4n.apps.googleusercontent.com',
+                redirect_uri: 'https://15canary.netlify.app/sign-up',  // your callback page
+                response_type: 'code',
+                scope: 'openid email profile',
+                access_type: 'offline',
+                prompt: 'consent',           // forces refresh token first time
+            });
+    };
 
 
     return (
@@ -105,7 +135,7 @@ function Page() {
 
                     <div className='grid gap-6 w-full max-w-md sm:max-w-xs p-4 text-gray-900 shadow mt-8 space-y-6'>
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <div  className='grid gap-2'>
+                            <div className='grid gap-2'>
 
                                 <div className='grid gap-1 py-2'>
                                     <Label htmlFor='password'>Email</Label>
