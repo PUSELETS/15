@@ -1,4 +1,7 @@
 'use client'
+
+export const dynamic = 'force-dynamic';
+
 import React, { useEffect } from "react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { ArrowRight, Loader2 } from "lucide-react";
@@ -8,20 +11,16 @@ import { Label } from '@/components/ui/label'
 import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Icons } from "@/components/Icons";
-//import { AuthCredentialsValidator, TAuthCredentialsValidator } from "../lib/validators/account-credentials-validator";
 import { trpc } from "@/app/_trpc/client";
 import { toast } from 'sonner'
 import { z } from "zod";
 import { ZodError } from 'zod'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { setPayload } from "@/lib/email";
 
 
 function Page() {
 
     const searchParams = useSearchParams();
-
 
     const exchangeCode = trpc.oauth2.exchangeCode.useMutation({
         onSuccess: () => {
