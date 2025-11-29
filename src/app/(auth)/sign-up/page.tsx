@@ -2,7 +2,7 @@
 
 export const dynamic = 'force-dynamic';
 
-import React, { useEffect } from "react";
+import React, { useEffect , Suspense } from "react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { ArrowRight, Loader2 } from "lucide-react";
 import Link from "next/link";
@@ -15,12 +15,19 @@ import { trpc } from "@/app/_trpc/client";
 import { toast } from 'sonner'
 import { z } from "zod";
 import { ZodError } from 'zod'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useQueryStates } from "nuqs";
+import { parseAsString } from "nuqs/server";
 
+const searchParams = {
+  code: parseAsString.withDefault(""),
+  state: parseAsString.withDefault(""),
+};
 
 function Page() {
 
-    
+    const [params, setParams] = useQueryStates(searchParams);
+
     const exchangeCode = trpc.oauth2.exchangeCode.useMutation({
         onSuccess: () => {
             router.refresh()
@@ -30,14 +37,15 @@ function Page() {
     });
 
     useEffect(() => {
-        const code = 'searchParams.get("code");'
-
-        if (code) {
+        
+        if (params.code) {
             // THIS IS YOUR onSuccess({ code }) ← exactly like useGoogleLogin!
-            console.log("Google login successful! Code:", code);
+            console.log("Google login successful! Code:", params.code);
 
+            let code = params.code as string
+
+            exchangeCode.mutate({ code }) ;
             
-            // Put whatever you want here (same as useGoogleLogin onSuccess)f
             router.refresh();                    // refresh server data
 
             // Clean the URL (remove ?code=...&scope=...)
@@ -47,7 +55,7 @@ function Page() {
             );
             router.replace(cleanUrl.pathname + cleanUrl.search, { scroll: false });
         }
-    }, []);
+    }, [params.code]);
 
     const AuthCredentialsValidator = z.object({
 

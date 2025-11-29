@@ -5,7 +5,7 @@ import { cn, constructMetadata } from "@/lib/utils";
 import Navbar from "@/components/Navbar";
 import Providers from "@/app/_trpc/Providers";
 import { Toaster } from "sonner";
-import { GoogleOAuthProvider } from '@react-oauth/google';
+import { NuqsAdapter } from "nuqs/adapters/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +19,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="h-full" >
-      <body className={cn("relative h-full font-sans antialiased", inter.className)} >
+      <NuqsAdapter>
+        <body className={cn("relative h-full font-sans antialiased", inter.className)} >
         <main className="relative flex flex-col min-h-screen">
           <Providers>
             <Navbar />
@@ -29,6 +30,7 @@ export default function RootLayout({
 
         <Toaster position="top-center" richColors />
       </body>
+      </NuqsAdapter>
     </html>
   );
 }
