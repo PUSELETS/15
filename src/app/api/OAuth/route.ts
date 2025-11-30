@@ -25,24 +25,12 @@ async function handler(request: NextRequest) {
                 });
             }
 
-            const oAuth2Client = new OAuth2Client(
-                '815887314534-vrbfs0kmphu2207fimric4qaj1j1hs4n.apps.googleusercontent.com',
-                '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',
-                'https://15canary.netlify.app/sign-up'  // ← EXACT redirect URI
-            );
+            
 
             // Step 2: Google redirected back with code → exchange it
             if (code) {
 
-                const { tokens } = await oAuth2Client.getToken(code);
-
-                await oAuth2Client.setCredentials(tokens);
-
-                const token = await tokens.id_token as string
-
-                const cookieStore = await cookies()
-
-                await cookieStore.set("user-token", token)
+                toast.success("Welcome!")
 
             }
         } catch (error) {
