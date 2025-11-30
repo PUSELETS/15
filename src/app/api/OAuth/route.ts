@@ -25,11 +25,9 @@ async function handler(request: NextRequest) {
                 });
             }
 
-            console.log("Code received on server:", code);
-
             const oAuth2Client = new OAuth2Client(
-                process.env.GOOGLE_CLIENT_IDf,
-                process.env.GOOGLE_CLIENT_SECRETf,
+                '815887314534-vrbfs0kmphu2207fimric4qaj1j1hs4n.apps.googleusercontent.com',
+                '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',
                 'https://15canary.netlify.app/sign-up'  // ← EXACT redirect URI
             );
 
