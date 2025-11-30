@@ -4,12 +4,10 @@ import { authRouter } from "./auth-router";
 import { publicProcedure, router } from "./trpc";
 import { OAuth2Client } from 'google-auth-library';
 import { database } from '../firebase';
-import { oauthRouter } from "./Oauth2";
+
 
 export const appRouter = router({
     auth: authRouter,
-
-    oauth2: oauthRouter,
 
     getPosts: publicProcedure
         .input(z.object({ limit: z.number().default(2), cursor: z.string().optional() }))
