@@ -16,7 +16,6 @@ export const oauthRouter = router({
     .mutation(async ({ input }) => {
       
       const { code } = input;
-      console.log('code is here',code)
 
       const { tokens } = await oAuth2Client.getToken(code);
 

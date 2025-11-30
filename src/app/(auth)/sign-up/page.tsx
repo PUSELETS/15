@@ -2,7 +2,7 @@
 
 export const dynamic = 'force-dynamic';
 
-import React, { useEffect , Suspense } from "react";
+import React, { useEffect, Suspense } from "react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { ArrowRight, Loader2 } from "lucide-react";
 import Link from "next/link";
@@ -15,47 +15,14 @@ import { trpc } from "@/app/_trpc/client";
 import { toast } from 'sonner'
 import { z } from "zod";
 import { ZodError } from 'zod'
-import { useRouter} from 'next/navigation'
-import { useQueryStates } from "nuqs";
+import { useRouter } from 'next/navigation'
 import { parseAsString } from "nuqs/server";
+import GoogleCallbackHandler from "./Suspance";
 
-const searchParams = {
-  code: parseAsString.withDefault(""),
-  state: parseAsString.withDefault(""),
-};
 
 function Page() {
 
-    const [params, setParams] = useQueryStates(searchParams);
-
-    const exchangeCode = trpc.oauth2.exchangeCode.useMutation({
-        onSuccess: () => {
-            router.refresh()
-            toast.success('Welcome!')
-        },
-        onError: (error) => console.error('Exchange Error:', error),
-    });
-
-    useEffect(() => {
-        
-        if (params.code) {
-            // THIS IS YOUR onSuccess({ code }) ← exactly like useGoogleLogin!
-            console.log("Google login successful! Code:", params.code);
-
-            let code = params.code as string
-
-            exchangeCode.mutate({ code }) ;
-            
-            router.refresh();                    // refresh server data
-
-            // Clean the URL (remove ?code=...&scope=...)
-            const cleanUrl = new URL(window.location.href);
-            ["code", "scope", "authuser", "prompt", "state"].forEach((p) =>
-                cleanUrl.searchParams.delete(p)
-            );
-            router.replace(cleanUrl.pathname + cleanUrl.search, { scroll: false });
-        }
-    }, [params.code]);
+    const router = useRouter()
 
     const AuthCredentialsValidator = z.object({
 
@@ -72,7 +39,7 @@ function Page() {
         formState: { errors } } = useForm<TAuthCredentialsValidator>({
             resolver: zodResolver(AuthCredentialsValidator)
         })
-    const router = useRouter()
+
     const { mutate, isLoading } = trpc.auth.createUser.useMutation({
         onError: (err) => {
             if (err.data?.code === 'CONFLICT') {
@@ -187,6 +154,9 @@ function Page() {
 
                             </div>
                         </form>
+                        <Suspense>
+                            <GoogleCallbackHandler />
+                        </Suspense>
                         <button onClick={handleGoogleLogin} className="px-4 mt-4 py-2 bg-blue-600 text-white rounded">
                             Sign in with Google
                         </button>
