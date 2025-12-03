@@ -17,6 +17,8 @@ export default function GoogleCallbackHandler() {
 
         if (params.code) {
 
+            console.log(params.code)
+
             const exchangeWithBackend = async () => {
                 try {
                     const res = await fetch("/api/OAuth", {
