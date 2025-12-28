@@ -18,8 +18,6 @@ export const dynamic = "force-dynamic"
 const UserAccountNav = (user: any) => {
   const  {signOut} = useAuth() 
 
-  const jwUser = jwtDecode(user) as any
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
@@ -40,7 +38,7 @@ const UserAccountNav = (user: any) => {
         <div className='flex items-center justify-start gap-2 p-2'>
           <div className='flex flex-col space-y-0.5 leading-none'>
             <p className='font-medium text-sm text-black'>
-              {jwUser.email}
+              {user.email}
             </p>
           </div>
         </div>
