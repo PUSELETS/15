@@ -6,13 +6,13 @@ import NavItems from './NavItems'
 import MobileNav from './MobileNav'
 import Cart from './Cart'
 import UserAccountNav from './UserAccountNav'
-import { getServerSideUser, deleteCookies } from '@/lib/user'
+import { getServerSideUser } from '@/lib/user'
 import { useForm } from 'react-hook-form'
 import Cartt from './Cartt'
 
 const Navbar = async () => {
 
-  const user = await getServerSideUser() 
+  const user = await getServerSideUser()
 
   return (
     <div className=' sticky z-50 top-0 inset-x-0 h-16'>

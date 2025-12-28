@@ -1,11 +1,10 @@
-import { jwtDecode } from "jwt-decode"
 import { cookies } from "next/headers"
 
 
 export const getServerSideUser = async () =>{
    
     const tokenization =await cookies()
-    const token = tokenization.get('user-token')?.value 
+    const token = tokenization.get('user-token')?.value as string
 
     const user = token
 
