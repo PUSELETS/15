@@ -1,7 +1,5 @@
 
 import MaxWidthWrapper from "@/components/MaxWidthWrapper";
-import { Button, buttonVariants } from "@/components/ui/button";
-import Link from "next/link";
 import { header } from "../components/Header";
 import { rate } from "../components/rate";
 import { suthead } from "../components/paragraph";
@@ -12,7 +10,7 @@ import {
 } from 'lucide-react'
 import ProductReel from "@/components/ProductReel";
 import Image from "next/image";
-import localFont from "next/font/local";
+import localFont from "next/font/local";  
 import type { NextPage } from 'next';
 import { getServerSideUser } from "@/lib/user";
 
@@ -49,8 +47,6 @@ const perks = [
 
 const Homes: NextPage = () => {
 
-  
- 
   return (
     
       <section className="relative">
@@ -64,7 +60,6 @@ const Homes: NextPage = () => {
         </section>
       <MaxWidthWrapper className="">
         <div className={`mx-auto text-start flex flex-col items-start max-w-3xl ${rounded.className}`}>
-          
           <header.logo className=' w-[17.25rem] h-[3.25rem] mt-[14.40625rem]' />
           <suthead.logo className=' w-[15.63125rem] h-[i.94375rem] mt-[0.5rem]' />
           <rate.logo className="w-[6.275rem] h-[1.075rem] mt-[0.75rem]" />
@@ -72,10 +67,7 @@ const Homes: NextPage = () => {
             order now
           </button>
         </div>
-        <ProductReel
-          href='/products?sort=recent'
-          title='Brand new'
-        />
+        <ProductReel href='/products?sort=recent' title='Brand new'/>
       </MaxWidthWrapper>
       <section className='border-t border-gray-200 bg-[#ffffff]'>
         <MaxWidthWrapper className='py-20'>

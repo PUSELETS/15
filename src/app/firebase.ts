@@ -26,17 +26,32 @@ const db = getFirestore(app);
 const collections = [
   {
     databaseId: "dev", // Firestore doesn't use a database ID like Appwrite, but included for structure
-    id: "customer_info",
+    id: "Customers",
     name: "customer"
   },
   {
+    databaseId: "dev", 
+    id: "admin_profile",
+    name: "admin"
+  },
+  {
     databaseId: "dev",
-    id: "product_info",
+    id: "Order_Items",
+    name: "order_items"
+  },
+  {
+    databaseId: "dev",
+    id: "products",
     name: "products"
   },
   {
     databaseId: "dev",
-    id: "sales_info",
+    id: "Addresses",
+    name: "address"
+  },
+  {
+    databaseId: "dev",
+    id: "Orders",
     name: "sales"
   }
 ];

@@ -52,9 +52,9 @@ const ProductReel = (props: ProductReelProps) => {
   return (
     <section className='py-12'>
       <div className='md:flex md:items-center md:justify-between mb-4'>
-        <div className='max-w-2xl px-4 lg:max-w-4xl lg:px-0'>
+        <div className='max-w-2xl px-2 lg:max-w-4xl lg:px-0'>
           {title ? (
-            <h1 className='text-2xl font-bold text-gray-900 sm:text-3xl'>
+            <h1 className='text-2xl font-bold text-[#2e2e2e] sm:text-3xl'>
               
             </h1>
           ) : null}
@@ -86,7 +86,7 @@ const ProductReel = (props: ProductReelProps) => {
               />
             ))}
           </div>
-          <div ref={observerRef}>{isFetching ? 'Loading...' : 'here is data'}</div>
+          <div ref={observerRef}>{isFetching ? 'Loading...' : ''}</div>
         </div>
       </div>
     </section>

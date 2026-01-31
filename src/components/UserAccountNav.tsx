@@ -9,14 +9,13 @@ import {
   DropdownMenuTrigger,
 } from './ui/dropdown-menu'
 import Link from 'next/link'
-import { jwtDecode } from "jwt-decode"
 import { useAuth } from './hooks/use-auth'
-
 
 export const dynamic = "force-dynamic"
 
 const UserAccountNav = (user: any) => {
-  const  {signOut} = useAuth() 
+
+  const { signOut } = useAuth()
 
   return (
     <DropdownMenu>
@@ -27,7 +26,7 @@ const UserAccountNav = (user: any) => {
           variant='ghost'
           size='sm'
           className='relative'
-          >
+        >
           Logout
         </Button>
       </DropdownMenuTrigger>
@@ -38,7 +37,7 @@ const UserAccountNav = (user: any) => {
         <div className='flex items-center justify-start gap-2 p-2'>
           <div className='flex flex-col space-y-0.5 leading-none'>
             <p className='font-medium text-sm text-black'>
-              {user.email}
+              {user.user.name}
             </p>
           </div>
         </div>

@@ -16,9 +16,8 @@ const Page = () => {
 
   const router = useRouter()
 
-  
-
-  const productIds = items.map(({ product }) => product.id)
+  const productIds = items.map(({ product }) => product.id
+)
 
   const [isMounted, setIsMounted] = useState<boolean>(false)
   useEffect(() => {
@@ -26,7 +25,7 @@ const Page = () => {
   }, [])
 
   const cartTotal = items.reduce(
-    (total, { product }) => total + product.Price,
+    (total, { product }) => total + product.price,
     0
   )
 
@@ -81,18 +80,18 @@ const Page = () => {
                     (c) => c.value === product.category
                   )?.label
 
-                  const  image  = product.images[0]
+                  const image = product.imageUrl.at(0) ?? '';
 
                   console.log(image, 'mishackk')
 
                   return (
                     <li
-                      key={product.$id}
+                      key={product.id}
                       className='flex py-6 sm:py-10'>
                       <div className='flex-shrink-0'>
                         <div className='relative h-24 w-24'>
                           {typeof image === 'string' &&
-                          image ? (
+                            image ? (
                             <Image
                               fill
                               src={image}
@@ -109,9 +108,9 @@ const Page = () => {
                             <div className='flex justify-between'>
                               <h3 className='text-sm'>
                                 <Link
-                                  href={`/product/${product.$id}`}
+                                  href={`/product/${product.id}`}
                                   className='font-medium text-gray-700 hover:text-gray-800'>
-                                  {product.Name}
+                                  {product.name}
                                 </Link>
                               </h3>
                             </div>
@@ -123,7 +122,7 @@ const Page = () => {
                             </div>
 
                             <p className='mt-1 text-sm font-medium text-gray-900'>
-                              {formatPrice(product.Price)}
+                              {formatPrice(product.price)}
                             </p>
                           </div>
 
@@ -132,7 +131,7 @@ const Page = () => {
                               <Button
                                 aria-label='remove product'
                                 onClick={() =>
-                                  removeItem(product.$id)
+                                  removeItem(product.id)
                                 }
                                 variant='ghost'>
                                 <X
@@ -159,6 +158,7 @@ const Page = () => {
           </div>
 
           <section className='mt-16 rounded-lg bg-gray-50 px-4 py-6 sm:p-6 lg:col-span-5 lg:mt-0 lg:p-8'>
+            
             <h2 className='text-lg font-medium text-gray-900'>
               Order summary
             </h2>
@@ -198,7 +198,7 @@ const Page = () => {
                   {isMounted ? (
                     formatPrice(cartTotal + fee)
                   ) : (
-                    <Loader2 className='h-4 w-4 animate-spin text-muted-foreground' />
+                    <Loader2 className='h-4 w-4 animate-spin text-muted-foreground'/>
                   )}
                 </div>
               </div>

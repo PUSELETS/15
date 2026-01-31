@@ -1,6 +1,7 @@
 // app/api/OAuth/route.ts
 import { OAuth2Client } from 'google-auth-library';
 import { cookies } from 'next/headers';
+import { sendUserToFirebase } from '@/lib/user';
 
 // app/api/OAuth/route.ts
 import { NextRequest, NextResponse } from 'next/server';
@@ -48,7 +49,10 @@ async function handler(request: NextRequest) {
             return new Response(JSON.stringify({ error: "Server error" }), {
                 status: 500,
             });
+        } finally {
+            await sendUserToFirebase()
         }
+
     }
 
     return Response.json({ success: true });

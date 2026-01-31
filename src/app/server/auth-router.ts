@@ -3,7 +3,6 @@ import { publicProcedure, router } from "./trpc";
 import { z } from "zod";
 import { v4 as uuid } from "uuid";
 import { TRPCError } from "@trpc/server";
-import { databases, DATABASE_ID_DEV, COLLECTION_ID_customer_info } from "../appwrite";
 import { SignJWT } from "jose";
 import { getJwtSecretKey } from "../../lib/auth";
 import { setPayload } from "@/lib/email";
@@ -25,8 +24,6 @@ export const authRouter = router({
 
             //check if user exist
             const document = await database.customer.list([where("email", "==", email )]);
-
-            console.log(document.length, "with mish")
 
             if (document.length !== 0)
                 throw new TRPCError({ code: 'CONFLICT' })
@@ -60,15 +57,6 @@ export const authRouter = router({
             const respon = await database.customer.list([where("Token", "==", token)]);
 
             const isV = await database.customer.update({ verified: true }, respon.documents[0].$id );
-            
-            const isVerified = await databases.updateDocument(
-                DATABASE_ID_DEV, // databaseId
-                COLLECTION_ID_customer_info, // collectionId
-                respon.documents[0].$id, // documentId
-                {
-                    varified: true
-                }, // data (optional)
-            );
 
             if (!isV)
                 throw new TRPCError({ code: 'UNAUTHORIZED' })

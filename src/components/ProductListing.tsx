@@ -1,19 +1,18 @@
 'use client'
 
-
 import { useEffect, useState } from 'react'
 import { Skeleton } from './ui/skeleton'
 import Link from 'next/link'
-import { cn } from '@/lib/utils'
+import { cn, formatPrice } from '@/lib/utils'
 import ImageSlider from './ImageSlider'
 
 interface ProductListingProps {
-  product: any
+  product: any 
   index: number
 }
 
-
 const ProductListing = ({ product, index }: ProductListingProps) => {
+  
   const [isVisible, setIsVisible] = useState<boolean>(false)
 
   useEffect(() => {
@@ -35,18 +34,19 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
             'visible animate-in fade-in-5': isVisible,
           }
         )}
-        href={`/product/${product.costumId}`}>
+        href={`/product/${product.id}`}>
         <div className='flex flex-col w-full' >
-          
+
+          <ImageSlider urls={product.imageUrl} />
 
           <h3 className='mt-4 font-medium text-sm text-gray-700'>
-            {product.product_name}
+            {product.name}
           </h3>
           <p className='mt-1 text-sm text-gray-500'>
             
           </p>
           <p className='mt-1 font-medium text-sm text-gray-900'>
-            {product.cost}
+            {formatPrice(product.price)}
           </p>
         </div>
       </Link>
@@ -63,6 +63,5 @@ const ProductPlaceholder = () => {
     </div>
   )
 }
-
 
 export default ProductListing

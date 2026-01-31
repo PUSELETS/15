@@ -12,7 +12,7 @@ import Cartt from './Cartt'
 
 const Navbar = async () => {
 
-  const user = await getServerSideUser()
+  const user = await getServerSideUser() 
 
   return (
     <div className=' sticky z-50 top-0 inset-x-0 h-16'>
@@ -21,21 +21,15 @@ const Navbar = async () => {
           <div className=''>
             <div className='h-16 items-center flex justify-between'>
               <MobileNav />
-
               <div className=' flex items-center'>
-                <div className='flex flex-1 items-center justify-end space-x-6'>
-                  
-
+                <div className='flex flex-1 items-center justify-end space-x-6'>                
                   {user ? (
                     <UserAccountNav user={user} />
-                  ) : ''}
-                  
+                  ) : ''}                
                 </div>
                 <div className='ml-4 flow-root lg:ml-6'>
-                   
-                   <Cart/>
-                </div>
-                
+                   <Cartt/>
+                </div>                
               </div>
               <div className='hidden z-50 lg:ml-8 lg:block lg:self-stretch'>
                 

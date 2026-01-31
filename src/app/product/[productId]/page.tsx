@@ -12,6 +12,7 @@ import { Query } from 'appwrite';
 import AddToCartButton from '@/components/AddToCartButton'
 import { database } from '@/app/firebase'
 import { where } from 'firebase/firestore'
+import { formatPrice } from '@/lib/utils'
 
 
 const BREADCRUMBS = [
@@ -19,30 +20,14 @@ const BREADCRUMBS = [
   { id: 2, name: 'Product', href: '/product' },
 ]
 
-const Page = async ({params}:{params: Promise<{params: string}>}) => {
+const Page = async ({ params }: { params: Promise<{ params: string }> }) => {
 
-  const slug = await params 
-  const select = Object.values(slug)
-  const document = await database.products.list([where("name", "==", "John Doe")]);
-  const data = await db.products.list(
-    [
-        Query.equal('costumId',select)
-    ]
-)  
-
-const filtered = Object.values(data)[1]
-
-
-  const [product] = filtered as any
-
-  if (!product) return notFound()
-
-  const label = PRODUCT_CATEGORIES.find(
-    ({ value }) => value === product.category
-  )?.label
-
-  const validUrls = product.images
-    .map(( image: string ) =>
+  const slug = await params
+  const select = Object.values(slug).at(0) ?? '';
+  const product = await database.products.get(select);
+  
+  const validUrls = product.imageUrl
+    .map((image: string) =>
       typeof image === 'string' ? image : image
     )
     .filter(Boolean) as string[]
@@ -78,18 +63,18 @@ const filtered = Object.values(data)[1]
 
             <div className='mt-4'>
               <h1 className='text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl'>
-                {product.Name}
+                {product.name}
               </h1>
             </div>
 
             <section className='mt-4'>
               <div className='flex items-center'>
                 <p className='font-medium text-gray-900'>
-                  {product.Price}
+                  {formatPrice(product.price)}
                 </p>
 
                 <div className='ml-4 border-l text-muted-foreground border-gray-300 pl-4'>
-                  {label}
+                  
                 </div>
               </div>
 
@@ -140,12 +125,7 @@ const filtered = Object.values(data)[1]
         </div>
       </div>
 
-      <ProductReel
-        href='/products'
-        
-        title={`Similar ${label}`}
-        subtitle={`Browse similar high-quality ${label} just like '${product.name}'`}
-      />
+      
     </MaxWidthWrapper>
   )
 }

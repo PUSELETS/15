@@ -6,7 +6,7 @@ import { ImageIcon, X } from 'lucide-react'
 import Image from 'next/image'
 
 const CartItem = ({ product }: { product: any }) => {
-  const image = product.images[0]
+  const image = product.imageUrl.at(0) ?? '';
 
   const { removeItem } = useCart()
 
@@ -22,7 +22,7 @@ const CartItem = ({ product }: { product: any }) => {
             {typeof image === 'string' && image ? (
               <Image
                 src={image}
-                alt={product.Name}
+                alt={product.name}
                 fill
                 className='absolute object-cover'
               />
@@ -38,7 +38,7 @@ const CartItem = ({ product }: { product: any }) => {
 
           <div className='flex flex-col self-start'>
             <span className='line-clamp-1 text-sm font-medium mb-1'>
-              {product.Name}
+              {product.name}
             </span>
 
             <span className='line-clamp-1 text-xs capitalize text-muted-foreground'>
@@ -58,7 +58,7 @@ const CartItem = ({ product }: { product: any }) => {
 
         <div className='flex flex-col space-y-1 font-medium'>
           <span className='ml-auto line-clamp-1 text-sm'>
-            {formatPrice(product.Price)}
+            {formatPrice(product.price)}
           </span>
         </div>
       </div>
