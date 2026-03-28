@@ -4,15 +4,16 @@ import { useEffect, useState } from 'react'
 import { Skeleton } from './ui/skeleton'
 import Link from 'next/link'
 import { cn, formatPrice } from '@/lib/utils'
+import Image from 'next/image'
 import ImageSlider from './ImageSlider'
 
 interface ProductListingProps {
-  product: any 
+  product: any
   index: number
 }
 
 const ProductListing = ({ product, index }: ProductListingProps) => {
-  
+
   const [isVisible, setIsVisible] = useState<boolean>(false)
 
   useEffect(() => {
@@ -36,17 +37,22 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
         )}
         href={`/product/${product.id}`}>
         <div className='flex flex-col w-full' >
-
-          <ImageSlider urls={product.imageUrl} />
+              <Image
+                fill
+                loading='eager'
+                className='-z-10 h-full w-full object-cover object-center rounded-xl'
+                src={product.imageUrl}
+                alt='Product image'
+              />
 
           <h3 className='mt-4 font-medium text-sm text-gray-700'>
             {product.name}
           </h3>
           <p className='mt-1 text-sm text-gray-500'>
-            
+
           </p>
           <p className='mt-1 font-medium text-sm text-gray-900'>
-            {formatPrice(product.price)}
+            {formatPrice(70)}
           </p>
         </div>
       </Link>

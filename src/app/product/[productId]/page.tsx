@@ -26,11 +26,7 @@ const Page = async ({ params }: { params: Promise<{ params: string }> }) => {
   const select = Object.values(slug).at(0) ?? '';
   const product = await database.products.get(select);
   
-  const validUrls = product.imageUrl
-    .map((image: string) =>
-      typeof image === 'string' ? image : image
-    )
-    .filter(Boolean) as string[]
+  
 
   return (
     <MaxWidthWrapper className='bg-white'>
@@ -97,11 +93,7 @@ const Page = async ({ params }: { params: Promise<{ params: string }> }) => {
           </div>
 
           {/* Product images */}
-          <div className='mt-10 lg:col-start-2 lg:row-span-2 lg:mt-0 lg:self-center'>
-            <div className='aspect-square rounded-lg'>
-              <ImageSlider urls={validUrls} />
-            </div>
-          </div>
+          
 
           {/* add to cart part */}
           <div className='mt-10 lg:col-start-1 lg:row-start-2 lg:max-w-lg lg:self-start'>
