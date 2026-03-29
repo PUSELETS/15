@@ -45,38 +45,7 @@ const ProductSlider = ({ products }: ProductCarouselProps) => {
     const inactiveStyles = 'hidden text-gray-400'
     return (
         <div className='flex mt-6 items-center group relative w-auto h-[14.6875rem]  overflow-hidden rounded-xl'>
-            <div className=' z-10 inset-0 opacity-0 group-hover:opacity-100 transition'>
-                <button
-                    onClick={(e) => {
-                        e.preventDefault()
-                        swiper?.slideNext()
-                    }}
-                    className={cn(
-                        activeStyles,
-                        'right-3 transition',
-                        {
-                            [inactiveStyles]: slideConfig.isEnd,
-                            'hover:bg-primary-300 text-primary-800 opacity-100':
-                                !slideConfig.isEnd,
-                        }
-                    )}
-                    aria-label='next image'>
-                    <ChevronRight className='h-4 w-4 text-zinc-700' />{' '}
-                </button>
-                <button
-                    onClick={(e) => {
-                        e.preventDefault()
-                        swiper?.slidePrev()
-                    }}
-                    className={cn(activeStyles, 'left-3 transition', {
-                        [inactiveStyles]: slideConfig.isBeginning,
-                        'hover:bg-primary-300 text-primary-800 opacity-100':
-                            !slideConfig.isBeginning,
-                    })}
-                    aria-label='previous image'>
-                    <ChevronLeft className='h-4 w-4 text-zinc-700' />{' '}
-                </button>
-            </div>
+            
             <MaxWidthWrapper>
                 <Swiper
                 effect={'coverflow'}
@@ -91,13 +60,12 @@ const ProductSlider = ({ products }: ProductCarouselProps) => {
                 slidesPerView={2}
 
                 className=' h-full w-full '>
-                {products.map((product, i) => (
+                {products.map(( product, i ) => (
                     <SwiperSlide
                         key={i}
                         className='-z-10 flex justify-center relative h-full w-full'>
-                        <div
-                            className="">
-                            <div className=" flex flex-col pb-2 w-[9.71875rem] h-[14.66875rem] sm:w-[15.125rem] sm:h-[22.825rem] rounded-[15px] bg-[#F7FCD7]">
+                        <div className="" >
+                            <div className=" flex flex-col pb-2 w-[9.71875rem] h-[14.66875rem] sm:w-[15.125rem] sm:h-[22.825rem] rounded-[15px] bg-[#469674]">
                                 <div className="flex pt-2 px-2 justify-end h-8 w-auto">
                                     <button className="">
                                         <Icons.Thumb className='w-5 h-5 sm:w-6 sm:h-6' />

@@ -67,7 +67,7 @@ const Category = [
 
 const Categoryy: Product[] = [
   {
-    name: 'Colored Baggage',
+    name: 'Colored ',
     image: '/Picture Frameee.png',
     id: 0,
     price: 0
@@ -85,7 +85,7 @@ const Categoryy: Product[] = [
     price: 0
   },
   {
-    name: 'Carry on Luggage',
+    name: 'Carry on ',
     image: '/Picture Framely.png',
     id: 0,
     price: 0
@@ -129,7 +129,6 @@ const products: Product[] = [
 ];
 
 const Homes: NextPage = () => {
-
 
   return (
 
@@ -214,11 +213,11 @@ const Homes: NextPage = () => {
           </div>
           <div className=" flex justify-center h-[12.63125rem] w-[20.4375rem] sm:hidden relative ">
             <Image
-                src='/Polygraye.png'
-                fill
-                alt=''
-                className=" absolute "
-              />
+              src='/Polygraye.png'
+              fill
+              alt=''
+              className=" absolute "
+            />
           </div>
         </MaxWidthWrapper>
       </section>
@@ -256,11 +255,7 @@ const Homes: NextPage = () => {
               <div className="w-[36.6875rem] h-[7.6375rem] mt-4">
                 <p className="fib-16 text-[clamp(14px,1.0vw+10px,17px)] leading-[1.2] text-[#4e4e4e]">
                   At TA, travel isn't just a hobby , it's what drives us. We know the feeling: that mix
-                  of excitement and nerves before a big trip. The last thing you need is a suitcase
-                  that lets you down halfway through. So we design and source luggage that's
-                  ready for real life , from bumpy airport trolleys and rainy streets to dusty
-                  backroads and endless check-ins. Durable shells, whisper-quiet wheels,
-                  clever compartments, and designs that still turn heads...
+                  of excitement and nerves
                 </p>
               </div>
               <div className="mt-5">
@@ -349,8 +344,6 @@ const Homes: NextPage = () => {
         </MaxWidthWrapper>
       </section>
       <ProductReel href='/products?sort=recent' title='Brand new' />
-
-
     </section>
 
 
