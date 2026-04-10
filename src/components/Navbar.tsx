@@ -20,10 +20,10 @@ const Navbar = async () => {
   const user = await getServerSideUser() as any
 
   return (
-    <div className={`${tahoma.className} sticky z-50 top-0 inset-x-0 h-16 [font-size-adjust:ex-height_0.52] `}>
+    <div className={`${tahoma.className} sticky z-50 top-0 inset-x-0 h-14 sm:h-16  [font-size-adjust:ex-height_0.52] `}>
       <header className='relative bg-[#feffef]'>
         <MaxWidthWrapper className='bg-[#feffef]'>
-          <div className='h-10 hidden sm:flex items-center fib-12 text-[clamp(11px,0.8vw+8px,13px)] justify-between'>
+          <div className='sm:h-10 hidden sm:flex items-center fib-12 text-[clamp(11px,0.8vw+8px,13px)] justify-between'>
             <Icons.Envelope className='w-5 h-5 mr-1' />
             <label className='text-[#2e2e2e] mr-3'>dimamabolo15@gmail.com</label>
             <div className='bg-[#d6d6d6] rounded-lg w-[1px] h-5'></div>
@@ -47,7 +47,7 @@ const Navbar = async () => {
         </MaxWidthWrapper>
       </header>
       <header className='shadow-sm bg-[#ffffff]'>
-        <MaxWidthWrapper className='mb-8 '>
+        <MaxWidthWrapper className=' '>
           <div className='h-14 items-center flex justify-between'>
             <div className='flex'>
               <MobileNav />

@@ -52,7 +52,7 @@ const MobileNav = () => {
 
       <div className='fixed overflow-y-scroll overscroll-y-none h-screen inset-0 z-40 flex'>
         <div className='w-[18.4375rem] h-screen'>
-          <div className='relative flex w-full max-w-sm flex-col overflow-y-auto h-screen bg-[#F7FCD7] shadow-xl'>
+          <div className='relative flex w-full max-w-sm flex-col overflow-y-auto h-screen bg-[#FBFF6C] shadow-xl'>
             <div className='flex px-6 h-14 items-center'>
               <button
                 type='button'

@@ -133,28 +133,35 @@ const Homes: NextPage = () => {
   return (
 
     <section className={`${tahoma.className}  relative [font-size-adjust:ex-height_0.52] leading-[1] `}>
-      <header className='relative mt-4 sm:mt-10 '>
+      <header className='relative bg-[#E79944]'>
+        <div className="w-[2.74375rem] h-[4.24375rem] top-[16.51875rem] absolute z-20">
+          <Image
+            src='/leavee.png'
+            fill
+            alt=''
+            className=""
+          />
+        </div>
         <MaxWidthWrapper className=" sm:hidden " >
-          <section className=" w-auto h-auto flex justify-center ">
-            <div className="relative w-[20.4375rem] h-[20.4375rem]">
-              <div className=" z-10 w-[10.525rem] h-[13.6625rem] ml-[9.31875rem] pt-6 " >
-                <h1 className=" text-[clamp(30px,2.4vw+21px,38px)]  leading-[1] text-[#2e2e2e] font-[1000]">
-                  Carry Your World With Confident.
-                </h1>
-                <p className="mt-2 text-[clamp(16px,1.2vw+11px,20px)] text-[#4e4e4e]">
-                  Quality suitcase for every destination.
+          <section className=" w-auto h-auto flex justify-center  ">
+            <div className="flex flex-col justify-center items-center w-full h-auto ">
+              <div className=" z-10 w-[13.49375rem] h-[7.1625rem] mt-[3.075rem] " >
+                <Icons.Hero className='' />
+                <p className="mt-4 text-center leading-[1.2] text-[clamp(16px,1.2vw+11px,20px)] text-[#4e4e4e]">
+                  Freshly made. Naturally better.
                 </p>
-                <button className='flex items-center mt-12 shadow-md rounded-full bg-[#FFA833] text-[#2e2e2e] py-1 px-3  text-[clamp(12px,0.9vw+9px,15px)] font-semibold'>
-                  Get Yours
-                  <Icons.Arrow_right className='w-5 h-5 ml-1 ' />
-                </button>
               </div>
-              <Image
-                src='/Poly LLine.png'
-                fill
-                alt=''
-                className="absolute z-[-5] "
-              />
+              <div className=" z-10 relative right-2 w-[8.6875rem] h-[12.63125rem]">
+                <Image
+                  src='/PictuHai.png'
+                  fill
+                  alt=''
+                  className="absolute z-[-5] "
+                />
+              </div>
+              <button className='flex items-center justify-center mt-8 mb-16 h-10 shadow-md shadow-[#fff70071] rounded-full bg-[#FFF600] text-[#2e2e2e] py-1 px-3  text-[clamp(16px,1.2vw+11px,20px)] font-bold'>
+                Get Yours
+              </button>
             </div>
           </section>
         </MaxWidthWrapper>
@@ -184,165 +191,205 @@ const Homes: NextPage = () => {
           </section>
         </MaxWidthWrapper>
       </header>
-      <section className=" ">
-        <MaxWidthWrapper className=" py-6 sm:py-12">
-          <div className="flex ">
-            <div className=" w-[23.16875rem] h-auto ">
-              <h2 className=" text-[#2e2e2e] text-[clamp(22px,1.7vw+15px,28px)] sm:text-[clamp(30px,2.4vw+21px,38px)] font-[1000]  ">
-                <span className="hidden sm:flex">Browser</span> Our Hottest <span className=" text-[#FF8633] ">Category</span>
-              </h2>
+      <section className="bg-[#E2C3D2] relative ">
+        <div className=" absolute z-40 right-0 mr-[4.6875rem] top-[-2px] w-auto h-auto">
+          <Icons.Triangle className="w-8 h-8" />
+        </div>
+        <MaxWidthWrapper className=" pt-12">
+          <div className="w-auto h-auto ">
+            <Icons.Thumb className=" w-6 h-6 " />
+          </div>
+          <div className=" relative w-auto h-auto flex flex-col items-center mt-6">
+            <div className=" flex w-[9.69375rem] h-[8.98125rem] ml-[1.86875rem] relative " >
+              <div className=" relative w-[2.74375rem] h-[8.6125rem] ">
+                <Image
+                  src='/Pixgtgl.png'
+                  fill
+                  alt=''
+                  className=" absolute "
+                />
+              </div>
+              <div className=" ml-4 w-auto h-auto ">
+                <div className="flex justify-start w-auto h-auto">
+                  <Icons.Star className=" w-3 h-3 mr-[0.125rem] " />
+                  <Icons.Star className=" w-3 h-3 mr-[0.125rem] " />
+                  <Icons.Star className=" w-3 h-3 mr-[0.125rem] " />
+                  <Icons.Star className=" w-3 h-3 mr-[0.125rem] " />
+                </div>
+                <div className=" w-[5.95625rem] h-[2.04375rem] text-[clamp(16px,1.2vw+11px,20px)] font-bold text-[#2e2e2e] mt-2">
+                  Black Berry Smoothy
+                </div>
+                <div className=" text-[#4e4e4e] mt-3 text-[clamp(16px,1.2vw+11px,20px)] font-semibold">
+                  R 29.00
+                </div>
+              </div>
+              <div className=" w-[2.85625rem] h-[2.33125rem] ml-[1.2875rem] bottom-0 absolute ">
+                <Image
+                  src='/Berry.png'
+                  fill
+                  alt=''
+                  className=" "
+                />
+              </div>
+            </div>
+            <div className=" w-[7.99375rem] h-auto mt-2 ">
+              <div className=" text-[#2e2e2e] font-[500] text-[clamp(16px,1.2vw+11px,20px)] flex w-full h-auto ">
+                <button className=" w-[2.2rem] h-[2.2rem] mr-3 rounded-full bg-[#AB8396] ">
+                  -
+                </button>
+                <div className=" w-[2.2rem] h-[2.2rem] flex justify-center items-center mr-3 rounded-full bg-[#AB8396] ">
+                  1
+                </div>
+                <button className=" w-[2.2rem] h-[2.2rem] rounded-full bg-[#AB8396] ">
+                  +
+                </button>
+              </div>
+              <button className='flex items-center justify-center font-semibold mt-4 w-full h-8 shadow-md shadow-[#fff70071] rounded-full bg-[#FFF600] text-[#2e2e2e] py-1 px-3  text-[clamp(16px,1.2vw+11px,20px)] '>
+                Add To Cart
+              </button>
             </div>
           </div>
-          <ProductCarousel products={products} />
+          <div className=" flex mt-8 justify-start items-center ">
+            <label className="text-[clamp(16px,1.2vw+11px,20px)] mb-14 text-[#4e4e4e]">Learn More</label>
+            <Icons.Arrow_right className="w-4 h-4 ml-1 mb-14 " />
+          </div>
         </MaxWidthWrapper>
       </section>
-      <section className=" sm:py-8">
-        <MaxWidthWrapper className=" my-0 flex justify-center">
-          <div className=" hidden sm:flex justify-center w-auto items-center h-auto space-x-[2.58125rem] rounded-3xl bg-orange-300">
-            <h1 className=" text-[#2e2e2e] fib-56 font-[1000] text-[clamp(46px,4.2vw+32px,60px)] ">
-              Unpack Happiness
-            </h1>
-            <div className=" w-[10rem] relative h-[23.46875rem] ">
-              <Image
-                src='/Pixeboddyy.png'
-                fill
-                alt=''
-                className=" absolute "
-              />
+      <section className="bg-[#C7E2C3] relative ">
+        <div className=" absolute z-40 ml-[4.6875rem] top-[-2px] w-auto h-auto">
+          <Icons.Tringl className="w-8 h-8" />
+        </div>
+        <MaxWidthWrapper className=" pt-12">
+          <div className="w-auto h-auto ">
+            <Icons.Thumb className=" w-6 h-6 " />
+          </div>
+          <div className=" relative w-auto h-auto flex flex-col items-center mt-6">
+            <div className=" flex w-[9.69375rem] h-[8.98125rem] ml-[1.86875rem] relative " >
+              <div className=" relative w-[2.74375rem] h-[8.6125rem] ">
+                <Image
+                  src='/Avocadol.png'
+                  fill
+                  alt=''
+                  className=" absolute "
+                />
+              </div>
+              <div className=" ml-4 w-auto h-auto ">
+                <div className="flex justify-start w-auto h-auto">
+                  <Icons.Star className=" w-3 h-3 mr-[0.125rem] " />
+                  <Icons.Star className=" w-3 h-3 mr-[0.125rem] " />
+                  <Icons.Star className=" w-3 h-3 mr-[0.125rem] " />
+                  <Icons.Star className=" w-3 h-3 mr-[0.125rem] " />
+                </div>
+                <div className=" w-[5.95625rem] h-[2.04375rem] text-[clamp(16px,1.2vw+11px,20px)] font-bold text-[#2e2e2e] mt-2">
+                  Avocado Smoothy
+                </div>
+                <div className=" text-[#4e4e4e] mt-3 text-[clamp(16px,1.2vw+11px,20px)] font-semibold">
+                  R 29.00
+                </div>
+              </div>
+              <div className=" w-[2.85625rem] h-[2.33125rem] ml-[1.2875rem] bottom-0 absolute ">
+                <Image
+                  src='/Berry.png'
+                  fill
+                  alt=''
+                  className=" "
+                />
+              </div>
+            </div>
+            <div className=" w-[7.99375rem] h-auto mt-2 ">
+              <div className=" text-[#2e2e2e] font-[500] text-[clamp(16px,1.2vw+11px,20px)] flex w-full h-auto ">
+                <button className=" w-[2.2rem] h-[2.2rem] mr-3 rounded-full bg-[#8BAB83] ">
+                  -
+                </button>
+                <div className=" w-[2.2rem] h-[2.2rem] flex justify-center items-center mr-3 rounded-full bg-[#8BAB83] ">
+                  1
+                </div>
+                <button className=" w-[2.2rem] h-[2.2rem] rounded-full bg-[#8BAB83] ">
+                  +
+                </button>
+              </div>
+              <button className='flex items-center justify-center font-semibold mt-4 w-full h-8 shadow-md shadow-[#fff70071] rounded-full bg-[#FFF600] text-[#2e2e2e] py-1 px-3  text-[clamp(16px,1.2vw+11px,20px)] '>
+                Add To Cart
+              </button>
             </div>
           </div>
-          <div className=" flex justify-center h-[12.63125rem] w-[20.4375rem] sm:hidden relative ">
-            <Image
-              src='/Polygraye.png'
-              fill
-              alt=''
-              className=" absolute "
-            />
+          <div className=" flex mt-8 justify-start items-center ">
+            <label className="text-[clamp(16px,1.2vw+11px,20px)] mb-14 text-[#4e4e4e]">Learn More</label>
+            <Icons.Arrow_right className="w-4 h-4 ml-1 mb-14 " />
           </div>
         </MaxWidthWrapper>
       </section>
-      <section className=" pt-6 sm:pt-12">
-        <MaxWidthWrapper className="">
-          <div className="flex flex-col ">
-            <div className=" sm:w-[24.1375rem] sm:h-[2.175rem] ">
-              <h2 className=" text-[#2e2e2e] text-[clamp(22px,1.7vw+15px,28px)] sm:text-[clamp(30px,2.4vw+21px,38px)] font-[1000]  ">
-                Best Selling <span className=" text-[#FF8633] ">Suitcase</span>
-              </h2>
+      <section className="bg-[#F5DCA3] relative ">
+        <div className=" absolute z-40 right-[40%] ml-[4.6875rem] top-[-2px] w-auto h-auto">
+          <Icons.Tringlee className="w-8 h-8" />
+        </div>
+        <MaxWidthWrapper className=" pt-12">
+          <div className="w-auto h-auto ">
+            <Icons.Thumb className=" w-6 h-6 " />
+          </div>
+          <div className=" relative w-auto h-auto flex flex-col items-center mt-6">
+            <div className=" flex w-[9.69375rem] h-[8.98125rem] ml-[1.86875rem] relative " >
+              <div className=" relative w-[2.74375rem] h-[8.6125rem] ">
+                <Image
+                  src='/OrangeTT.png'
+                  fill
+                  alt=''
+                  className=" absolute "
+                />
+              </div>
+              <div className=" ml-4 w-auto h-auto ">
+                <div className="flex justify-start w-auto h-auto">
+                  <Icons.Star className=" w-3 h-3 mr-[0.125rem] " />
+                  <Icons.Star className=" w-3 h-3 mr-[0.125rem] " />
+                  <Icons.Star className=" w-3 h-3 mr-[0.125rem] " />
+                  <Icons.Star className=" w-3 h-3 mr-[0.125rem] " />
+                </div>
+                <div className=" w-[5.95625rem] h-[2.04375rem] text-[clamp(16px,1.2vw+11px,20px)] font-bold text-[#2e2e2e] mt-2">
+                  Orange Smoothy
+                </div>
+                <div className=" text-[#4e4e4e] mt-3 text-[clamp(16px,1.2vw+11px,20px)] font-semibold">
+                  R 29.00
+                </div>
+              </div>
+              <div className=" w-[2.85625rem] h-[2.33125rem] ml-[1.2875rem] bottom-0 absolute ">
+                <Image
+                  src='/Berry.png'
+                  fill
+                  alt=''
+                  className=" "
+                />
+              </div>
+            </div>
+            <div className=" w-[7.99375rem] h-auto mt-2 ">
+              <div className=" text-[#2e2e2e] font-[500] text-[clamp(16px,1.2vw+11px,20px)] flex w-full h-auto ">
+                <button className=" w-[2.2rem] h-[2.2rem] mr-3 rounded-full bg-[#EF9745] ">
+                  -
+                </button>
+                <div className=" w-[2.2rem] h-[2.2rem] flex justify-center items-center mr-3 rounded-full bg-[#EF9745] ">
+                  1
+                </div>
+                <button className=" w-[2.2rem] h-[2.2rem] rounded-full bg-[#EF9745] ">
+                  +
+                </button>
+              </div>
+              <button className='flex items-center justify-center font-semibold mt-4 w-full h-8 shadow-md shadow-[#fff70071] rounded-full bg-[#FFF600] text-[#2e2e2e] py-1 px-3  text-[clamp(16px,1.2vw+11px,20px)] '>
+                Add To Cart
+              </button>
             </div>
           </div>
+          <div className=" flex mt-8 justify-start items-center ">
+            <label className="text-[clamp(16px,1.2vw+11px,20px)] mb-14 text-[#4e4e4e]">Learn More</label>
+            <Icons.Arrow_right className="w-4 h-4 ml-1 mb-14 " />
+          </div>
         </MaxWidthWrapper>
       </section>
-      <ProductSlider products={Categoryy} />
-      <ProductSlider products={Categoryy} />
-      <section className="py-12 hidden sm:flex">
+      <section className=" h-14 bg-[#412E1C] flex items-center ">
         <MaxWidthWrapper>
-          <div className="flex w-auto h-auto bg-[#F7FCD7] rounded-3xl">
-            <div className="relative w-[21.46875rem] ml-[3.9875rem] h-[20.66875rem] " >
-              <Image
-                src='/Pixelliy.png'
-                fill
-                alt=''
-                className=" absolute "
-              />
-            </div>
-            <div className="flex flex-col ml-9">
-              <h3 className="fib-22 text-[clamp(18px,1.4vw+13px,24px)] font-[1000] text-[#FF8633]">
-                About Us
-              </h3>
-              <h3 className="fib-22 mt-6 text-[clamp(18px,1.4vw+13px,24px)] font-[1000] text-[#2e2e2e]">
-                Born from the Road. Built for <br /> Your Journey
-              </h3>
-              <div className="w-[36.6875rem] h-[7.6375rem] mt-4">
-                <p className="fib-16 text-[clamp(14px,1.0vw+10px,17px)] leading-[1.2] text-[#4e4e4e]">
-                  At TA, travel isn't just a hobby , it's what drives us. We know the feeling: that mix
-                  of excitement and nerves
-                </p>
-              </div>
-              <div className="mt-5">
-                <button className='flex items-center shadow-md rounded-full bg-[#FFA833] text-[#2e2e2e] py-1 px-3  text-[clamp(12px,0.9vw+9px,15px)] font-semibold'>
-                  Learn More
-                  <Icons.Arrow_right className='w-5 h-5 ml-1 ' />
-                </button>
-              </div>
-              <div className="h-auto w-auto mt-8 flex space-x-4">
-                <button className="w-8 h-8 bg-[#e1e1e1] flex items-center justify-center rounded-full">
-                  <Icons.Twitter className='w-5 h-5' />
-                </button>
-                <button className="w-8 h-8 bg-[#e1e1e1] flex items-center justify-center  rounded-full">
-                  <Icons.Instagram className='w-5 h-5' />
-                </button>
-                <button className="w-8 h-8 bg-[#e1e1e1] flex items-center justify-center  rounded-full">
-                  <Icons.Whatsap className='w-5 h-5' />
-                </button>
-                <button className="w-8 h-8 bg-[#e1e1e1]  flex items-center justify-center rounded-full">
-                  <Icons.Facebook className='w-5 h-5' />
-                </button>
-                <button className="w-8 h-8 bg-[#e1e1e1] flex items-center justify-center  rounded-full">
-                  <Icons.Telegram className='w-5 h-5' />
-                </button>
-              </div>
-            </div>
-          </div>
+          mish
         </MaxWidthWrapper>
       </section>
-      <section className="py-12 shadow-sm hidden sm:flex">
-        <MaxWidthWrapper className="">
-          <div className="flex flex-col ml-12">
-            <div className=" w-[24.1375rem] h-[2.175rem] ">
-              <h2 className=" text-[#2e2e2e] text-[clamp(30px,2.4vw+21px,38px)] font-[1000]  ">
-                Most Popular <span className=" text-[#FF8633] ">Products</span>
-              </h2>
-            </div>
-            <div className="w-auto h-auto mt-8">
-              <div className="grid grid-flow-col gap-6">
-                {Categoryy.map((Categoryy) => (
-                  <div
-                    key={Categoryy.name}
-                    className="">
-                    <div className=" flex flex-col w-[15.125rem] h-[22.825rem] rounded-[15px] bg-[#F7FCD7]">
-                      <div className="flex pt-4 px-4 justify-end h-12 w-auto">
-                        <button className="">
-                          <Icons.Thumb className='w-6 h-6' />
-                        </button>
-                      </div>
-                      <div className="relative w-[14.125rem] h-[14.125rem] mx-2">
-                        <Image
-                          src={Categoryy.image}
-                          fill
-                          alt=''
-                          className=" absolute "
-                        />
-                      </div>
-                      <div className="flex justify-between mt-2 mx-4 h-auto w-auto">
-                        <div className=" flex flex-col w-auto h-auto">
-                          <div className="flex justify-start w-auto h-auto">
-                            <Icons.Star className=" w-4 h-4 mr-1" />
-                            <Icons.Star className=" w-4 h-4 mr-1" />
-                            <Icons.Star className=" w-4 h-4 mr-1" />
-                            <Icons.Star className=" w-4 h-4 mr-1" />
-                          </div>
-                          <label className="text-[#2e2e2e] mt-1 fib-14 text-[clamp(12px,0.9vw+9px,15px)] font-[1000]">
-                            {Categoryy.name}
-                          </label>
-                          <label className="text-[#FF8633] mt-3 fib-14 text-[clamp(12px,0.9vw+9px,15px)] font-[1000]">
-                            R5,100.00
-                          </label>
-                        </div>
-                        <div className="flex items-end">
-                          <button className='flex items-center shadow-md rounded-full bg-[#FFA833] text-[#2e2e2e] py-1 px-3  text-[clamp(12px,0.9vw+9px,15px)] font-semibold'>
-                            Add
-                            <Icons.Shopping_cart className='w-5 h-5 ml-1 ' />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </MaxWidthWrapper>
-      </section>
+
+     
       <ProductReel href='/products?sort=recent' title='Brand new' />
     </section>
 
