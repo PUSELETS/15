@@ -39,8 +39,8 @@ const MobileNav = () => {
       <button
         type='button'
         onClick={() => setIsOpen(true)}
-        className='lg:hidden relative mr-4 inline-flex items-center justify-center rounded-md pr-4 text-[#6E6E6E]'>
-        <Icons.List className='h-6 w-6' aria-hidden='true' />
+        className='lg:hidden relative  inline-flex items-center justify-center rounded-md text-[#6E6E6E]'>
+        <Icons.List className='h-8 w-8 -mt-[4px]' aria-hidden='true' />
       </button>
     )
 

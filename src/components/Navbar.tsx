@@ -50,10 +50,8 @@ const Navbar = async () => {
         <MaxWidthWrapper className=' '>
           <div className='h-14 items-center flex justify-between'>
             <div className='flex'>
-              <MobileNav />
-              <div className='hidden sm:flex items-center'>
-                <Icons.Logo className='w-6 h-6' />
-                <div className='w-32'></div>
+              <div className='flex items-center'>
+                <Icons.logo className='w-[9.0875rem] h-6' />
               </div>
             </div>
             <div className=' hidden sm:flex items-center space-x-4 text-[#2e2e2e] fib-14 text-[clamp(12px,0.9vw+9px,15px)] font-bold'>
@@ -64,10 +62,11 @@ const Navbar = async () => {
             </div>
             <div className='flex items-center ml-4 lg:ml-6'>
               <button className='hidden sm:flex items-center rounded-full text-[#2e2e2e] py-[0.125rem] px-1 border-[1px] border-[#2e2e2e] fib-12 text-[clamp(11px,0.8vw+8px,13px)]'>
-                  Sign-Out
+                Sign-Out
                 <Icons.Sign_out className='w-4 h-4 ml-1' />
               </button>
-              <div className='ml-10'>
+              <MobileNav />
+              <div className='ml-4'>
                 <Cartt />
               </div>
             </div>
