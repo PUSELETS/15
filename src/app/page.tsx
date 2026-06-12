@@ -148,14 +148,25 @@ const Homes: NextPage = () => {
                 <div className="w-auto h-auto absolute ">
                   <Icons.Hero className=" mt-[17.775rem] ml-8 w-[14.55625rem] h-[8.95rem] " />
                 </div>
-
               </div>
             </div>
           </section>
         </MaxWidthWrapper>
-        <MaxWidthWrapper className=" mt-0 ">
-          <section className=" hidden sm:flex justify-center relative w-auto h-auto items-center space-x-6 sm:space-x-[5.54375rem] bg-[#F7FCD7] rounded-3xl py-10">
-            
+        <MaxWidthWrapper className="mt-0">
+          <section className=" justify-center text-[#2e2e2e] relative w-auto h-auto items-center space-x-6 sm:space-x-[5.54375rem] bg-white rounded-3xl py-10">
+              <label className=" flex text-center text-[clamp(30px,2.4vw+21px,38px)] ">
+                Regular eye tests are essential for maintaining clear vision and protecting your eye health. Early detection can prevent serious problems, catch hidden conditions, and ensure your eyes stay healthy for years to come.
+              </label>
+          </section>
+        </MaxWidthWrapper>
+        <MaxWidthWrapper className="mt-0">
+          <section className=" justify-center text-[#2e2e2e] relative w-auto h-auto items-center bg-white rounded-3xl py-10">
+              <label className=" text-[clamp(30px,2.4vw+21px,38px)] font-semibold ">
+                We provide best <br /> service.
+              </label>
+              <Icons.Blue className=" mt-6 w-[20.4375rem] h-[21.4rem] " />
+              <Icons.white className=" mt-6 w-[20.4375rem] h-[21.4rem] " />
+              <Icons.black className=" mt-6 w-[20.4375rem] h-[21.4rem] " />
           </section>
         </MaxWidthWrapper>
       </header>

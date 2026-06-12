@@ -174,7 +174,7 @@ const Page = () => {
           <a className="fib-16 text-[clamp(14px,1.0vw+10px,17px)] font-medium text-gray-700 hover:text-indigo-600" href="#">Home</a>
           <a className="fib-16 text-[clamp(14px,1.0vw+10px,17px)] font-medium text-gray-700 hover:text-indigo-600" href="#">Products</a>
           <a className="fib-16 text-[clamp(14px,1.0vw+10px,17px)] font-medium text-gray-700 hover:text-indigo-600" href="#">Pricing</a>
-          <a className="fib-16 text-[clamp(14px,1.0vw+10px,17px)] font-medium text-indigo-600 font-semibold" href="#">Contact</a>
+          <a className="fib-16 text-[clamp(14px,1.0vw+10px,17px)] font-medium text-indigo-600 " href="#">Contact</a>
         </nav>
 // Tight vertical list (blog cards, comments, etc.)
         <div className="space-y-6 divide-y divide-gray-200">
@@ -188,7 +188,7 @@ const Page = () => {
 // Medium section separation (pricing tiers, testimonials)
         <div className="space-y-12">
           <section className="rounded-2xl bg-white p-8 shadow-lg">
-            <h2 className="fib-35 text-[clamp(30px,2.4vw+21px,38px)] font-bold tracking-tight">Section Heading</h2>
+            <h2 className="fib-35 text-[clamp(26px,2.0vw+18px,32px)] font-bold tracking-tight">Section Heading</h2>
             <p className="mt-5 fib-19 text-[clamp(16px,1.2vw+11px,20px)] text-gray-600">Content with generous breathing room.</p>
           </section>
           {/* next section */}

@@ -57,10 +57,10 @@ const MobileNav = () => {
                 type='button'
                 onClick={() => setIsOpen(true)}
                 className=' relative inline-flex   text-gray-400'>
-                    <div className=' flex items-center justify-center w-14 h-7 border-[0.7px]  rounded-[10px] border-[#000000]'>
+                    <div className=' flex items-center justify-center w-14 h-7 border-[1px]  rounded-[10px] border-[#000000]'>
                         <Icons.Shopping_cart aria-hidden='true' className="h-4 w-4 flex-shrink-0 text-[#000000] group-hover:text-[#4E4E4E]" />
                     </div>
-                <div className='ml-2 h-7 text-sm font-medium flex items-center justify-center border-[0.7px] px-[8px] rounded-full border-[#000000]  text-black group-hover:text-gray-800'>
+                <div className='ml-2 h-7 text-sm font-medium flex items-center justify-center border-[1px] px-[8px] rounded-full border-[#000000]  text-black group-hover:text-gray-800'>
                         {isMounted ? itemCount : 0}
                 </div>
 
