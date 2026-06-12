@@ -21,7 +21,7 @@ const Navbar = async () => {
 
   return (
     <div className={`${tahoma.className} sticky z-50 top-0 inset-x-0 h-14 sm:h-16  [font-size-adjust:ex-height_0.52] `}>
-      <header className='relative bg-[#feffef]'>
+      <header className='relative '>
         <MaxWidthWrapper className='bg-[#feffef]'>
           <div className='sm:h-10 hidden sm:flex items-center fib-12 text-[clamp(11px,0.8vw+8px,13px)] justify-between'>
             <Icons.Envelope className='w-5 h-5 mr-1' />
@@ -46,12 +46,12 @@ const Navbar = async () => {
           </div>
         </MaxWidthWrapper>
       </header>
-      <header className='shadow-sm bg-[#ffffff]'>
+      <header className='bg-[#ffffff]'>
         <MaxWidthWrapper className=' '>
           <div className='h-14 items-center flex justify-between'>
-            <div className='flex'>
+            <div className='flex mr-[0.74125rem]'>
               <div className='flex items-center'>
-                <Icons.logo className='w-[9.0875rem] h-6' />
+                <Icons.logo className='w-[4.8625rem] h-8' />
               </div>
             </div>
             <div className=' hidden sm:flex items-center space-x-4 text-[#2e2e2e] fib-14 text-[clamp(12px,0.9vw+9px,15px)] font-bold'>
@@ -60,15 +60,13 @@ const Navbar = async () => {
               <label className=''>Blog</label>
               <label className=''>Contact</label>
             </div>
-            <div className='flex items-center ml-4 lg:ml-6'>
+            <MobileNav />
+            <div className='flex items-center '>
               <button className='hidden sm:flex items-center rounded-full text-[#2e2e2e] py-[0.125rem] px-1 border-[1px] border-[#2e2e2e] fib-12 text-[clamp(11px,0.8vw+8px,13px)]'>
                 Sign-Out
                 <Icons.Sign_out className='w-4 h-4 ml-1' />
               </button>
-              <MobileNav />
-              <div className='ml-4'>
                 <Cartt />
-              </div>
             </div>
           </div>
         </MaxWidthWrapper>

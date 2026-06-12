@@ -136,17 +136,17 @@ const Homes: NextPage = () => {
       <header className='relative'>
 
         <MaxWidthWrapper className=" sm:hidden " >
-          <section className=" w-auto h-auto flex justify-center mt-2 ">
+          <section className=" w-auto h-auto flex justify-center mt-1 ">
             <div className="flex flex-col justify-center items-center w-full h-auto  ">
-              <div className=" z-10 relative  w-[20.4375rem] h-[28.1875rem]">
+              <div className=" z-10 relative  w-[20.9375rem] h-[28.35625rem]">
                 <Image
-                  src='/Poly Linio.png'
+                  src='/Cupoioie.png'
                   fill
                   alt=''
                   className="absolute z-[-5] "
                 />
                 <div className="w-auto h-auto absolute ">
-                  <Icons.Hero className=" mt-[17.775rem] ml-8 w-[13.6875rem] h-[7.9125rem] " />
+                  <Icons.Hero className=" mt-[17.775rem] ml-8 w-[14.55625rem] h-[8.95rem] " />
                 </div>
 
               </div>
