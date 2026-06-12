@@ -164,9 +164,16 @@ const Homes: NextPage = () => {
               <label className=" text-[clamp(30px,2.4vw+21px,38px)] font-semibold ">
                 We provide best <br /> service.
               </label>
-              <Icons.Blue className=" mt-6 w-[20.4375rem] h-[21.4rem] " />
-              <Icons.white className=" mt-6 w-[20.4375rem] h-[21.4rem] " />
-              <Icons.black className=" mt-6 w-[20.4375rem] h-[21.4rem] " />
+              <div className="w-[20.9375rem] h-[21.4rem] rounded-[10px] mt-6 bg-[#DADBF3] flex justify-center items-center">
+                <Icons.Blue className=" w-[20.4375rem] h-[21.4rem] " />
+              </div>
+              <div className="w-[20.9375rem] h-[21.4rem] rounded-[10px] mt-6 bg-[#DADBF3] flex justify-center items-center">
+                <Icons.white className=" w-[20.4375rem] h-[21.4rem] " />
+              </div>
+              <div className="w-[20.9375rem] h-[21.4rem] rounded-[10px] mt-6 bg-[#DADBF3] flex justify-center items-center">
+                <Icons.black className=" w-[20.4375rem] h-[21.4rem] " />
+              </div>
+              
           </section>
         </MaxWidthWrapper>
       </header>
