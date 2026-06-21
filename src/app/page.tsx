@@ -136,60 +136,38 @@ const Homes: NextPage = () => {
     <section className={`${tahoma.className}  relative [font-size-adjust:ex-height_0.52] leading-[1] `}>
       <header className='relative'>
 
-        <MaxWidthWrapper className=" sm:hidden " >
-          <section className=" w-auto h-auto flex justify-center mt-1 ">
-            <div className="flex flex-col justify-center items-center w-full h-auto  ">
-              <div className=" z-10 relative  w-[20.9375rem] h-[28.35625rem]">
-                <Image
-                  src='/Cupoioie.png'
-                  fill
-                  alt=''
-                  className="absolute z-[-5] "
-                />
-                <FadeUp delay={0.5}>
-                  <div className="w-auto h-auto absolute ">
-                    <Icons.Hero className=" mt-[17.775rem] ml-8 w-[14.55625rem] h-[8.95rem] " />
-                  </div>
-                </FadeUp>
+        <MaxWidthWrapper className="" >
+          <section className=" w-auto relative flex justify-center mt-1 rounded-[10px] min-h-[calc(100dvh-6.3125rem)] md:min-h-[calc(100dvh-7.1875rem)] ">
+            <div className=" z-10  w-full h-full ">
+              <Image
+                src='/kota.png'
+                fill
+                alt=''
+                className="absolute z-[-5] pointer-events-none inset-0 size-full select-none object-cover object-center rounded-[10px] "
+              />
+            </div>
+            <div className=" flex flex-col justify-between absolute z-20 w-full h-full p-8 text-white ">
+              <div className=" flex justify-center h-[2.4875rem] w-full ">
+                <Icons.boot2plate className=' md:hidden w-[7.95rem] h-[2.4875rem] ' />
+              </div>
+              <div className=" flex justify-end h-[4.3rem] w-full  " >
+                <Icons.fresh className=' w-[8.325rem] h-full ' />
               </div>
             </div>
           </section>
         </MaxWidthWrapper>
         <MaxWidthWrapper className="mt-0">
           <section className=" justify-center text-[#000000] relative w-auto h-auto items-center space-x-6 sm:space-x-[5.54375rem] bg-white rounded-3xl py-10">
-            
-              <label className=" flex text-center text-[clamp(30px,2.4vw+21px,38px)] ">
-                Regular eye tests are essential for maintaining clear vision and protecting your eye health. Early detection can prevent serious problems, catch hidden conditions, and ensure your eyes stay healthy for years to come.
-              </label>
-            
+
+            <label className=" flex text-center text-[clamp(30px,2.4vw+21px,38px)] font-semibold ">
+              Good street food is essential for feeding both your stomach and your soul. At Boot2Plate, we serve fresh, hot, and flavourful meals made with care so you always leave satisfied.
+            </label>
+
 
           </section>
         </MaxWidthWrapper>
-        <MaxWidthWrapper className="mt-0">
-          <section className=" justify-center text-[#000000] relative w-auto h-auto items-center bg-white rounded-3xl py-10">
-            <div className=" w-[16.7125rem] h-[4.1875rem] leading-[1] text-[clamp(30px,2.4vw+21px,38px)] font-bold ">
-              We provide best <br /> service.
-            </div>
-            <FadeUp delay={0.5}>
-              <div className="w-[20.9375rem] h-[21.4rem] rounded-[10px] mt-6 bg-[#DADBF3] flex justify-center items-center">
-                <Icons.Blue className=" w-[20.4375rem] h-[21.4rem] " />
-              </div>
-            </FadeUp>
 
-            <FadeUp delay={0.5}>
-              <div className="w-[20.9375rem] h-[21.4rem] rounded-[10px] mt-6 bg-[#DADBF3] flex justify-center items-center">
-                <Icons.white className=" w-[20.4375rem] h-[21.4rem] " />
-              </div>
-            </FadeUp>
 
-            <FadeUp delay={0.5}>
-              <div className="w-[20.9375rem] h-[21.4rem] rounded-[10px] mt-6 bg-[#DADBF3] flex justify-center items-center">
-                <Icons.black className=" w-[20.4375rem] h-[21.4rem] " />
-              </div>
-            </FadeUp>
-
-          </section>
-        </MaxWidthWrapper>
       </header>
 
       <ProductReel href='/products?sort=recent' title='Brand new' />

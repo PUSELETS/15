@@ -47,19 +47,14 @@ const Navbar = async () => {
         </MaxWidthWrapper>
       </header>
       <header className='bg-[#ffffff]'>
-        <MaxWidthWrapper className=' '>
+        <MaxWidthWrapper className=' relative '>
           <div className='h-14 items-center flex justify-between'>
-            <div className='flex mr-[0.74125rem]'>
+            <div className='flex '>
               <div className='flex items-center'>
-                <Icons.logo className='w-[4.8625rem] h-8' />
+                <Icons.logo className='w-10 h-10' />
               </div>
             </div>
-            <div className=' hidden sm:flex items-center space-x-4 text-[#2e2e2e] fib-14 text-[clamp(12px,0.9vw+9px,15px)] font-bold'>
-              <label className=''>Home</label>
-              <label className=''>About</label>
-              <label className=''>Blog</label>
-              <label className=''>Contact</label>
-            </div>
+            
             <MobileNav />
             <div className='flex items-center '>
               <button className='hidden sm:flex items-center rounded-full text-[#2e2e2e] py-[0.125rem] px-1 border-[1px] border-[#2e2e2e] fib-12 text-[clamp(11px,0.8vw+8px,13px)]'>

@@ -39,8 +39,8 @@ const MobileNav = () => {
       <button
         type='button'
         onClick={() => setIsOpen(true)}
-        className='lg:hidden relative  inline-flex items-center justify-center rounded-md text-[#6E6E6E]'>
-        <Icons.List className='h-8 w-8 -mt-[4px]' aria-hidden='true' />
+        className='lg:hidden absolute left-[45.7399%] inline-flex items-center justify-center rounded-md text-[#6E6E6E]'>
+        <Icons.List className='h-8 w-8 ' aria-hidden='true' />
       </button>
     )
 
@@ -52,7 +52,7 @@ const MobileNav = () => {
 
       <div className='fixed overflow-y-scroll overscroll-y-none h-screen inset-0 z-40 flex'>
         <div className='w-[18.4375rem] h-screen'>
-          <div className='relative flex w-full max-w-sm flex-col overflow-y-auto h-screen bg-[#FBFF6C] shadow-xl'>
+          <div className='relative flex w-full max-w-sm flex-col overflow-y-auto h-screen bg-white'>
             <div className='flex px-6 h-14 items-center'>
               <button
                 type='button'
