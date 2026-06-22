@@ -36,23 +36,24 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
           }
         )}
         href={`/product/${product.id}`}>
-        <div className='flex flex-col w-full' >
-              <Image
-                fill
-                loading='eager'
-                className='-z-10 h-full w-full object-cover object-center rounded-xl'
-                src={product.imageUrl}
-                alt='Product image'
-              />
-
-          <h3 className='mt-4 font-medium text-sm text-gray-700'>
+        <div className='flex flex-col min-w-0 shrink-0 grow-0 border-0 p-0 basis-11/12 pl-5 sm:basis-2/5 md:basis-1/3 md:pl-[30px]' >
+          <div className='relative min-h-[clamp(23.13rem,48vh,32rem)] max-w-[clamp(19.06rem,42vw,28rem)] '>
+            <Image
+              fill
+              loading='eager'
+              className='h-auto w-full rounded-[10px] object-cover object-center transition-opacity duration-300 opacity-100'
+              src={product.imageUrl}
+              alt='Product image'
+            />
+          </div>
+          <h3 className='mt-4 font-medium text-sm text-black'>
             {product.name}
           </h3>
           <p className='mt-1 text-sm text-gray-500'>
 
           </p>
           <p className='mt-1 font-medium text-sm text-gray-900'>
-            {formatPrice(70)}
+            {formatPrice(product.price)}
           </p>
         </div>
       </Link>

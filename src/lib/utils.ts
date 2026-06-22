@@ -27,8 +27,8 @@ export function formatPrice(
 }
 
 export function constructMetadata({
-  title = 'DigitalHippo - the marketplace ',
-  description = 'DigitalHippo is an open-source marketplace for high-quality digital goods.',
+  title = 'Boot2Place - the marketplace ',
+  description = 'Boot2place is an street marketplace for high-quality fresh goods.',
   image = '/thumbnail.png',
   icons = '/favicon.ico',
   noIndex = false,

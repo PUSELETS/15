@@ -7,11 +7,51 @@ import Link from 'next/link'
 import ProductListing from './ProductListing'
 import { useEffect, useRef } from 'react'
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+
+
+
 interface ProductReelProps {
   title: string
   subtitle?: string
   href?: string
 }
+
+interface Product {
+  id: number;
+  name: string;
+  price: number;
+  imageUrl: any;
+};
+
+const products: Product[] = [
+  {
+    id: 1,
+    name: "vertkok",
+    price: 89.99,
+    imageUrl: "/fat.png",
+  },
+  {
+    id: 2,
+    name: "braai packs",
+    price: 249.00,
+    imageUrl: "/packs.png",
+  },
+  {
+    id: 3,
+    name: "braai",
+    price: 129.99,
+    imageUrl: "/stakes.png",
+  },
+  {
+    id: 4,
+    name: "kota",
+    price: 45.50,
+    imageUrl: "/kota.png",
+  },
+  // Add more products as needed
+];
 
 const ProductReel = (props: ProductReelProps) => {
   const { title, subtitle, href } = props
@@ -50,12 +90,12 @@ const ProductReel = (props: ProductReelProps) => {
   }
 
   return (
-    <section className='py-12'>
+    <section className='py-6'>
       <div className='md:flex md:items-center md:justify-between mb-4'>
         <div className='max-w-2xl px-2 lg:max-w-4xl lg:px-0'>
           {title ? (
             <h1 className='text-2xl font-bold text-[#2e2e2e] sm:text-3xl'>
-              
+
             </h1>
           ) : null}
           {subtitle ? (
@@ -75,18 +115,30 @@ const ProductReel = (props: ProductReelProps) => {
         ) : null}
       </div>
 
-      <div className='relative'>
-        <div className='mt-6 flex items-center w-full'>
-          <div className='w-full grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-10 lg:gap-x-8'>
-            {map?.map((product: any, i: number) => (
-              <ProductListing
-                key={`product-${i}`}
-                product={product}
-                index={i}
-              />
-            ))}
+      <div className='relative h-auto w-full '>
+        <div className='overflow-hidden' >
+          <div className='flex ml-[-20px] h-auto mr-5 first:ml-0 md:ml-[-30px] md:mr-10'>
+            <Swiper
+              // install Swiper modules
+              modules={[Navigation, Pagination, Scrollbar, A11y]}
+              spaceBetween={25}
+              slidesPerView={1.2}
+              
+              
+            >
+              {products?.map((product: any, i: number) => (
+                <SwiperSlide>
+                  <ProductListing
+                    key={`product-${i}`}
+                    product={product}
+                    index={i}
+                  />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+
           </div>
-          <div ref={observerRef}>{isFetching ? 'Loading...' : ''}</div>
+          <div ref={observerRef}>{isFetching ? 'Loading' : ''}</div>
         </div>
       </div>
     </section>

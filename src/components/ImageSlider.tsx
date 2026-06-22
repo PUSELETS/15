@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react'
 import { EffectCards, EffectCoverflow, EffectFlip, Pagination } from 'swiper/modules'
 import { cn } from '@/lib/utils'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+
 interface ImageSliderProps {
   urls: string[]
 }

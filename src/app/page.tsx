@@ -15,8 +15,8 @@ import localFont from "next/font/local";
 import type { NextPage } from 'next';
 import { getServerSideUser } from "@/lib/user";
 import { Icons } from "@/components/Icons";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+
 import { ReactNode, useEffect, useRef, useState } from "react";
 import ProductCarousel from "@/components/ImageSlider";
 import ProductSlider from "@/components/ProductSlider";
@@ -169,8 +169,11 @@ const Homes: NextPage = () => {
 
 
       </header>
+      
 
       <ProductReel href='/products?sort=recent' title='Brand new' />
+
+
     </section>
 
 
