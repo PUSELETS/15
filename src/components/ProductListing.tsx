@@ -36,7 +36,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
           }
         )}
         href={`/product/${product.id}`}>
-        <div className='flex flex-col min-w-0 shrink-0 grow-0 border-0 p-0   ' >
+        <div className='flex flex-col border-0   ' >
           <div className='relative '
           style={{
                 // Width Clamp
