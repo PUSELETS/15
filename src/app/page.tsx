@@ -115,7 +115,7 @@ const Homes: NextPage = () => {
                 src='/stakes.png'
                 fill
                 alt=''
-                className="absolute z-[-5] pointer-events-none inset-0 size-full select-none object-cover object-center rounded-[10px] "
+                className="absolute z-[-5] pointer-events-none inset-0 size-full select-none object-cover object-center rounded-[30px] "
               />
             </div>
             <div className=" flex flex-col justify-between absolute z-20 w-full h-full p-8 text-white ">

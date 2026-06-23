@@ -120,12 +120,12 @@ const ProductReel = (props: ProductReelProps) => {
 
       <div className='relative h-auto w-full '>
         <div className='overflow-hidden' >
-          <div className='flex ml-[-20px] h-auto mr-5 first:ml-0 md:ml-[-30px] md:mr-10'>
+          <div className='flex ml-[-20px] h-auto  first:ml-0 md:ml-[-30px] md:mr-10'>
             <Swiper
               // install Swiper modules
               modules={[Navigation, Pagination, Scrollbar, A11y]}
-              spaceBetween={25}
-              slidesPerView={1.17}
+              spaceBetween={0}
+              slidesPerView='auto'
               
             >
               {products?.map((product: any, i: number) => (

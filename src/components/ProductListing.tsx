@@ -36,7 +36,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
           }
         )}
         href={`/product/${product.id}`}>
-        <div className='flex flex-col min-w-0 shrink-0 grow-0 border-0 p-0 basis-11/12 pl-5 sm:basis-2/5 md:basis-1/3 md:pl-[30px]' >
+        <div className='flex flex-col min-w-0 shrink-0 grow-0 border-0 p-0   ' >
           <div className='relative '
           style={{
                 // Width Clamp
@@ -51,7 +51,7 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
             <Image
               fill
               loading='eager'
-              className='h-auto w-full rounded-[10px] object-cover object-center transition-opacity duration-300 opacity-100'
+              className='h-auto w-full rounded-[30px] object-cover object-center transition-opacity duration-300 opacity-100'
               src={product.imageUrl}
               alt='Product image'
             />
