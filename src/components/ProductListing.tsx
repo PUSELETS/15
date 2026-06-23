@@ -37,7 +37,17 @@ const ProductListing = ({ product, index }: ProductListingProps) => {
         )}
         href={`/product/${product.id}`}>
         <div className='flex flex-col min-w-0 shrink-0 grow-0 border-0 p-0 basis-11/12 pl-5 sm:basis-2/5 md:basis-1/3 md:pl-[30px]' >
-          <div className='relative min-h-[clamp(23.13rem,48vh,32rem)] max-w-[clamp(19.06rem,42vw,28rem)] '>
+          <div className='relative '
+          style={{
+                // Width Clamp
+                minWidth: '19.06rem',           // 305px
+                maxWidth: 'clamp(19.06rem,42vw,28rem)',
+
+                // Height Clamp
+                minHeight: '23.13rem',          // 370px
+                height: 'clamp(23.13rem,48vh,32rem)',
+              }}
+          >
             <Image
               fill
               loading='eager'

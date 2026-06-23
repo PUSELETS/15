@@ -4,6 +4,7 @@
         "module": "CommonJS",
         "outDir": "dist",
         "noEmit": false,
+        "typeRoots": ["./node_modules/@types", "./src/types"],
         "jsx": "react"
     },
     "include": ["src/server.ts", "src/collection/**/*.ts", "src/trpc/**/*.ts"]

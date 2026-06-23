@@ -10,7 +10,10 @@ import { useEffect, useRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
-
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
 
 interface ProductReelProps {
   title: string
@@ -30,19 +33,19 @@ const products: Product[] = [
     id: 1,
     name: "vertkok",
     price: 89.99,
-    imageUrl: "/fat.png",
+    imageUrl: "/stakes.png",
   },
   {
     id: 2,
     name: "braai packs",
-    price: 249.00,
+    price: 247.00,
     imageUrl: "/packs.png",
   },
   {
     id: 3,
     name: "braai",
     price: 129.99,
-    imageUrl: "/stakes.png",
+    imageUrl: "/fat.png",
   },
   {
     id: 4,
@@ -122,8 +125,7 @@ const ProductReel = (props: ProductReelProps) => {
               // install Swiper modules
               modules={[Navigation, Pagination, Scrollbar, A11y]}
               spaceBetween={25}
-              slidesPerView={1.2}
-              
+              slidesPerView={1.17}
               
             >
               {products?.map((product: any, i: number) => (

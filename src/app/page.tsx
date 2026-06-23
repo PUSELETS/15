@@ -101,34 +101,6 @@ type Product = {
   image: string;
 };
 
-const products: Product[] = [
-  {
-    id: 1,
-    name: "3 Piece Softside",
-    price: 89.99,
-    image: "/Pe.png",
-  },
-  {
-    id: 2,
-    name: "3 Piece Softside",
-    price: 249.00,
-    image: "/Pe.png",
-  },
-  {
-    id: 3,
-    name: "3 Piece Softside",
-    price: 129.99,
-    image: "/Pe.png",
-  },
-  {
-    id: 4,
-    name: "3 Piece Softside",
-    price: 45.50,
-    image: "/Pe.png",
-  },
-  // Add more products as needed
-];
-
 const Homes: NextPage = () => {
 
   return (
@@ -140,7 +112,7 @@ const Homes: NextPage = () => {
           <section className=" w-auto relative flex justify-center mt-1 rounded-[10px] min-h-[calc(100dvh-6.3125rem)] md:min-h-[calc(100dvh-7.1875rem)] ">
             <div className=" z-10  w-full h-full ">
               <Image
-                src='/kota.png'
+                src='/stakes.png'
                 fill
                 alt=''
                 className="absolute z-[-5] pointer-events-none inset-0 size-full select-none object-cover object-center rounded-[10px] "
