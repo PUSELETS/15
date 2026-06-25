@@ -6,7 +6,7 @@ import { trpc } from '@/app/_trpc/client'
 import Link from 'next/link'
 import ProductListing from './ProductListing'
 import { useEffect, useRef, useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
@@ -60,26 +60,18 @@ const products: Product[] = [
 const ProductReel = (props: ProductReelProps) => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [slidesPerView, setSlidesPerView] = useState(3); // default for desktop
 
-  // Responsive logic
-  useEffect(() => {
-    const updateSlidesPerView = () => {
-      if (window.innerWidth < 640) {
-        setSlidesPerView(1);      // Mobile
-      } else if (window.innerWidth < 1024) {
-        setSlidesPerView(2);      // Tablet
-      } else {
-        setSlidesPerView(3);      // Desktop
-      }
-    };
 
-    updateSlidesPerView();
-    window.addEventListener('resize', updateSlidesPerView);
-    return () => window.removeEventListener('resize', updateSlidesPerView);
-  }, []);
+  // ================== CUSTOM PERCENTAGES ==================
+  const movePercentages = [0, 78.67, 81.33333333333333, 80];
+  // You can add more values if you have more products
 
-  const percentage = 100 / slidesPerView;
+  const getMovePercentage = (index: number): number => {
+    return movePercentages[index % movePercentages.length];
+  };
+  // =======================================================
+
+
 
   const next = () => {
     setCurrentIndex((prev) => (prev + 1) % products.length);
@@ -128,7 +120,7 @@ const ProductReel = (props: ProductReelProps) => {
 
   return (
     <section className='py-6'>
-      <div className="relative w-full max-w-7xl mx-auto px-6 py-16">
+      <div className="relative w-full py-8">
         <div className="flex items-end justify-between mb-10">
           <h2 className="text-5xl md:text-3xl font-bold tracking-tight">
             Shop the range
@@ -149,20 +141,18 @@ const ProductReel = (props: ProductReelProps) => {
           </div>
         </div>
 
-        <div className="relative overflow-hidden">
+        <div className=" overflow-hidden h-auto w-full ">
           <motion.div
-            className="flex  md:gap-8"
-            animate={{ x: `-${currentIndex * percentage}%` }}
-            transition={{
-              type: "spring",
-              stiffness: 280,
-              damping: 100
+            className=" flex w-full pl-5 "
+            animate={{
+              x: `-${currentIndex * getMovePercentage(currentIndex)}%`,
             }}
+            transition={{ type: "spring", stiffness: 300, damping: 30 }}
           >
             {products?.map((product: any, i: number) => (
               <motion.div
                 key={product.id}
-                className={`flex-shrink-0 w-full sm:w-[calc(50%-16px)] lg:w-[calc(33.333%-16px)]`}
+                className="w-full mr-5 "
                 whileHover={{ scale: 1.02 }}
               >
                 <ProductListing
@@ -204,3 +194,5 @@ const ProductReel = (props: ProductReelProps) => {
 
 export default ProductReel
 
+
+//---------------------------------------------------------------

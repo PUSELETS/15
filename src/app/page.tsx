@@ -103,6 +103,8 @@ type Product = {
 
 const Homes: NextPage = () => {
 
+  let [count, setCount] = useState(1);
+
   return (
 
     <section className={`${tahoma.className}  relative [font-size-adjust:ex-height_0.52] leading-[1] `}>
@@ -141,7 +143,7 @@ const Homes: NextPage = () => {
 
 
       </header>
-      
+
 
       <ProductReel href='/products?sort=recent' title='Brand new' />
 
