@@ -89,7 +89,7 @@ const ProductReel = (props: ProductReelProps) => {
 
   const handleDragEnd = (_: any, info: PanInfo) => {
     const currentX = x.get();
-    const threshold = 80; // pixels
+    const threshold = 10; // pixels
 
     if (currentX < -threshold) {
       next();
