@@ -1,10 +1,9 @@
 'use client'
 
 import { TQueryValidator } from '@/lib/validators/query-validator'
-
+import { useDrag } from '@use-gesture/react';
 import { trpc } from '@/app/_trpc/client'
 import Link from 'next/link'
-import { useDrag } from '@use-gesture/react';
 import ProductListing from './ProductListing'
 import { useEffect, useRef, useState } from 'react'
 import { motion, useMotionValue, useSpring, PanInfo } from 'framer-motion';
@@ -77,23 +76,17 @@ const ProductReel = (props: ProductReelProps) => {
   // ====================== NEXT & PREV ======================
   const next = () => setCurrentIndex((prev) => (prev + 1) % products.length);
   const prev = () => setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
-  // ========================================================
 
-  // Use Gesture Drag Handler
+  // Use Gesture
   const bind = useDrag(
-    ({ offset: [ox], direction: [dx], velocity: [vx], tap }) => {
-      if (tap) return;
+    ({ offset: [ox], velocity: [vx] }) => {
+      x.set(ox); // Live drag
 
-      // Live dragging
-      x.set(ox);
-
-      // Snap on release
-      if (Math.abs(vx) > 0.3 || Math.abs(ox) > 80) {
-        if (ox < 0 || vx < 0) {
-          next();
-        } else {
-          prev();
-        }
+      // Snap logic on release
+      const threshold = 80;
+      if (Math.abs(ox) > threshold || Math.abs(vx) > 0.4) {
+        if (ox < 0 || vx < 0) next();
+        else prev();
       }
     },
     {
@@ -104,7 +97,11 @@ const ProductReel = (props: ProductReelProps) => {
     }
   );
 
-  
+  // Snap animation when index changes
+  useEffect(() => {
+    const targetX = -currentIndex * getMovePercentage(currentIndex);
+    x.set(targetX);
+  }, [currentIndex, x]);
 
   //---------------------------------------------------------------------------//
 
@@ -179,6 +176,10 @@ const ProductReel = (props: ProductReelProps) => {
                 key={product.id}
                 className="w-full mr-5 "
                 whileHover={{ scale: 1.02 }}
+                onPointerDown={bind().onPointerDown}
+                onPointerMove={bind().onPointerMove}
+                onPointerUp={bind().onPointerUp}
+                onPointerCancel={bind().onPointerCancel}
               >
                 <ProductListing
                   key={`product-${i}`}

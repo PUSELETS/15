@@ -165,7 +165,7 @@ const Homes: NextPage = () => {
       <ProductReel href='/products?sort=recent' title='Brand new' />
 
 
-      <div className="flex items-center justify-center h-96 border-2 border-dashed border-gray-300 rounded-3xl">
+      <div className="flex overflow-hidden items-center justify-center h-96 border-2 border-dashed border-gray-300 rounded-3xl">
       <motion.div
         style={{ x: springX }}
         className="w-60 h-60 bg-black text-white rounded-3xl flex items-center justify-center text-2xl font-medium shadow-xl select-none cursor-grab active:cursor-grabbing"
