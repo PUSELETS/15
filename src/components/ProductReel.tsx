@@ -169,25 +169,27 @@ const ProductReel = (props: ProductReelProps) => {
         <div className=" overflow-hidden h-auto w-full ">
           <motion.div
             className=" flex w-full pl-5 "
-            style={{
-              touchAction: 'none'
-            }}
+
             animate={{
               x: `-${currentIndex * getMovePercentage(currentIndex)}%`,
             }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            drag="x"
-            dragElastic={1}
-            dragConstraints={{ left: 0, right: 0 }}
-            dragPropagation={false}
-            onDrag={handleDrag}
-            onDragEnd={handleDragEnd}
+
           >
             {products?.map((product: any, i: number) => (
               <motion.div
+                style={{
+                  touchAction: 'none'
+                }}
                 key={product.id}
                 className="w-full mr-5 "
                 whileHover={{ scale: 1.02 }}
+                drag="x"
+                dragElastic={0}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragPropagation={false}
+                onDrag={handleDrag}
+                onDragEnd={handleDragEnd}
               >
                 <ProductListing
                   key={`product-${i}`}
