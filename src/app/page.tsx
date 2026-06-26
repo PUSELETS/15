@@ -20,7 +20,7 @@ import { Icons } from "@/components/Icons";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import ProductCarousel from "@/components/ImageSlider";
 import ProductSlider from "@/components/ProductSlider";
-import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { motion, useInView, useMotionValue, useSpring, PanInfo } from "framer-motion";
 import { useDrag } from '@use-gesture/react';
 
 
@@ -109,18 +109,20 @@ const Homes: NextPage = () => {
 
 
   const x = useMotionValue(0);
-  const springX = useSpring(x, { stiffness: 300, damping: 30 });
+  const springX = useSpring(x, {
+    stiffness: 280,
+    damping: 35,
+    mass: 0.8,
+  });
 
-  const bind = useDrag(
-    ({ offset: [ox] }) => {
-      x.set(ox);                    // Update position while dragging
-    },
-    {
-      axis: 'x',                    // Lock to horizontal movement
-      rubberband: true,             // Nice bouncy effect at edges
-      filterTaps: true,
-    }
-  );
+  const handleDrag = (_: any, info: PanInfo) => {
+    x.set(info.offset.x);        // Live update during drag
+  };
+
+  const handleDragEnd = (_: any, info: PanInfo) => {
+    // Optional: Snap back to center after release
+    x.set(0);
+  };
 
   return (
 
@@ -165,19 +167,19 @@ const Homes: NextPage = () => {
       <ProductReel href='/products?sort=recent' title='Brand new' />
 
 
-      <div className="flex overflow-hidden items-center justify-center h-96 border-2 border-dashed border-gray-300 rounded-3xl">
-      <motion.div
-        style={{ x: springX }}
-        className="w-60 h-60 bg-black text-white rounded-3xl flex items-center justify-center text-2xl font-medium shadow-xl select-none cursor-grab active:cursor-grabbing"
-        // Use gesture without spreading all props directly on motion
-        onPointerDown={bind().onPointerDown}
-        onPointerMove={bind().onPointerMove}
-        onPointerUp={bind().onPointerUp}
-        onPointerCancel={bind().onPointerCancel}
-      >
-        Drag Me
-      </motion.div>
-    </div>
+      <div className="flex items-center justify-center h-96 border-2 border-dashed border-gray-300 rounded-3xl bg-gray-50">
+        <motion.div
+          style={{ x: springX }}
+          drag="x"
+          dragElastic={0.25}
+          dragConstraints={{ left: 0, right: 0 }}
+          onDrag={handleDrag}
+          onDragEnd={handleDragEnd}
+          className="w-64 h-64 bg-black text-white rounded-3xl flex items-center justify-center text-2xl font-medium shadow-2xl cursor-grab active:cursor-grabbing select-none"
+        >
+          Drag Me
+        </motion.div>
+      </div>
 
     </section>
 
