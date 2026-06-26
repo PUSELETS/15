@@ -75,11 +75,21 @@ const ProductReel = (props: ProductReelProps) => {
 
   // ====================== NEXT & PREV ======================
   const next = () => {
-    setCurrentIndex((prev) => (prev + 1) % products.length);
+    setCurrentIndex((prev) => {
+      if (prev < 4) {           // Only allow going up to index 4
+        return prev + 1;
+      }
+      return prev;              // Stay at 4 if already at the end
+    });
   };
 
   const prev = () => {
-    setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
+    setCurrentIndex((prev) => {
+      if (prev > 0) {           // Only allow going down to index 0
+        return prev - 1;
+      }
+      return prev;              // Stay at 0 if already at the beginning
+    });
   };
   // ========================================================
 
@@ -91,15 +101,15 @@ const ProductReel = (props: ProductReelProps) => {
 
   const handleDrag = (_: any, info: PanInfo) => {
     const currentX = info.offset.x;
-    
+
     x.set(currentX);                    // Main box
-    secondaryX.set(currentX * 0.6);     // Secondary box moves at different speed
+    secondaryX.set(currentX);     // Secondary box moves at different speed
     setLiveX(currentX);
   };
 
   const handleDragEnd = (_: any, info: PanInfo) => {
     const currentX = x.get();
-    const threshold = 10; // pixels
+    const threshold = 80; // pixels
 
     if (currentX < -threshold) {
       next();
@@ -157,7 +167,7 @@ const ProductReel = (props: ProductReelProps) => {
 
   return (
     <section className='py-6'>
-      <div className="relative w-full py-8">
+      <div className="relative w-full ">
         <div className="flex items-end justify-between mb-10">
           <h2 className="text-5xl md:text-3xl font-bold tracking-tight">
             Shop the range
@@ -196,7 +206,7 @@ const ProductReel = (props: ProductReelProps) => {
                 className="w-full mr-5 "
                 whileHover={{ scale: 1.02 }}
                 drag="x"
-                dragElastic={0}
+                dragElastic={1}
                 dragConstraints={{ left: 0, right: 0 }}
                 dragPropagation={false}
                 onDrag={handleDrag}
