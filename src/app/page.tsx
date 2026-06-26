@@ -171,7 +171,7 @@ const Homes: NextPage = () => {
         <motion.div
           style={{ x: springX }}
           drag="x"
-          dragElastic={0.25}
+          dragElastic={0.5}
           dragConstraints={{ left: 0, right: 0 }}
           onDrag={handleDrag}
           onDragEnd={handleDragEnd}
