@@ -74,28 +74,31 @@ const ProductReel = (props: ProductReelProps) => {
   });
 
   // ====================== NEXT & PREV ======================
-  const next = () => setCurrentIndex((prev) => (prev + 1) % products.length);
-  const prev = () => setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
+  const next = () => {
+    setCurrentIndex((prev) => (prev + 1) % products.length);
+  };
 
-  // Use Gesture
-  const bind = useDrag(
-    ({ offset: [ox], velocity: [vx] }) => {
-      x.set(ox); // Live drag
+  const prev = () => {
+    setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
+  };
+  // ========================================================
 
-      // Snap logic on release
-      const threshold = 80;
-      if (Math.abs(ox) > threshold || Math.abs(vx) > 0.4) {
-        if (ox < 0 || vx < 0) next();
-        else prev();
-      }
-    },
-    {
-      axis: 'x',
-      filterTaps: true,
-      rubberband: true,
-      from: () => [x.get(), 0],
+  const handleDrag = (_: any, info: PanInfo) => {
+    x.set(info.offset.x);        // Live update during drag
+  };
+
+  const handleDragEnd = (_: any, info: PanInfo) => {
+    const currentX = x.get();
+    const threshold = 80; // pixels
+
+    if (currentX < -threshold) {
+      next();
+    } else if (currentX > threshold) {
+      prev();
     }
-  );
+
+    x.set(0); // reset drag position
+  };
 
   // Snap animation when index changes
   useEffect(() => {
@@ -166,20 +169,25 @@ const ProductReel = (props: ProductReelProps) => {
         <div className=" overflow-hidden h-auto w-full ">
           <motion.div
             className=" flex w-full pl-5 "
+            style={{
+              touchAction: 'none'
+            }}
             animate={{
               x: `-${currentIndex * getMovePercentage(currentIndex)}%`,
             }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            drag="x"
+            dragElastic={1}
+            dragConstraints={{ left: 0, right: 0 }}
+            dragPropagation={false}
+            onDrag={handleDrag}
+            onDragEnd={handleDragEnd}
           >
             {products?.map((product: any, i: number) => (
               <motion.div
                 key={product.id}
                 className="w-full mr-5 "
                 whileHover={{ scale: 1.02 }}
-                onPointerDown={bind().onPointerDown}
-                onPointerMove={bind().onPointerMove}
-                onPointerUp={bind().onPointerUp}
-                onPointerCancel={bind().onPointerCancel}
               >
                 <ProductListing
                   key={`product-${i}`}
