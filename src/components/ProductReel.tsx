@@ -83,8 +83,18 @@ const ProductReel = (props: ProductReelProps) => {
   };
   // ========================================================
 
+  // This will control the second div
+  const secondaryX = useMotionValue(0);
+  const secondarySpringX = useSpring(secondaryX, { stiffness: 280, damping: 35 });
+
+  const [liveX, setLiveX] = useState(0);
+
   const handleDrag = (_: any, info: PanInfo) => {
-    x.set(info.offset.x);        // Live update during drag
+    const currentX = info.offset.x;
+    
+    x.set(currentX);                    // Main box
+    secondaryX.set(currentX * 0.6);     // Secondary box moves at different speed
+    setLiveX(currentX);
   };
 
   const handleDragEnd = (_: any, info: PanInfo) => {
@@ -97,7 +107,9 @@ const ProductReel = (props: ProductReelProps) => {
       prev();
     }
 
-    x.set(0); // reset drag position
+    x.set(0);
+    secondaryX.set(0);
+    setLiveX(0);
   };
 
   // Snap animation when index changes
@@ -169,17 +181,16 @@ const ProductReel = (props: ProductReelProps) => {
         <div className=" overflow-hidden h-auto w-full ">
           <motion.div
             className=" flex w-full pl-5 "
-
             animate={{
               x: `-${currentIndex * getMovePercentage(currentIndex)}%`,
             }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-
           >
             {products?.map((product: any, i: number) => (
               <motion.div
                 style={{
-                  touchAction: 'none'
+                  touchAction: 'none',
+                  x: secondarySpringX
                 }}
                 key={product.id}
                 className="w-full mr-5 "

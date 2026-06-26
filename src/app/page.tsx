@@ -173,7 +173,7 @@ const Homes: NextPage = () => {
             touchAction: 'none'
            }}
           drag="x"
-          dragElastic={1}
+          dragElastic={5}
           dragConstraints={{ left: 0, right: 0 }}
                   
           dragPropagation={false}
