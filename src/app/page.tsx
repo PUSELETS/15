@@ -169,10 +169,14 @@ const Homes: NextPage = () => {
 
       <div className="flex items-center justify-center h-96 border-2 border-dashed border-gray-300 rounded-3xl bg-gray-50">
         <motion.div
-          style={{ x: springX }}
+          style={{ x: springX,
+            touchAction: 'none'
+           }}
           drag="x"
           dragElastic={1}
           dragConstraints={{ left: 0, right: 0 }}
+                  
+          dragPropagation={false}
           onDrag={handleDrag}
           onDragEnd={handleDragEnd}
           className="w-64 h-64 bg-black text-white rounded-3xl flex items-center justify-center text-2xl font-medium shadow-2xl cursor-grab active:cursor-grabbing select-none"
