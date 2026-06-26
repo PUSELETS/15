@@ -4,17 +4,12 @@ import { TQueryValidator } from '@/lib/validators/query-validator'
 
 import { trpc } from '@/app/_trpc/client'
 import Link from 'next/link'
+import { useDrag } from '@use-gesture/react';
 import ProductListing from './ProductListing'
 import { useEffect, useRef, useState } from 'react'
-import { motion, AnimatePresence, PanInfo } from 'framer-motion';
+import { motion, useMotionValue, useSpring, PanInfo } from 'framer-motion';
 
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
 
 interface ProductReelProps {
   title: string
@@ -71,15 +66,45 @@ const ProductReel = (props: ProductReelProps) => {
   };
   // =======================================================
 
+  // Drag System
+  const x = useMotionValue(0);
+  const springX = useSpring(x, {
+    stiffness: 280,
+    damping: 32,
+    mass: 0.8,
+  });
 
+  // ====================== NEXT & PREV ======================
+  const next = () => setCurrentIndex((prev) => (prev + 1) % products.length);
+  const prev = () => setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
+  // ========================================================
 
-  const next = () => {
-    setCurrentIndex((prev) => (prev + 1) % products.length);
-  };
+  // Use Gesture Drag Handler
+  const bind = useDrag(
+    ({ offset: [ox], direction: [dx], velocity: [vx], tap }) => {
+      if (tap) return;
 
-  const prev = () => {
-    setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
-  };
+      // Live dragging
+      x.set(ox);
+
+      // Snap on release
+      if (Math.abs(vx) > 0.3 || Math.abs(ox) > 80) {
+        if (ox < 0 || vx < 0) {
+          next();
+        } else {
+          prev();
+        }
+      }
+    },
+    {
+      axis: 'x',
+      filterTaps: true,
+      rubberband: true,
+      from: () => [x.get(), 0],
+    }
+  );
+
+  
 
   //---------------------------------------------------------------------------//
 

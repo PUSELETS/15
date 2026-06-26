@@ -20,7 +20,9 @@ import { Icons } from "@/components/Icons";
 import { ReactNode, useEffect, useRef, useState } from "react";
 import ProductCarousel from "@/components/ImageSlider";
 import ProductSlider from "@/components/ProductSlider";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useMotionValue, useSpring } from "framer-motion";
+import { useDrag } from '@use-gesture/react';
+
 
 const tahoma = localFont({
   src: "../../public/fonts/tahoma.ttf",
@@ -105,6 +107,21 @@ const Homes: NextPage = () => {
 
   let [count, setCount] = useState(1);
 
+
+  const x = useMotionValue(0);
+  const springX = useSpring(x, { stiffness: 300, damping: 30 });
+
+  const bind = useDrag(
+    ({ offset: [ox] }) => {
+      x.set(ox);                    // Update position while dragging
+    },
+    {
+      axis: 'x',                    // Lock to horizontal movement
+      rubberband: true,             // Nice bouncy effect at edges
+      filterTaps: true,
+    }
+  );
+
   return (
 
     <section className={`${tahoma.className}  relative [font-size-adjust:ex-height_0.52] leading-[1] `}>
@@ -147,6 +164,20 @@ const Homes: NextPage = () => {
 
       <ProductReel href='/products?sort=recent' title='Brand new' />
 
+
+      <div className="flex items-center justify-center h-96 border-2 border-dashed border-gray-300 rounded-3xl">
+      <motion.div
+        style={{ x: springX }}
+        className="w-60 h-60 bg-black text-white rounded-3xl flex items-center justify-center text-2xl font-medium shadow-xl select-none cursor-grab active:cursor-grabbing"
+        // Use gesture without spreading all props directly on motion
+        onPointerDown={bind().onPointerDown}
+        onPointerMove={bind().onPointerMove}
+        onPointerUp={bind().onPointerUp}
+        onPointerCancel={bind().onPointerCancel}
+      >
+        Drag Me
+      </motion.div>
+    </div>
 
     </section>
 
