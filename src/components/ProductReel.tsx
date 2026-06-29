@@ -193,9 +193,7 @@ const ProductReel = (props: ProductReelProps) => {
 
         <div className=" overflow-hidden h-auto w-full ">
           <motion.div
-            style={{
-              touchAction: 'none',
-            }}
+            
             className=" flex w-full pl-5 "
             animate={{
               x: `-${currentIndex * getMovePercentage(currentIndex)}%`,
@@ -209,7 +207,7 @@ const ProductReel = (props: ProductReelProps) => {
             {products?.map((product: any, i: number) => (
               <motion.div
                 style={{
-                  
+                  touchAction: 'none',
                   x: secondaryX
                 }}
                 key={product.id}
