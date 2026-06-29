@@ -80,11 +80,6 @@ const ProductReel = (props: ProductReelProps) => {
 
   // Drag System
   const x = useMotionValue(0);
-  const springX = useSpring(x, {
-    stiffness: 280,
-    damping: 32,
-    mass: 0.8,
-  });
 
   // ====================== NEXT & PREV ======================
   const next = () => {
@@ -108,8 +103,6 @@ const ProductReel = (props: ProductReelProps) => {
 
   // This will control the second div
   const secondaryX = useMotionValue(0);
-  
-
 
   const [liveX, setLiveX] = useState(0);
 
@@ -120,6 +113,8 @@ const ProductReel = (props: ProductReelProps) => {
     secondaryX.set(currentX);     // Secondary box moves at different speed
     setLiveX(currentX);
   };
+
+  console.log(liveX)
 
   const handleDragEnd = (_: any, info: PanInfo) => {
     const currentX = x.get();
@@ -193,7 +188,12 @@ const ProductReel = (props: ProductReelProps) => {
 
         <div className=" overflow-hidden h-auto w-full ">
           <motion.div
-            
+            style={{
+              touchAction: (liveX > 0 || liveX < 0)
+                ? 'none'          // Lock completely at edges
+                : ''
+
+            }}
             className=" flex w-full pl-5 "
             animate={{
               x: `-${currentIndex * getMovePercentage(currentIndex)}%`,
@@ -215,7 +215,7 @@ const ProductReel = (props: ProductReelProps) => {
                 drag="x"
                 dragElastic={5}
                 dragConstraints={{ left: 0, right: 0 }}
-                dragPropagation={false}
+                dragPropagation={true}
                 onDrag={handleDrag}
                 onDragEnd={handleDragEnd}
                 transition={{
