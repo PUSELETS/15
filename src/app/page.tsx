@@ -85,14 +85,11 @@ const Homes: NextPage = () => {
         </MaxWidthWrapper>
         <MaxWidthWrapper className="mt-0">
           <section className=" justify-center text-[#000000] relative w-auto h-auto items-center space-x-6 sm:space-x-[5.54375rem] bg-white rounded-3xl py-10">
-
-            <label className=" flex text-center text-[clamp(26px,2.0vw+18px,32px)] font-medium px-10 ">
+            <label className=" flex text-center text-[clamp(26px,2.0vw+18px,32px)] font-semibold px-10 ">
               Good street food is essential for feeding both your stomach and your soul. At Boot2Plate, we serve fresh, hot, and flavourful meals made with care so you always leave satisfied.
             </label>
-
           </section>
         </MaxWidthWrapper>
-
       </header>
       <ProductReel href='/products?sort=recent' title='Brand new' />
 

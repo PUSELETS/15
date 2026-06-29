@@ -7,8 +7,16 @@ import Link from 'next/link'
 import ProductListing from './ProductListing'
 import { useEffect, useRef, useState } from 'react'
 import { motion, useMotionValue, useSpring, PanInfo } from 'framer-motion';
+import localFont from 'next/font/local';
 
 
+const cour = localFont({
+  src: "../../public/fonts/cour.ttf",
+})
+
+const verdana = localFont({
+  src: "../../public/fonts/verdana.ttf",
+})
 
 interface ProductReelProps {
   title: string
@@ -100,7 +108,8 @@ const ProductReel = (props: ProductReelProps) => {
 
   // This will control the second div
   const secondaryX = useMotionValue(0);
-  const secondarySpringX = useSpring(secondaryX, { stiffness: 280, damping: 35 });
+  
+
 
   const [liveX, setLiveX] = useState(0);
 
@@ -173,35 +182,49 @@ const ProductReel = (props: ProductReelProps) => {
   return (
     <section className='py-6'>
       <div className="relative w-full ">
-        <div className="flex items-end justify-between mb-10 mx-auto w-full max-w-screen-xl px-4 md:px-20">
-          <h2 className="text-[clamp(30px,2.4vw+21px,38px)] md:text-5xl font-bold tracking-tight">
+        <div className="flex items-center justify-between  mb-8 mx-auto w-full max-w-screen-xl px-4 md:px-20">
+          <h2 className={`${verdana.className} flex text-center text-[#FF0007] text-[clamp(26px,2.0vw+18px,32px)] md:text-5xl font-bold tracking-tight`}>
             Shop the range
           </h2>
-          
+          <button className={`${cour.className} relative flex justify-center py-[10px] px-[20px] items-center w-auto h-auto rounded-[20px] border-[1px] border-black bg-white text-black text-[clamp(14px,1.0vw+10px,17px)] `}>
+            SHOW ALL
+          </button>
         </div>
 
         <div className=" overflow-hidden h-auto w-full ">
           <motion.div
+            style={{
+              touchAction: 'none',
+            }}
             className=" flex w-full pl-5 "
             animate={{
               x: `-${currentIndex * getMovePercentage(currentIndex)}%`,
             }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            transition={{
+              type: "tween",
+              duration: 0.4,
+              ease: "easeOut"
+            }}
           >
             {products?.map((product: any, i: number) => (
               <motion.div
                 style={{
                   touchAction: 'none',
-                  x: secondarySpringX
+                  x: secondaryX
                 }}
                 key={product.id}
                 className="w-full mr-4 "
                 drag="x"
-                dragElastic={1}
+                dragElastic={5}
                 dragConstraints={{ left: 0, right: 0 }}
                 dragPropagation={false}
                 onDrag={handleDrag}
                 onDragEnd={handleDragEnd}
+                transition={{
+                  type: "tween",
+                  duration: 0.4,
+                  ease: "easeOut"
+                }}
               >
                 <ProductListing
                   key={`product-${i}`}
@@ -213,7 +236,7 @@ const ProductReel = (props: ProductReelProps) => {
           </motion.div>
         </div>
 
-        
+
       </div>
 
       <div className='relative h-auto w-full '>
