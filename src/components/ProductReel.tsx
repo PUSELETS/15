@@ -191,7 +191,7 @@ const ProductReel = (props: ProductReelProps) => {
             style={{
               touchAction: (liveX > 0 || liveX < 0)
                 ? 'none'          // Lock completely at edges
-                : ''
+                : 'pan-y'
 
             }}
             className=" flex w-full pl-5 "
