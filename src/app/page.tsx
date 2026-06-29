@@ -24,77 +24,11 @@ import { motion, useInView, useMotionValue, useSpring, PanInfo } from "framer-mo
 import { useDrag } from '@use-gesture/react';
 
 
-const tahoma = localFont({
-  src: "../../public/fonts/tahoma.ttf",
+const verdana = localFont({
+  src: "../../public/fonts/verdana.ttf",
 })
 
-const perks = [
-  {
-    name: 'Instant Delivery',
-    Icon: ArrowDownToLine,
-    description:
-      'Get your assets delivered to your email in seconds and download them right away.',
-  },
-  {
-    name: 'Guaranteed Quality',
-    Icon: CheckCircle,
-    description:
-      'Every asset on our platform is verified by our team to ensure our highest quality standards. Not happy? We offer a 30-day refund guarantee.',
-  },
-  {
-    name: 'For the Planet',
-    Icon: Leaf,
-    description:
-      "We've pledged 1% of sales to the preservation and restoration of the natural environment.",
-  },
-]
 
-const Category = [
-  {
-    name: '3 Piece Softside',
-    image: '/Poly Lines.png'
-  },
-  {
-    name: 'Colored Baggage',
-    image: '/PolyyLine.png'
-  },
-  {
-    name: 'Carry on Luggage',
-    image: '/Poly Line.png'
-  },
-  {
-    name: 'Basics Hardside',
-    image: '/Poly Linee.png'
-  },
-]
-
-const Categoryy: Product[] = [
-  {
-    name: 'Colored ',
-    image: '/Picture Frameee.png',
-    id: 0,
-    price: 0
-  },
-  {
-    name: '3 Piece Softside',
-    image: '/Picture FrameW.png',
-    id: 0,
-    price: 0
-  },
-  {
-    name: 'Basics Hardside',
-    image: '/Picture Frame.png',
-    id: 0,
-    price: 0
-  },
-  {
-    name: 'Carry on ',
-    image: '/Picture Framely.png',
-    id: 0,
-    price: 0
-  },
-
-]
 
 type Product = {
   id: number;
@@ -126,7 +60,7 @@ const Homes: NextPage = () => {
 
   return (
 
-    <section className={`${tahoma.className}  relative [font-size-adjust:ex-height_0.52] leading-[1] `}>
+    <section className={`${verdana.className}  relative [font-size-adjust:ex-height_0.52] leading-[1] `}>
       <header className='relative'>
 
         <MaxWidthWrapper className="" >
@@ -136,7 +70,7 @@ const Homes: NextPage = () => {
                 src='/stakes.png'
                 fill
                 alt=''
-                className="absolute z-[-5] pointer-events-none inset-0 size-full select-none object-cover object-center rounded-[30px] "
+                className="absolute z-[-5] pointer-events-none inset-0 size-full select-none object-cover object-center rounded-[20px] "
               />
             </div>
             <div className=" flex flex-col justify-between absolute z-20 w-full h-full p-8 text-white ">
@@ -152,18 +86,14 @@ const Homes: NextPage = () => {
         <MaxWidthWrapper className="mt-0">
           <section className=" justify-center text-[#000000] relative w-auto h-auto items-center space-x-6 sm:space-x-[5.54375rem] bg-white rounded-3xl py-10">
 
-            <label className=" flex text-center text-[clamp(30px,2.4vw+21px,38px)] font-semibold ">
+            <label className=" flex text-center text-[clamp(26px,2.0vw+18px,32px)] font-medium px-10 ">
               Good street food is essential for feeding both your stomach and your soul. At Boot2Plate, we serve fresh, hot, and flavourful meals made with care so you always leave satisfied.
             </label>
-
 
           </section>
         </MaxWidthWrapper>
 
-
       </header>
-
-
       <ProductReel href='/products?sort=recent' title='Brand new' />
 
     </section>

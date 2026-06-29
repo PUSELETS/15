@@ -21,32 +21,37 @@ interface Product {
   name: string;
   price: number;
   imageUrl: any;
+  shortDiscript: string,
 };
 
 const products: Product[] = [
   {
     id: 1,
-    name: "vertkok",
-    price: 89.99,
-    imageUrl: "/stakes.png",
+    name: "FULL HOUSE KOTA",
+    price: 85,
+    imageUrl: "/kota.png",
+    shortDiscript: "Loaded with Russian, polony, cheese, egg, chips & atchar. The ultimate kota experience!",
   },
   {
     id: 2,
-    name: "braai packs",
-    price: 247.00,
+    name: "GRILLED MEALIES",
+    price: 147.00,
     imageUrl: "/packs.png",
+    shortDiscript: "Fresh mealies grilled over the coals and brushed with butter & spices.",
   },
   {
     id: 3,
-    name: "braai",
-    price: 129.99,
+    name: "CHEESE VETKOEK",
+    price: 45,
     imageUrl: "/fat.png",
+    shortDiscript: "Fresh fried vetkoek filled with cheese. Add mince for extra flavour!",
   },
   {
     id: 4,
-    name: "kota",
-    price: 45.50,
-    imageUrl: "/kota.png",
+    name: "SHISANYAMA COMBO",
+    price: 135.50,
+    imageUrl: "/stakes.png",
+    shortDiscript: "Flame-grilled braai meat with pap, chakalaka & gravy. Proper township braai taste.",
   },
   // Add more products as needed
 ];
@@ -168,24 +173,11 @@ const ProductReel = (props: ProductReelProps) => {
   return (
     <section className='py-6'>
       <div className="relative w-full ">
-        <div className="flex items-end justify-between mb-10">
-          <h2 className="text-5xl md:text-3xl font-bold tracking-tight">
+        <div className="flex items-end justify-between mb-10 mx-auto w-full max-w-screen-xl px-4 md:px-20">
+          <h2 className="text-[clamp(30px,2.4vw+21px,38px)] md:text-5xl font-bold tracking-tight">
             Shop the range
           </h2>
-          <div className="hidden md:flex gap-3">
-            <button
-              onClick={prev}
-              className="w-12 h-12 border border-black rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-all"
-            >
-              ←
-            </button>
-            <button
-              onClick={next}
-              className="w-12 h-12 border border-black rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-all"
-            >
-              →
-            </button>
-          </div>
+          
         </div>
 
         <div className=" overflow-hidden h-auto w-full ">
@@ -203,8 +195,7 @@ const ProductReel = (props: ProductReelProps) => {
                   x: secondarySpringX
                 }}
                 key={product.id}
-                className="w-full mr-5 "
-                whileHover={{ scale: 1.02 }}
+                className="w-full mr-4 "
                 drag="x"
                 dragElastic={1}
                 dragConstraints={{ left: 0, right: 0 }}
@@ -222,17 +213,7 @@ const ProductReel = (props: ProductReelProps) => {
           </motion.div>
         </div>
 
-        {/* Mobile dots */}
-        <div className="flex justify-center gap-3 mt-10 md:hidden">
-          {products.map((_, idx) => (
-            <button
-              key={idx}
-              onClick={() => setCurrentIndex(idx)}
-              className={`w-3 h-3 rounded-full transition-all ${idx === currentIndex ? 'bg-black scale-125' : 'bg-gray-300'
-                }`}
-            />
-          ))}
-        </div>
+        
       </div>
 
       <div className='relative h-auto w-full '>
