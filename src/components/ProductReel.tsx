@@ -213,6 +213,7 @@ const ProductReel = (props: ProductReelProps) => {
               duration: 0.4,
               ease: "easeOut"
             }}
+            dragElastic={0.4}
           >
             {products?.map((product: any, i: number) => (
               <motion.div
@@ -222,7 +223,7 @@ const ProductReel = (props: ProductReelProps) => {
                 key={product.id}
                 className="w-full mr-4 "
                 drag="x"
-                dragElastic={1}
+                dragElastic={0}
                 dragConstraints={{ left: 0, right: 0 }}
                 dragPropagation={true}
                 onDrag={handleDrag}

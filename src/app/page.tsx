@@ -28,6 +28,9 @@ const verdana = localFont({
   src: "../../public/fonts/verdana.ttf",
 })
 
+const cour = localFont({
+  src: "../../public/fonts/cour.ttf",
+})
 
 
 type Product = {
@@ -67,18 +70,18 @@ const Homes: NextPage = () => {
           <section className=" w-auto relative flex justify-center mt-1 rounded-[10px] min-h-[calc(100dvh-6.3125rem)] md:min-h-[calc(100dvh-7.1875rem)] ">
             <div className=" z-10  w-full h-full ">
               <Image
-                src='/stakes.png'
+                src='/FRESH¶STREET FOOD.png'
                 fill
                 alt=''
                 className="absolute z-[-5] pointer-events-none inset-0 size-full select-none object-cover object-center rounded-[20px] "
               />
             </div>
-            <div className=" flex flex-col justify-between absolute z-20 w-full h-full p-8 text-white ">
-              <div className=" flex justify-center h-[2.4875rem] w-full ">
-                <Icons.boot2plate className=' md:hidden w-[7.95rem] h-[2.4875rem] ' />
-              </div>
-              <div className=" flex justify-end h-[4.3rem] w-full  " >
-                <Icons.fresh className=' w-[8.325rem] h-full ' />
+            <div className=" flex flex-col justify-end absolute z-20 w-full h-full p-8 text-white ">
+
+              <div className=" flex justify-center h-auto w-full  " >
+                <button className={`${cour.className} mr-3 relative flex justify-center py-[10px] px-[20px] items-center w-auto h-auto border-[1px] border-[#FF0007] rounded-[10px] bg-[#FF0007] text-white text-[clamp(16px,1.2vw+11px,20px)] `}>
+                  ORDER NOW
+                </button>
               </div>
             </div>
           </section>
