@@ -76,8 +76,10 @@ const Homes: NextPage = () => {
                 className="absolute z-[-5] pointer-events-none inset-0 size-full select-none object-cover object-center rounded-[20px] "
               />
             </div>
-            <div className=" flex flex-col justify-end absolute z-20 w-full h-full p-8 text-white ">
-
+            <div className=" flex flex-col justify-between absolute z-20 w-full h-full p-8 text-white ">
+              <div className="flex justify-center text-[clamp(26px,2.0vw+18px,32px)] font-semibold">
+                STREET FOOD
+              </div>
               <div className=" flex justify-center h-auto w-full  " >
                 <button className={`${cour.className} mr-3 relative flex justify-center py-[10px] px-[20px] items-center w-auto h-auto border-[1px] border-[#FF0007] rounded-[10px] bg-[#FF0007] text-white text-[clamp(16px,1.2vw+11px,20px)] `}>
                   ORDER NOW

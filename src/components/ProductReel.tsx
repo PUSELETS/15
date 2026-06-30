@@ -105,24 +105,14 @@ const ProductReel = (props: ProductReelProps) => {
   const secondaryX = useMotionValue(0);
 
   const [liveX, setLiveX] = useState(false);
-  const [liveXY, setLiveXY] = useState(0);
 
   const handleDrag = (_: any, info: PanInfo) => {
     const currentX = info.offset.x;
-    const peek = 7
-
-    if (currentX < -peek) {
-      setLiveXY(1);
-    } else if (currentX > peek) {
-      setLiveXY(1);
-    }
 
     x.set(currentX);                    // Main box
     secondaryX.set(currentX);     // Secondary box moves at different speed
     setLiveX(true);
   };
-
-  console.log(liveX, liveXY, '12')
 
   const handleDragEnd = (_: any, info: PanInfo) => {
     const currentX = x.get();
@@ -137,7 +127,6 @@ const ProductReel = (props: ProductReelProps) => {
 
     x.set(0);
     secondaryX.set(0);
-    setLiveXY(0)
     
   };
 
@@ -196,15 +185,10 @@ const ProductReel = (props: ProductReelProps) => {
           </button>
         </div>
 
-        <div className=" overflow-hidden h-auto w-full ">
+        <div className=" overflow-hidden h-auto w-auto ">
           <motion.div
-            style={{
-              touchAction: (liveX === true && liveXY === 1)
-                ? 'none'          // Lock completely at edges
-                : 'pan-y'
-
-            }}
-            className=" flex w-full pl-5 "
+            
+            className=" flex w-auto pl-5 h-auto "
             animate={{
               x: `-${currentIndex * getMovePercentage(currentIndex)}%`,
             }}
@@ -213,7 +197,7 @@ const ProductReel = (props: ProductReelProps) => {
               duration: 0.4,
               ease: "easeOut"
             }}
-            dragElastic={0.4}
+            
           >
             {products?.map((product: any, i: number) => (
               <motion.div
@@ -221,9 +205,9 @@ const ProductReel = (props: ProductReelProps) => {
                   x: secondaryX
                 }}
                 key={product.id}
-                className="w-full mr-4 "
+                className="w-full mr-4  "
                 drag="x"
-                dragElastic={0}
+                dragElastic={3}
                 dragConstraints={{ left: 0, right: 0 }}
                 dragPropagation={true}
                 onDrag={handleDrag}
