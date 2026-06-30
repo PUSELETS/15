@@ -104,14 +104,14 @@ const ProductReel = (props: ProductReelProps) => {
   // This will control the second div
   const secondaryX = useMotionValue(0);
 
-  const [liveX, setLiveX] = useState(0);
+  const [liveX, setLiveX] = useState(false);
 
   const handleDrag = (_: any, info: PanInfo) => {
     const currentX = info.offset.x;
 
     x.set(currentX);                    // Main box
     secondaryX.set(currentX);     // Secondary box moves at different speed
-    setLiveX(currentX);
+    setLiveX(true);
   };
 
   console.log(liveX)
@@ -128,7 +128,7 @@ const ProductReel = (props: ProductReelProps) => {
 
     x.set(0);
     secondaryX.set(0);
-    setLiveX(0);
+    
   };
 
   // Snap animation when index changes
@@ -189,7 +189,7 @@ const ProductReel = (props: ProductReelProps) => {
         <div className=" overflow-hidden h-auto w-full ">
           <motion.div
             style={{
-              touchAction: (liveX > 0 || liveX < 0)
+              touchAction: (liveX === true)
                 ? 'none'          // Lock completely at edges
                 : 'pan-y'
 
@@ -200,7 +200,7 @@ const ProductReel = (props: ProductReelProps) => {
             }}
             transition={{
               type: "tween",
-              duration: 0.4,
+              duration: 0.8,
               ease: "easeOut"
             }}
           >
@@ -213,14 +213,14 @@ const ProductReel = (props: ProductReelProps) => {
                 key={product.id}
                 className="w-full mr-4 "
                 drag="x"
-                dragElastic={0.3}
+                dragElastic={0}
                 dragConstraints={{ left: 0, right: 0 }}
                 dragPropagation={true}
                 onDrag={handleDrag}
                 onDragEnd={handleDragEnd}
                 transition={{
                   type: "tween",
-                  duration: 0.4,
+                  duration: 0.8,
                   ease: "easeOut"
                 }}
               >
