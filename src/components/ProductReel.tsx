@@ -84,7 +84,7 @@ const ProductReel = (props: ProductReelProps) => {
   // ====================== NEXT & PREV ======================
   const next = () => {
     setCurrentIndex((prev) => {
-      if (prev < 4) {           // Only allow going up to index 4
+      if (prev < 3) {           // Only allow going up to index 4
         return prev + 1;
       }
       return prev;              // Stay at 4 if already at the end
@@ -213,7 +213,7 @@ const ProductReel = (props: ProductReelProps) => {
                 key={product.id}
                 className="w-full mr-4 "
                 drag="x"
-                dragElastic={1}
+                dragElastic={0.3}
                 dragConstraints={{ left: 0, right: 0 }}
                 dragPropagation={true}
                 onDrag={handleDrag}
