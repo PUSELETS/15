@@ -105,6 +105,7 @@ const ProductReel = (props: ProductReelProps) => {
   const secondaryX = useMotionValue(0);
 
   const [liveX, setLiveX] = useState(false);
+  const [liveXY, setLiveXY] = useState(0);
 
   const handleDrag = (_: any, info: PanInfo) => {
     const currentX = info.offset.x;
@@ -114,16 +115,23 @@ const ProductReel = (props: ProductReelProps) => {
     setLiveX(true);
   };
 
-  console.log(liveX)
+  console.log(liveX, liveXY)
 
   const handleDragEnd = (_: any, info: PanInfo) => {
     const currentX = x.get();
     const threshold = 80; // pixels
+    const peek = 10
 
     if (currentX < -threshold) {
       next();
     } else if (currentX > threshold) {
       prev();
+    }
+
+    if (currentX < -peek) {
+      setLiveXY(1);
+    } else if (currentX > peek) {
+      setLiveXY(1);
     }
 
     x.set(0);
@@ -189,7 +197,7 @@ const ProductReel = (props: ProductReelProps) => {
         <div className=" overflow-hidden h-auto w-full ">
           <motion.div
             style={{
-              touchAction: (liveX === true)
+              touchAction: (liveX === true && liveXY === 1)
                 ? 'none'          // Lock completely at edges
                 : 'pan-y'
 
@@ -200,27 +208,26 @@ const ProductReel = (props: ProductReelProps) => {
             }}
             transition={{
               type: "tween",
-              duration: 0.8,
+              duration: 0.4,
               ease: "easeOut"
             }}
           >
             {products?.map((product: any, i: number) => (
               <motion.div
                 style={{
-                  touchAction: 'none',
                   x: secondaryX
                 }}
                 key={product.id}
                 className="w-full mr-4 "
                 drag="x"
-                dragElastic={0}
+                dragElastic={1}
                 dragConstraints={{ left: 0, right: 0 }}
                 dragPropagation={true}
                 onDrag={handleDrag}
                 onDragEnd={handleDragEnd}
                 transition={{
                   type: "tween",
-                  duration: 0.8,
+                  duration: 0.4,
                   ease: "easeOut"
                 }}
               >
