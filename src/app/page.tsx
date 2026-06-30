@@ -70,7 +70,7 @@ const Homes: NextPage = () => {
           <section className=" w-auto relative flex justify-center mt-1 rounded-[10px] min-h-[calc(100dvh-6.3125rem)] md:min-h-[calc(100dvh-7.1875rem)] ">
             <div className=" z-10  w-full h-full ">
               <Image
-                src='/FRESH¶STREET FOOD.png'
+                src='/stakes.png'
                 fill
                 alt=''
                 className="absolute z-[-5] pointer-events-none inset-0 size-full select-none object-cover object-center rounded-[20px] "
