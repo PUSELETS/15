@@ -213,7 +213,7 @@ const ProductReel = (props: ProductReelProps) => {
                 key={product.id}
                 className="w-full mr-4 "
                 drag="x"
-                dragElastic={5}
+                dragElastic={1}
                 dragConstraints={{ left: 0, right: 0 }}
                 dragPropagation={true}
                 onDrag={handleDrag}
