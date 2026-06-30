@@ -109,24 +109,7 @@ const ProductReel = (props: ProductReelProps) => {
 
   const handleDrag = (_: any, info: PanInfo) => {
     const currentX = info.offset.x;
-
-    x.set(currentX);                    // Main box
-    secondaryX.set(currentX);     // Secondary box moves at different speed
-    setLiveX(true);
-  };
-
-  console.log(liveX, liveXY)
-
-  const handleDragEnd = (_: any, info: PanInfo) => {
-    const currentX = x.get();
-    const threshold = 80; // pixels
-    const peek = 10
-
-    if (currentX < -threshold) {
-      next();
-    } else if (currentX > threshold) {
-      prev();
-    }
+    const peek = 7
 
     if (currentX < -peek) {
       setLiveXY(1);
@@ -134,8 +117,27 @@ const ProductReel = (props: ProductReelProps) => {
       setLiveXY(1);
     }
 
+    x.set(currentX);                    // Main box
+    secondaryX.set(currentX);     // Secondary box moves at different speed
+    setLiveX(true);
+  };
+
+  console.log(liveX, liveXY, '12')
+
+  const handleDragEnd = (_: any, info: PanInfo) => {
+    const currentX = x.get();
+    const threshold = 80; // pixels
+    
+
+    if (currentX < -threshold) {
+      next();
+    } else if (currentX > threshold) {
+      prev();
+    }
+
     x.set(0);
     secondaryX.set(0);
+    setLiveXY(0)
     
   };
 
