@@ -174,7 +174,7 @@ const ProductReel = (props: ProductReelProps) => {
   }
 
   return (
-    <section className='py-6'>
+    <section className='py-6 mb-7'>
       <div className="relative w-full ">
         <div className="flex items-center justify-between  mb-8 mx-auto w-full max-w-screen-xl px-4 md:px-20">
           <h2 className={`${verdana.className} flex text-center text-[#FF0007] text-[clamp(26px,2.0vw+18px,32px)] md:text-5xl font-bold tracking-tight`}>

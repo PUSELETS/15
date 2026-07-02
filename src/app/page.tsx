@@ -98,6 +98,13 @@ const Homes: NextPage = () => {
       </header>
       <ProductReel href='/products?sort=recent' title='Brand new' />
 
+      <div className="py-11 h-auto w-full bg-black overflow-hidden">
+        <div className="h-auto w-auto flex justify-center items-center ">
+          <Icons.Boot2white className="w-32 h-32 mx-5" />
+          <Icons.excellent className="w-32 h-32 mx-5" />
+        </div>
+      </div>
+
     </section>
 
 
